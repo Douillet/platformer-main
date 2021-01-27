@@ -6,7 +6,7 @@ class Zoo extends Tableau{
         this.load.image('monster-violet', 'assets/monster-violet.png');
         this.load.image('ground', 'assets/platform.png');
         this.load.image('Géant', 'assets/Géant.png');
-        this.load.image('Serpent', 'assets/Serpent.png');
+        this.load.image('serpent', 'assets/serpent.png');
         this.load.image('Ressort', 'assets/Ressort.png');
         this.load.image('Soucoupe', 'assets/Soucoupe.png');
         this.load.image('Lapin', 'assets/Lapin.png');
@@ -58,7 +58,7 @@ class Zoo extends Tableau{
         this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
         //monstre rampant
-        this.monstrerampant=this.physics.add.sprite(200,this.sys.canvas.height-200,"Serpent");
+        this.monstrerampant=this.physics.add.sprite(200,this.sys.canvas.height-200,"serpent");
         this.monstrerampant.setOrigin(0,0);
         this.monstrerampant.setDisplaySize(100,40);
         this.monstrerampant.setCollideWorldBounds(true);
