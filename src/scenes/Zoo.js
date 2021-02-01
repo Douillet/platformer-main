@@ -79,7 +79,6 @@ class Zoo extends Tableau{
         new GobelinLoup (this, 100, 400);
         new GobelinLoup (this, 160, 400);
 
-        new MonsterFly (this, 300, 200)
     }
 
 }
