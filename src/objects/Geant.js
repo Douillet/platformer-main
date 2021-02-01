@@ -10,6 +10,6 @@ class Geant extends ObjetEnnemi{
         this.setBounceY(0.2);
         this.setBounceX(1);
         this.setVelocityX(20);
-        this.physics.add.overlap(this.player, this, this.hitSpike, null, this);
+        //this.physics.add.overlap(this.player, this.Geant, this.hitSpike, null, this);
     }
 }
