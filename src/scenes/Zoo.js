@@ -9,7 +9,7 @@ class Zoo extends Tableau{
         this.load.image('serpent', 'assets/serpent.png');
         this.load.image('Ressort', 'assets/Ressort.png');
         this.load.image('Soucoupe', 'assets/Soucoupe.png');
-        this.load.image('Lapin', 'assets/Lapin.png');
+        this.load.image('Gobelin', 'assets/Gobelin.png');
         this.load.image('QuaterBack', 'assets/QuaterBack.png')
 
     }
@@ -48,14 +48,6 @@ class Zoo extends Tableau{
 
 
         //nos monstres
-        //monstre sautillant
-        this.monstre=this.physics.add.sprite(300,this.sys.canvas.height-90,"Lapin");
-        this.monstre.setOrigin(0,0);
-        this.monstre.setDisplaySize(64,64);
-        this.monstre.setCollideWorldBounds(true);
-        this.monstre.setBounce(1);
-        this.monstre.setVelocityX(80);
-        this.physics.add.overlap(this.player, this.monstre, this.hitSpike, null, this);
 
         //monstre rampant
         this.monstrerampant=this.physics.add.sprite(200,this.sys.canvas.height-200,"serpent");
@@ -99,15 +91,16 @@ class Zoo extends Tableau{
         this.monstresauteur.setVelocityY(200);
         this.physics.add.overlap(this.player, this.monstresauteur, this.hitSpike, null, this);
 
-        //monstre Géant
-        this.monstrerampant=this.physics.add.sprite(400,this.sys.canvas.height-400,"Géant");
-        this.monstrerampant.setOrigin(0,0);
-        this.monstrerampant.setDisplaySize(120,200);
-        this.monstrerampant.setCollideWorldBounds(true);
-        this.monstrerampant.setBounceY(0.2);
-        this.monstrerampant.setBounceX(1);
-        this.monstrerampant.setVelocityX(20);
-        this.physics.add.overlap(this.player, this.monstrerampant, this.hitSpike, null, this);
+        //les Géants
+        new Geant(this,400,100);
+        new Geant(this,700,80);
+        //le Gobbo
+        new Gobelin(this, 200, 360);
+        new Gobelin(this, 260, 375);
+        new Gobelin(this, 290, 365);
+        new Gobelin(this, 360, 370);
+
+        
     }
 
 }
