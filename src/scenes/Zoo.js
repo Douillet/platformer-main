@@ -3,14 +3,15 @@ class Zoo extends Tableau{
     preload() {
         super.preload();
         this.load.image('star', 'assets/star.png');
-        this.load.image('monster-violet', 'assets/monster-violet.png');
         this.load.image('ground', 'assets/platform.png');
         this.load.image('Géant', 'assets/Géant.png');
-        this.load.image('serpent', 'assets/serpent.png');
-        this.load.image('Ressort', 'assets/Ressort.png');
+        this.load.image('Zombie', 'assets/Zombie.jpg');
+        this.load.image('Squig', 'assets/Squig.jpg');
         this.load.image('Soucoupe', 'assets/Soucoupe.png');
         this.load.image('Gobelin', 'assets/Gobelin.png');
-        this.load.image('QuaterBack', 'assets/QuaterBack.png')
+        this.load.image('GobelinVolant', 'assets/GobelinVolant.jpg');
+        this.load.image('GobelinLoup', 'assets/GobelinLoup.png');
+        this.load.image('monster-fly', 'assets/monster-fly.png');
 
     }
     create() {
@@ -49,58 +50,36 @@ class Zoo extends Tableau{
 
         //nos monstres
 
-        //monstre rampant
-        this.monstrerampant=this.physics.add.sprite(200,this.sys.canvas.height-200,"serpent");
-        this.monstrerampant.setOrigin(0,0);
-        this.monstrerampant.setDisplaySize(100,40);
-        this.monstrerampant.setCollideWorldBounds(true);
-        this.monstrerampant.setBounceY(0.1);
-        this.monstrerampant.setBounceX(1);
-        this.monstrerampant.setVelocityX(50);
-        this.physics.add.overlap(this.player, this.monstrerampant, this.hitSpike, null, this);
-
-        //monstre flottant
-        this.monstreflottant=this.physics.add.sprite(30,this.sys.canvas.height-250,"Soucoupe");
-        this.monstreflottant.setOrigin(0,0);
-        this.monstreflottant.setDisplaySize(70,40);
-        this.monstreflottant.setCollideWorldBounds(true);
-        this.monstreflottant.body.allowGravity=false;
-        this.monstreflottant.setBounceY(1);
-        this.monstreflottant.setBounceX(1);
-        this.monstreflottant.setVelocityX(100);
-        this.physics.add.overlap(this.player, this.monstreflottant, this.hitSpike, null, this);
-
         //monstre mangeur de joueur (pas ouf)
-        this.monstremangeurdejoueur=this.physics.add.sprite(600,this.sys.canvas.height-80,"QuaterBack");
-        this.monstremangeurdejoueur.setOrigin(0,0);
-        this.monstremangeurdejoueur.setDisplaySize(70,60);
-        this.monstremangeurdejoueur.setCollideWorldBounds(true);
-        this.physics.accelerateTo(this.monstremangeurdejoueur, this.player.x, this.player.y, 200, 500, 500);
-        this.monstremangeurdejoueur.setBounceY(0.6);
-        this.monstremangeurdejoueur.setBounceX(0.2);
-        this.monstremangeurdejoueur.setVelocityX(500);
-        this.physics.add.overlap(this.player, this.monstremangeurdejoueur, this.hitSpike, null, this);
         
-        //monstre sauteur
-        this.monstresauteur=this.physics.add.sprite(800,this.sys.canvas.height-200,"Ressort");
-        this.monstresauteur.setOrigin(0,0);
-        this.monstresauteur.setDisplaySize(20,80);
-        this.monstresauteur.setCollideWorldBounds(true);
-        this.monstresauteur.setBounceY(1);
-        this.monstresauteur.setBounceX(0.2);
-        this.monstresauteur.setVelocityY(200);
-        this.physics.add.overlap(this.player, this.monstresauteur, this.hitSpike, null, this);
-
+        
         //les Géants
         new Geant(this,400,100);
         new Geant(this,700,80);
-        //le Gobbo
+       
+        //les Gobbos
         new Gobelin(this, 200, 360);
         new Gobelin(this, 260, 375);
         new Gobelin(this, 290, 365);
         new Gobelin(this, 360, 370);
 
-        
+        //les Gobbos volants
+        new GobelinVolant (this, 120, 150);
+
+        //Zombies
+        new Zombie (this, 600, 450);
+        new Zombie (this, 50, 450);
+        new Zombie (this, 350, 450);
+
+        //Les Squigs
+        new Squig (this, 700, 200);
+        new Squig (this, 200, 200);
+
+        //Les Gobelins Loups cassés à améliorer
+        new GobelinLoup (this, 100, 400);
+        new GobelinLoup (this, 160, 400);
+
+        new MonsterFly (this, 300, 200)
     }
 
 }
