@@ -4,9 +4,17 @@ class Tableau00a extends Tableau{
         super.preload();
         this.load.image('star', 'assets/star.png');
         this.load.image('ground', 'assets/platform.png');
+        this.load.image('arbretest', 'assets/Arbretest.png');
     }
     create() {
         super.create();
+        
+        let largeurDuTableau=4000;
+        let hauteurDuTableau=600; //la hauteur est identique au cadre du jeu
+        this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
+        this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
+
+        this.cameras.main.startFollow(this.player, false, 0.10, 0.10);
 
         
 
@@ -54,20 +62,61 @@ class Tableau00a extends Tableau{
         this.physics.add.collider(this.player, rouge);//le joueur rebondit dessus
         this.physics.add.collider(this.stars, rouge);//l'étoile1 rebondit dessus
 
-         //le joueur rebondit sur les plateformes
-         this.physics.add.collider(this.player, this.platforms);
-         //les étoiles rebondissent sur les plateformes
-         this.physics.add.collider(this.platforms, this.stars);
-         //test physique entre plateformes
-         this.physics.add.collider(this.stars);
-         //test rebond étoiles sur le joueur
-         this.physics.add.collider(this.stars, this.player);
+        //le joueur rebondit sur les plateformes
+        this.physics.add.collider(this.player, this.platforms);
+        //les étoiles rebondissent sur les plateformes
+        this.physics.add.collider(this.platforms, this.stars);
+        //test physique entre plateformes
+        this.physics.add.collider(this.stars);
+        //test rebond étoiles sur le joueur
+        this.physics.add.collider(this.stars, this.player);
+        this.physics.add.collider(this.platforms);    
+        
+         
+        this.sky.setOrigin(0,0);
+        this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
 
-         this.physics.add.collider(this.platforms);         
- 
+        this.arbre=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'arbretest'
+        );
+        this.arbre.setScrollFactor(0);
+        this.arbre.setOrigin(0,0);
+
+        this.arbre2=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'arbretest'
+        );
+        this.arbre2.setScrollFactor(0);
+        this.arbre2.setOrigin(0,0);
+        
+        //fait passer les éléments devant le ciel
+        this.platforms.setDepth(10);
+        rouge.setDepth(10);
+        this.stars.setDepth(10);
+        this.player.setDepth(10);
+        this.arbre.setDepth(11);
+        this.arbre2.setDepth(8);
+    
     }
     update() {
         super.update();
+
+        //le ciel se déplace moins vite que la caméra pour donner un effet paralax
+        this.sky.tilePositionX=this.cameras.main.scrollX*0.6;
+        this.sky.tilePositionY=this.cameras.main.scrollY*0.2;
+        //les arbres se déplacent moins vite pour accentuer l'effet
+        this.arbre.tilePositionX=this.cameras.main.scrollX*1+100;
+        this.arbre.tilePositionY=this.cameras.main.scrollY*0.1+30;
+
+        this.arbre2.tilePositionX=this.cameras.main.scrollX*0.3+250;
+        this.arbre2.tilePositionY=this.cameras.main.scrollY*0.03+30;
     }
 
 }

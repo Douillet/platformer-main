@@ -70,6 +70,7 @@ class Tableau08 extends Tableau{
         //le deuxième ciel se déplace moins vite pour accentuer l'effet
         this.sky2.tilePositionX=this.cameras.main.scrollX*0.3+500;
         this.sky2.tilePositionY=this.cameras.main.scrollY*0.1+30;
+
     }
 
 

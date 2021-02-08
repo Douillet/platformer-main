@@ -10,6 +10,18 @@ class Geant extends ObjetEnnemi{
         this.setBounceY(0.2);
         this.setBounceX(1);
         this.setVelocityX(20);
-        //this.physics.add.overlap(this.player, this.Geant, this.hitSpike, null, this);
+        this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
+    }
+
+    update(){
+        //fait changer de sens notre oiseau
+        if(this.body){
+            if(this.body.velocity.x<0){
+                this.flipX=true;
+            }else{
+                this.flipX=false;
+            }
+        }
+    
     }
 }
