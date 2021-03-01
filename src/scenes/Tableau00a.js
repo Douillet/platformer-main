@@ -140,6 +140,7 @@ class Tableau00a extends Tableau{
         this.player.setDepth(10);
         this.arbre.setDepth(9);
         this.arbre2.setDepth(8);
+        this.arbre3.setDepth(7);
     
     }
     update() {
