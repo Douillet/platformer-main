@@ -5,6 +5,10 @@ class Tableau00a extends Tableau{
         this.load.image('star', 'assets/star.png');
         this.load.image('ground', 'assets/platform.png');
         this.load.image('arbretest', 'assets/Arbretest.png');
+        this.load.image('fond', 'asset/Fond.jpg');
+        this.load.image('premierplan', 'asset/Arbres du premier Plan.png');
+        this.load.image('secondplan', 'asset/Arbres du second plan.png');
+        this.load.image('troisièmeplan', 'asset/3e plan darbres.png');
     }
     create() {
         super.create();
