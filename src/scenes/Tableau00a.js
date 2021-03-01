@@ -52,7 +52,7 @@ class Tableau00a extends Tableau{
             child.setVelocityY(100);
             child.setBounceY(1);
             child.setCollideWorldBounds(true);
-            child.setFriction(0); //les éléments ne glissent pas dessus cette plateforme
+            child.setFriction(1); //les éléments ne glissent pas dessus cette plateforme
         });
 
         let rouge=this.physics.add.sprite(10,200,"ground");
@@ -65,18 +65,22 @@ class Tableau00a extends Tableau{
         //rouge.create(0, 0, 'ground');
 
         this.solherbe = this.physics.add.group();
-        this.solherbe.create(0, 416, 'herbe');
-        this.solherbe.children.iterate(function (child) {
+        /**this.solherbe.children.iterate(function (child) {
             child.setImmovable(true);
             child.body.allowGravity=false;
             child.setBounceX(1);
             child.setCollideWorldBounds(true);
             child.setFriction(1); //les éléments ne glissent pas dessus cette plateforme
-        });
-        //for(let posX=0;posX<largeurDuTableau;posX+=64){}
+        });**/
+        for(let posX=0;posX<largeurDuTableau;posX+=64){
+            let plate=this.solherbe.create(posX ,416,"herbe");
+            plate.setImmovable(true);
+            plate.body.allowGravity=false;
+            plate.setFriction(1);
+        }
         this.physics.add.collider(this.solherbe, this.player);
         this.physics.add.collider(this.solherbe, this.stars);
-        this.physics.add.collider(this.solherbe, this.platforms);
+        this.physics.add.collider(this.platforms, this.solherbe);
 
         this.physics.add.collider(this.player, rouge);//le joueur rebondit dessus
         this.physics.add.collider(this.stars, rouge);//l'étoile1 rebondit dessus
@@ -89,7 +93,7 @@ class Tableau00a extends Tableau{
         this.physics.add.collider(this.stars);
         //test rebond étoiles sur le joueur
         this.physics.add.collider(this.stars, this.player);
-        this.physics.add.collider(this.platforms);    
+        //this.physics.add.collider(this.platforms);    
         
         this.fond=this.add.tileSprite(
             0,
