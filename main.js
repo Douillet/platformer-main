@@ -10,14 +10,15 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 100*3 },
-            debug: true,
+            debug: false,
         }
     },
     scene: [
         new Ui(),
 
-        new Zoo("Le Bestiaire"),
+        
         new Tableau00a("Toto"),
+        new Zoo("Le Bestiaire"),
         new Tableau00("Des étoiles"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),

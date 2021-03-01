@@ -5,16 +5,17 @@ class Tableau00a extends Tableau{
         this.load.image('star', 'assets/star.png');
         this.load.image('ground', 'assets/platform.png');
         this.load.image('arbretest', 'assets/Arbretest.png');
-        this.load.image('fond', 'asset/Fond.jpg');
-        this.load.image('premierplan', 'asset/Arbres du premier Plan.png');
-        this.load.image('secondplan', 'asset/Arbres du second plan.png');
-        this.load.image('troisièmeplan', 'asset/3e plan darbres.png');
+        this.load.image('fond', 'assets/Fond.jpg');
+        this.load.image('premierplan', 'assets/arbrepremierplan.png');
+        this.load.image('secondplan', 'assets/Arbres du second plan.png');
+        this.load.image('troisiemeplan', 'assets/3e plan darbres.png');
+        this.load.image('herbe', 'assets/herbe1.png');
     }
     create() {
         super.create();
         
         let largeurDuTableau=4000;
-        let hauteurDuTableau=600; //la hauteur est identique au cadre du jeu
+        let hauteurDuTableau=448; //la hauteur est identique au cadre du jeu
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
 
@@ -63,6 +64,20 @@ class Tableau00a extends Tableau{
 
         //rouge.create(0, 0, 'ground');
 
+        this.solherbe = this.physics.add.group();
+        this.solherbe.create(0, 416, 'herbe');
+        this.solherbe.children.iterate(function (child) {
+            child.setImmovable(true);
+            child.body.allowGravity=false;
+            child.setBounceX(1);
+            child.setCollideWorldBounds(true);
+            child.setFriction(1); //les éléments ne glissent pas dessus cette plateforme
+        });
+        //for(let posX=0;posX<largeurDuTableau;posX+=64){}
+        this.physics.add.collider(this.solherbe, this.player);
+        this.physics.add.collider(this.solherbe, this.stars);
+        this.physics.add.collider(this.solherbe, this.platforms);
+
         this.physics.add.collider(this.player, rouge);//le joueur rebondit dessus
         this.physics.add.collider(this.stars, rouge);//l'étoile1 rebondit dessus
 
@@ -76,16 +91,23 @@ class Tableau00a extends Tableau{
         this.physics.add.collider(this.stars, this.player);
         this.physics.add.collider(this.platforms);    
         
-         
-        this.sky.setOrigin(0,0);
-        this.sky.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.fond=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'fond'
+        );
+
+        this.fond.setOrigin(0,0);
+        this.fond.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
 
         this.arbre=this.add.tileSprite(
             0,
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'arbretest'
+            'premierplan'
         );
         this.arbre.setScrollFactor(0);
         this.arbre.setOrigin(0,0);
@@ -95,17 +117,28 @@ class Tableau00a extends Tableau{
             0,
             this.sys.canvas.width,
             this.sys.canvas.height,
-            'arbretest'
+            'secondplan'
         );
         this.arbre2.setScrollFactor(0);
         this.arbre2.setOrigin(0,0);
+
+        this.arbre3=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'troisiemeplan'
+        );
+        this.arbre3.setScrollFactor(0);
+        this.arbre3.setOrigin(0,0);
         
         //fait passer les éléments devant le ciel
         this.platforms.setDepth(10);
         rouge.setDepth(10);
+        this.solherbe.setDepth(10);
         this.stars.setDepth(10);
         this.player.setDepth(10);
-        this.arbre.setDepth(11);
+        this.arbre.setDepth(9);
         this.arbre2.setDepth(8);
     
     }
@@ -116,11 +149,14 @@ class Tableau00a extends Tableau{
         this.sky.tilePositionX=this.cameras.main.scrollX*0.6;
         this.sky.tilePositionY=this.cameras.main.scrollY*0.2;
         //les arbres se déplacent moins vite pour accentuer l'effet
-        this.arbre.tilePositionX=this.cameras.main.scrollX*1+100;
-        this.arbre.tilePositionY=this.cameras.main.scrollY*0.1+30;
+        this.arbre.tilePositionX=this.cameras.main.scrollX*0.5+100;
+        this.arbre.tilePositionY=this.cameras.main.scrollY*0.1+60;
 
-        this.arbre2.tilePositionX=this.cameras.main.scrollX*0.3+250;
-        this.arbre2.tilePositionY=this.cameras.main.scrollY*0.03+30;
+        this.arbre2.tilePositionX=this.cameras.main.scrollX*0.2+250;
+        this.arbre2.tilePositionY=this.cameras.main.scrollY*0.03+60;
+
+        this.arbre3.tilePositionX=this.cameras.main.scrollX*0.03+250;
+        this.arbre3.tilePositionY=this.cameras.main.scrollY*0+60;
     }
 
 }
