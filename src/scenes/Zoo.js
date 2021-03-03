@@ -8,7 +8,7 @@ class Zoo extends Tableau{
         this.load.image('Zombie', 'assets/Zombie.jpg');
         this.load.image('Squig', 'assets/Squig.jpg');
         this.load.image('Soucoupe', 'assets/Soucoupe.png');
-        this.load.image('Gobelin', 'assets/Gobelin.png');
+        this.load.image('Gobelin', 'assets/Gobelin basique.png');
         this.load.image('GobelinVolant', 'assets/GobelinVolant.jpg');
         this.load.image('GobelinLoup', 'assets/GobelinLoup.png');
         this.load.image('monster-fly', 'assets/monster-fly.png');
@@ -58,10 +58,10 @@ class Zoo extends Tableau{
         new Geant(this,700,80);
        
         //les Gobbos
-        new Gobelin(this, 200, 360);
-        new Gobelin(this, 260, 375);
-        new Gobelin(this, 290, 365);
-        new Gobelin(this, 360, 370);
+        new Gobelin_basique(this, 200, 360);
+        new Gobelin_basique(this, 260, 375);
+        new Gobelin_basique(this, 290, 365);
+        new Gobelin_basique(this, 360, 370);
 
         //les Gobbos volants
         new GobelinVolant (this, 120, 150);

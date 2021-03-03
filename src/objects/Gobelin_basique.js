@@ -1,6 +1,6 @@
-class Gobelin extends ObjetEnnemi{
+class Gobelin_basique extends ObjetEnnemi{
     constructor(scene, x, y) {
-        super(scene, x, y, "Gobelin");
+        super(scene, x, y, "Gobelin_basique");
 
 
         this.setOrigin(0,0);
