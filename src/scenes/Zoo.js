@@ -8,7 +8,7 @@ class Zoo extends Tableau{
         this.load.image('Zombie', 'assets/Zombie.jpg');
         this.load.image('Squig', 'assets/Squig.jpg');
         this.load.image('Soucoupe', 'assets/Soucoupe.png');
-        this.load.image('Gobelin', 'assets/Gobelin basique.png');
+        this.load.image('Gobelin_basique', 'assets/Gobelin_basique.png');
         this.load.image('GobelinVolant', 'assets/GobelinVolant.jpg');
         this.load.image('GobelinLoup', 'assets/GobelinLoup.png');
         this.load.image('monster-fly', 'assets/monster-fly.png');
