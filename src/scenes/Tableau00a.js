@@ -66,7 +66,7 @@ class Tableau00a extends Tableau{
 
         //rouge.create(0, 0, 'ground');
 
-        new Gobelin_basique(this, 500, 250);
+        //new Gobelin_basique(this, 500, 250);
         
 
         this.solherbe = this.physics.add.group();
@@ -149,7 +149,7 @@ class Tableau00a extends Tableau{
         //this.platforms.setDepth(10);
         //rouge.setDepth(10);
         this.solherbe.setDepth(10);
-        this.Gobelin_basique.setDepth(10);
+        //this.Gobelin_basique.setDepth(10);
         this.stars.setDepth(10);
         this.player.setDepth(10);
         this.arbre.setDepth(9);
