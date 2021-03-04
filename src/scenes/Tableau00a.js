@@ -67,7 +67,7 @@ class Tableau00a extends Tableau{
 
         //rouge.create(0, 0, 'ground');
 
-        //new Gobelin_basique(this, 500, 250);
+        this.gobelin1 = new Gobelin_basique(this, 500, 250);
 
         this.solherbe = this.physics.add.group();
         /**this.solherbe.children.iterate(function (child) {
@@ -94,7 +94,7 @@ class Tableau00a extends Tableau{
         //this.physics.add.collider(this.stars, rouge);//l'étoile1 rebondit dessus
 
         //le joueur rebondit sur les plateformes
-        this.physics.add.collider(this.player, this.platforms);
+        //this.physics.add.collider(this.player, this.platforms);
         //les étoiles rebondissent sur les plateformes
         //this.physics.add.collider(this.platforms, this.stars);
         
@@ -149,7 +149,7 @@ class Tableau00a extends Tableau{
         //this.platforms.setDepth(10);
         //rouge.setDepth(10);
         this.solherbe.setDepth(10);
-        //this.Gobelin_basique.setDepth(10);
+        this.gobelin1.setDepth(10);
         this.stars.setDepth(10);
         this.player.setDepth(10);
         this.arbre.setDepth(9);
