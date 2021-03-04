@@ -11,6 +11,7 @@ class Tableau00a extends Tableau{
         this.load.image('troisiemeplan', 'assets/3e plan darbres.png');
         this.load.image('herbe', 'assets/herbe1.png');
         this.load.image('Gobelin_basique', 'assets/Gobelin_basique.png');
+        this.load.image('Géant', 'assets/Géant.png');
     }
     create() {
         super.create();
@@ -67,7 +68,6 @@ class Tableau00a extends Tableau{
         //rouge.create(0, 0, 'ground');
 
         //new Gobelin_basique(this, 500, 250);
-        
 
         this.solherbe = this.physics.add.group();
         /**this.solherbe.children.iterate(function (child) {
