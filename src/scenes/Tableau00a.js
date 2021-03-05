@@ -25,7 +25,6 @@ class Tableau00a extends Tableau{
 
         this.cameras.main.startFollow(this.player, false, 0.10, 0.10);
 
-        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
         
 
         //des étoiles
@@ -43,7 +42,7 @@ class Tableau00a extends Tableau{
         });
         //quand le joueur touche une étoile on appelle la fonction ramasserEtoile
         
-        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+        
         
         /*this.platforms = this.physics.add.group();
         this.platforms.create(200, 150, 'ground')
@@ -65,28 +64,29 @@ class Tableau00a extends Tableau{
         
 
         this.solherbe = this.physics.add.group();
-        this.solherbe.children.iterate(function (child) {
-            child.setImmovable(true);
-            child.body.allowGravity=false;
-            child.setBounceX(1);
-            child.setCollideWorldBounds(true);
-            child.setFriction(1); //les éléments ne glissent pas dessus cette plateforme
-        });
         for(let posX=0;posX<largeurDuTableau;posX+=64){
             let plate=this.solherbe.create(posX ,416,"herbe");
             plate.setImmovable(true);
             plate.body.allowGravity=false;
             plate.setFriction(1);
         }
+        /*this.solherbe.children.iterate(function (child) {
+            child.setImmovable(true);
+            child.body.allowGravity=false;
+            child.setBounceX(1);
+            child.setCollideWorldBounds(true);
+            child.setFriction(1); //les éléments ne glissent pas dessus cette plateforme
+        });*/
+        
+        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+
         this.physics.add.collider(this.solherbe, this.player);
         this.physics.add.collider(this.solherbe, this.stars);
 
         this.physics.add.collider(this.solherbe, this.gobelin1);
         
-        
-
         //le joueur rebondit sur les plateformes
-        this.physics.add.collider(this.player, this.platforms);
+        //this.physics.add.collider(this.player, this.platforms);
         //les étoiles rebondissent sur les plateformes
         //this.physics.add.collider(this.platforms, this.stars);
         
@@ -145,32 +145,34 @@ class Tableau00a extends Tableau{
         //Halos lumineux
         this.halo1=this.add.tileSprite(400, 0, 700, 448, 'halo');
         this.halo1.setOrigin(0,0);
+        this.halo1.blendMode= 'ADD';
         this.halo2=this.add.tileSprite(1200, 0, 700, 448, 'halo');
         this.halo2.setOrigin(0,0);
 
+
         //lucioles
-        this.luciole1=new Luciole (this, 200, 200,);
-        this.luciole2=new Luciole2 (this, 400, 320,);
+        this.luciole1=new Luciole (this, 200, 200);
+        this.luciole2=new Luciole2 (this, 400, 320);
         
         //émetteur à chauve-souris
-     function create ()
-{
-    var particles = this.add.particles('chauve-souris');
+     
 
-    this.emitter = particles.createEmitter({
-        x: 400,
-        y: 300,
-        angle: { min: 180, max: 360 },
-        speed: 400,
-        gravityY: 350,
-        lifespan: 4000,
-        quantity: 6,
-        scale: { start: 0.1, end: 0.1 },
-        blendMode: 'SCREEN',
-    });
-}
+        var particles = this.add.particles('luciole');
 
-        this.emitter.setDepth(12);
+        var emitter = particles.createEmitter({
+            x: 400,
+            y: 300,
+            angle: { min: -92, max: -88 },
+            speed: 100,
+            //gravityY: 35,
+            lifespan: 300,
+            quantity: 1,
+            scale: { start: 1, end: 0 },
+            blendMode: 'ADD',
+        });
+
+
+        particles.setDepth(12);
 
 
         //profondeur à 10 pour tous les ennemis
