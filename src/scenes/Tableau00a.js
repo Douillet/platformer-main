@@ -13,6 +13,7 @@ class Tableau00a extends Tableau{
         this.load.image('Gobelin_basique', 'assets/Gobelin_basique.png');
         this.load.image('halo', 'assets/Halo_lumineuxv2.png');
         this.load.image('luciole', 'assets/luciolev2.png');
+        this.load.image('chauve-souris', 'assets/chauve-souris.png');
     }
     create() {
         super.create();
@@ -146,6 +147,27 @@ class Tableau00a extends Tableau{
         this.halo1.setOrigin(0,0);
         this.halo2=this.add.tileSprite(1200, 0, 700, 448, 'halo');
         this.halo2.setOrigin(0,0);
+
+        //émetteur à chauve-souris
+    /* function create ()
+{
+    var particles = this.add.particles('chauve-souris');
+
+    var emitter = particles.createEmitter({
+        x: 400,
+        y: 300,
+        angle: { min: 180, max: 360 },
+        speed: 400,
+        gravityY: 350,
+        lifespan: 4000,
+        quantity: 6,
+        scale: { start: 0.1, end: 0.1 },
+        blendMode: 'SCREEN',
+    });
+}
+
+        this.emitter.setDepth(12);*/
+
 
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);
