@@ -148,6 +148,10 @@ class Tableau00a extends Tableau{
         this.halo2=this.add.tileSprite(1200, 0, 700, 448, 'halo');
         this.halo2.setOrigin(0,0);
 
+        //lucioles
+        this.luciole1=new Luciole (this, 200, 200,);
+        this.luciole2=new Luciole2 (this, 400, 320,);
+        
         //émetteur à chauve-souris
     /* function create ()
 {
@@ -180,7 +184,11 @@ class Tableau00a extends Tableau{
 
         //éléments visuels premier plan
         this.halo1.setDepth(9);
-        this.halo2.setDepth(9)
+        this.halo2.setDepth(9);
+
+        this.luciole1.setDepth(11);
+        this.luciole2.setDepth(8);
+
 
         //depht décor
         this.arbre.setDepth(9);
