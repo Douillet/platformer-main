@@ -153,11 +153,11 @@ class Tableau00a extends Tableau{
         this.luciole2=new Luciole2 (this, 400, 320,);
         
         //émetteur à chauve-souris
-    /* function create ()
+     function create ()
 {
     var particles = this.add.particles('chauve-souris');
 
-    var emitter = particles.createEmitter({
+    this.emitter = particles.createEmitter({
         x: 400,
         y: 300,
         angle: { min: 180, max: 360 },
@@ -170,7 +170,7 @@ class Tableau00a extends Tableau{
     });
 }
 
-        this.emitter.setDepth(12);*/
+        this.emitter.setDepth(12);
 
 
         //profondeur à 10 pour tous les ennemis
