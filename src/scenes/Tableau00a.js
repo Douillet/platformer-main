@@ -71,7 +71,7 @@ class Tableau00a extends Tableau{
         this.passerelle.create(750, 352, 'passerelle');
         this.passerelle.create(1000, 352, 'passerelle');
         this.passerelle.create(1064, 352, 'passerelle');
-        this.passerelle.create(1118, 352, 'passerelle');
+        this.passerelle.create(1128, 352, 'passerelle');
 
         this.passerelle.children.iterate(function (child) {
             child.setImmovable(true);
