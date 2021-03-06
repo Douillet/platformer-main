@@ -16,6 +16,7 @@ class Tableau00a extends Tableau{
         this.load.image('chauve-souris', 'assets/chauve-souris.png');
         this.load.image('ponton', 'assets/Ponton.jpg');
         this.load.image('passerelle', 'assets/Passerelle terrestre.png');
+        this.load.image('Squig', 'assets/Gobelin à la lance.png');
     }
     create() {
         super.create();
@@ -34,6 +35,7 @@ class Tableau00a extends Tableau{
         this.stars.create(100,350,"star");
         this.stars.create(200,350,"star");
         this.stars.create(300,350,"star");
+        this.stars.create(516,100,"star");
         this.stars.create(1950,350,"star");
         this.stars.children.iterate(function (child) {
             child.setCollideWorldBounds(true);
@@ -44,8 +46,10 @@ class Tableau00a extends Tableau{
         
         //platformes volantes
         this.platforms = this.physics.add.group();
-        this.platforms.create(400, 250, 'ponton');
+        this.platforms.create(500, 150, 'ponton');
+        this.platforms.create(532, 150, 'ponton');
         this.platforms.create(600, 260, 'ponton');
+        this.platforms.create(632, 260, 'ponton');
 
         this.platforms.children.iterate(function (child) {
             child.setImmovable(true);
@@ -74,6 +78,7 @@ class Tableau00a extends Tableau{
         this.gobelin1 = new Gobelin_basique(this, 500, 310);
         this.gobelin2 = new Gobelin_basique(this, 1000, 310);
 
+        this.gobosauteur1 = new Squig(this, 720, 230);
 
         //sol
         this.solherbe = this.physics.add.group();
@@ -104,11 +109,11 @@ class Tableau00a extends Tableau{
         //collider ennemi/platforme
         this.physics.add.collider(this.platforms, this.gobelin1);
         this.physics.add.collider(this.platforms, this.gobelin2);
-        
+        this.physics.add.collider(this.platforms, this.gobosauteur1);
         //collider ennemi/platforme au sol
         this.physics.add.collider(this.passerelle, this.gobelin1); 
         this.physics.add.collider(this.passerelle, this.gobelin2);
-        
+        this.physics.add.collider(this.passerelle, this.gobosauteur1);
 
         //fond
         this.fond=this.add.tileSprite(
@@ -165,9 +170,11 @@ class Tableau00a extends Tableau{
 
         //lucioles
         this.luciole1=new Luciole (this, 200, 200);
-        this.luciole3=new Luciole (this, 900, 350);
+        this.luciole2=new Luciole (this, 900, 350);
+        this.luciole3=new Luciole2 (this, 600, 60);
 
-        this.luciole2=new Luciole2 (this, 400, 320);
+        this.lucioleP1=new Luciole2 (this, 400, 320);
+        this.lucioleP2=new Luciole2 (this, 1000, 180);
         
         //émetteurs à chauve-souris
         var particles = this.add.particles('chauve-souris');
@@ -213,6 +220,7 @@ class Tableau00a extends Tableau{
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);
         this.gobelin2.setDepth(10);
+        this.gobosauteur1.setDepth(10);
 
         //fait passer les éléments au 'plan de jeu'
         this.solherbe.setDepth(10);
@@ -229,8 +237,11 @@ class Tableau00a extends Tableau{
 
         //lucioles
         this.luciole1.setDepth(11);
+        this.luciole2.setDepth(11);
         this.luciole3.setDepth(11);
-        this.luciole2.setDepth(8);
+
+        this.lucioleP1.setDepth(8);
+        this.lucioleP2.setDepth(8);
 
 
         //depht décor
