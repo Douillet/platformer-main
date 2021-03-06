@@ -8,10 +8,12 @@ class Luciole2 extends ObjetEnnemi{
 
         //gestion de la taille
         this.setDisplaySize(48,48);
+        this.blendmode
 
         //on réduit un peu la zone de hit
         this.setBodySize(this.body.width-60,this.body.height-60);
         this.setOffset(30, 30);
+        
 
         //définir les propriétés que l'on va utiliser dans notre animation
 
