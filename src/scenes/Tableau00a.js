@@ -36,6 +36,7 @@ class Tableau00a extends Tableau{
         this.stars.create(200,350,"star");
         this.stars.create(300,350,"star");
         this.stars.create(516,100,"star");
+        this.stars.create(844,220,"star");
         this.stars.create(1950,350,"star");
         this.stars.children.iterate(function (child) {
             child.setCollideWorldBounds(true);
@@ -50,6 +51,9 @@ class Tableau00a extends Tableau{
         this.platforms.create(532, 150, 'ponton');
         this.platforms.create(600, 260, 'ponton');
         this.platforms.create(632, 260, 'ponton');
+        this.platforms.create(812, 260, 'ponton');
+        this.platforms.create(844, 260, 'ponton');
+        this.platforms.create(876, 260, 'ponton');
 
         this.platforms.children.iterate(function (child) {
             child.setImmovable(true);
@@ -65,6 +69,9 @@ class Tableau00a extends Tableau{
         this.passerelle.create(464, 352, 'passerelle');
         this.passerelle.create(464, 288, 'passerelle');
         this.passerelle.create(750, 352, 'passerelle');
+        this.passerelle.create(1000, 352, 'passerelle');
+        this.passerelle.create(1064, 352, 'passerelle');
+        this.passerelle.create(1118, 352, 'passerelle');
 
         this.passerelle.children.iterate(function (child) {
             child.setImmovable(true);
@@ -76,7 +83,8 @@ class Tableau00a extends Tableau{
 
         //créateur d'ennemis
         this.gobelin1 = new Gobelin_basique(this, 500, 310);
-        this.gobelin2 = new Gobelin_basique(this, 1000, 310);
+        this.gobelin2 = new Gobelin_basique(this, 844, 310);
+        this.gobelin3 = new Gobelin_basique(this, 1500, 310);
 
         this.gobosauteur1 = new Squig(this, 720, 230);
 
@@ -97,6 +105,7 @@ class Tableau00a extends Tableau{
         this.physics.add.collider(this.solherbe, this.stars);
         this.physics.add.collider(this.solherbe, this.gobelin1);
         this.physics.add.collider(this.solherbe, this.gobelin2);
+        this.physics.add.collider(this.solherbe, this.gobelin3);
         
         //collider player
         this.physics.add.collider(this.player, this.platforms);
@@ -109,10 +118,12 @@ class Tableau00a extends Tableau{
         //collider ennemi/platforme
         this.physics.add.collider(this.platforms, this.gobelin1);
         this.physics.add.collider(this.platforms, this.gobelin2);
+        this.physics.add.collider(this.platforms, this.gobelin3);
         this.physics.add.collider(this.platforms, this.gobosauteur1);
         //collider ennemi/platforme au sol
         this.physics.add.collider(this.passerelle, this.gobelin1); 
         this.physics.add.collider(this.passerelle, this.gobelin2);
+        this.physics.add.collider(this.passerelle, this.gobelin3);
         this.physics.add.collider(this.passerelle, this.gobosauteur1);
 
         //fond
@@ -220,6 +231,7 @@ class Tableau00a extends Tableau{
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);
         this.gobelin2.setDepth(10);
+        this.gobelin3.setDepth(10);
         this.gobosauteur1.setDepth(10);
 
         //fait passer les éléments au 'plan de jeu'
