@@ -17,6 +17,7 @@ class Tableau00a extends Tableau{
         this.load.image('ponton', 'assets/Ponton.jpg');
         this.load.image('passerelle', 'assets/Passerelle terrestre.png');
         this.load.image('Squig', 'assets/Gobelin à la lance.png');
+        this.load.image('GobelinLoup', 'assets/Gobelin à la hache.png');
     }
     create() {
         super.create();
@@ -37,6 +38,9 @@ class Tableau00a extends Tableau{
         this.stars.create(300,350,"star");
         this.stars.create(516,100,"star");
         this.stars.create(844,220,"star");
+        this.stars.create(952,80,"star");
+        this.stars.create(1160,160,"star");
+        this.stars.create(1320,220,"star");
         this.stars.create(1950,350,"star");
         this.stars.children.iterate(function (child) {
             child.setCollideWorldBounds(true);
@@ -47,13 +51,21 @@ class Tableau00a extends Tableau{
         
         //platformes volantes
         this.platforms = this.physics.add.group();
+        //groupe1
         this.platforms.create(500, 150, 'ponton');
         this.platforms.create(532, 150, 'ponton');
+        //groupe2
         this.platforms.create(600, 260, 'ponton');
         this.platforms.create(632, 260, 'ponton');
+        //groupe3
         this.platforms.create(812, 260, 'ponton');
         this.platforms.create(844, 260, 'ponton');
         this.platforms.create(876, 260, 'ponton');
+        //groupe4
+        this.platforms.create(920, 120, 'ponton');
+        this.platforms.create(952, 120, 'ponton');
+        this.platforms.create(984, 120, 'ponton');
+
 
         this.platforms.children.iterate(function (child) {
             child.setImmovable(true);
@@ -69,9 +81,30 @@ class Tableau00a extends Tableau{
         this.passerelle.create(464, 352, 'passerelle');
         this.passerelle.create(464, 288, 'passerelle');
         this.passerelle.create(750, 352, 'passerelle');
+        //passerelle de la bosse
+        //1ère couche
         this.passerelle.create(1000, 352, 'passerelle');
         this.passerelle.create(1064, 352, 'passerelle');
         this.passerelle.create(1128, 352, 'passerelle');
+        this.passerelle.create(1192, 352, 'passerelle');
+        this.passerelle.create(1256, 352, 'passerelle');
+        this.passerelle.create(1320, 352, 'passerelle');
+        this.passerelle.create(1384, 352, 'passerelle');
+        this.passerelle.create(1448, 352, 'passerelle');
+        this.passerelle.create(1512, 352, 'passerelle');
+        //2eme couche
+        this.passerelle.create(1064, 288, 'passerelle');
+        this.passerelle.create(1128, 288, 'passerelle');
+        this.passerelle.create(1192, 288, 'passerelle');
+        this.passerelle.create(1256, 288, 'passerelle');
+        this.passerelle.create(1320, 288, 'passerelle');
+        this.passerelle.create(1384, 288, 'passerelle');
+        this.passerelle.create(1448, 288, 'passerelle');
+        this.passerelle.create(1512, 288, 'passerelle');
+        //3eme couche
+        this.passerelle.create(1128, 224, 'passerelle');
+        this.passerelle.create(1192, 224, 'passerelle');
+        this.passerelle.create(1448, 224, 'passerelle');
 
         this.passerelle.children.iterate(function (child) {
             child.setImmovable(true);
@@ -87,6 +120,8 @@ class Tableau00a extends Tableau{
         this.gobelin3 = new Gobelin_basique(this, 1500, 310);
 
         this.gobosauteur1 = new Squig(this, 720, 230);
+
+        this.goborampant1 = new GobelinLoup(this, 1128, 100);
 
         //sol
         this.solherbe = this.physics.add.group();
@@ -106,6 +141,7 @@ class Tableau00a extends Tableau{
         this.physics.add.collider(this.solherbe, this.gobelin1);
         this.physics.add.collider(this.solherbe, this.gobelin2);
         this.physics.add.collider(this.solherbe, this.gobelin3);
+        this.physics.add.collider(this.solherbe, this.goborampant1);
         
         //collider player
         this.physics.add.collider(this.player, this.platforms);
@@ -120,11 +156,14 @@ class Tableau00a extends Tableau{
         this.physics.add.collider(this.platforms, this.gobelin2);
         this.physics.add.collider(this.platforms, this.gobelin3);
         this.physics.add.collider(this.platforms, this.gobosauteur1);
+        this.physics.add.collider(this.platforms, this.goborampant1);
+
         //collider ennemi/platforme au sol
         this.physics.add.collider(this.passerelle, this.gobelin1); 
         this.physics.add.collider(this.passerelle, this.gobelin2);
         this.physics.add.collider(this.passerelle, this.gobelin3);
         this.physics.add.collider(this.passerelle, this.gobosauteur1);
+        this.physics.add.collider(this.passerelle, this.goborampant1);
 
         //fond
         this.fond=this.add.tileSprite(
@@ -233,6 +272,7 @@ class Tableau00a extends Tableau{
         this.gobelin2.setDepth(10);
         this.gobelin3.setDepth(10);
         this.gobosauteur1.setDepth(10);
+        this.goborampant1.setDepth(10);
 
         //fait passer les éléments au 'plan de jeu'
         this.solherbe.setDepth(10);

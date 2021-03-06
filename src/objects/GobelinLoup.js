@@ -3,11 +3,11 @@ class GobelinLoup extends ObjetEnnemi{
         super(scene, x, y, "GobelinLoup");
 
         this.setOrigin(0,0);
-        this.setDisplaySize(70,60);
+        this.setDisplaySize(68,63);
         this.setCollideWorldBounds(true);
         this.setBounceY(0.6);
         this.setBounceX(1);
-        this.setVelocityX(500);
+        this.setVelocityX(70);
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
     }
 
