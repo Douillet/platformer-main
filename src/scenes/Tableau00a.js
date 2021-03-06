@@ -2,7 +2,7 @@ class Tableau00a extends Tableau{
 
     preload() {
         super.preload();
-        this.load.image('star', 'assets/star.png');
+        this.load.image('star', 'assets/rose.png');
         this.load.image('ground', 'assets/platform.png');
         this.load.image('arbretest', 'assets/Arbretest.png');
         this.load.image('fond', 'assets/Fond.jpg');
@@ -14,6 +14,8 @@ class Tableau00a extends Tableau{
         this.load.image('halo', 'assets/Halo_lumineuxv2.png');
         this.load.image('luciole', 'assets/luciolev2.png');
         this.load.image('chauve-souris', 'assets/chauve-souris.png');
+        this.load.image('ponton', 'assets/Ponton.jpg');
+        this.load.image('passerelle', 'assets/Passerelle terrestre.png');
     }
     create() {
         super.create();
@@ -23,46 +25,57 @@ class Tableau00a extends Tableau{
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
 
-        this.cameras.main.startFollow(this.player, false, 0.10, 0.10);
+        this.cameras.main.startFollow(this.player, false, 0.10, 0.10); //suis le joueur
 
         
 
-        //des étoiles
+        //étoiles
         this.stars=this.physics.add.group();
-        this.stars.create(100,0,"star");
-        this.stars.create(200,0,"star");
-        this.stars.create(300,0,"star");
-        this.stars.create(400,0,"star");
-        this.stars.create(500,0,"star");
-        this.stars.create(600,0,"star");
-        this.stars.create(700,0,"star");
+        this.stars.create(100,350,"star");
+        this.stars.create(200,350,"star");
+        this.stars.create(300,350,"star");
+        this.stars.create(1950,350,"star");
         this.stars.children.iterate(function (child) {
             child.setCollideWorldBounds(true);
             child.setBounce(0);
+            child.setDisplaySize(20,40);
         });
-        //quand le joueur touche une étoile on appelle la fonction ramasserEtoile
         
         
-        
-        /*this.platforms = this.physics.add.group();
-        this.platforms.create(200, 150, 'ground')
-        this.platforms.create(400, 250, 'ground')
-        this.platforms.create(600, 350, 'ground')
+        //platformes volantes
+        this.platforms = this.physics.add.group();
+        this.platforms.create(400, 250, 'ponton');
+        this.platforms.create(600, 260, 'ponton');
 
         this.platforms.children.iterate(function (child) {
-            child.setDisplaySize(140,8);
             child.setImmovable(true);
             child.body.allowGravity=false;
-            child.setVelocityY(100);
-            child.setBounceY(1);
             child.setCollideWorldBounds(true);
             child.setFriction(1); //les éléments ne glissent pas dessus cette plateforme
-        });*/
+        });
 
 
-        this.gobelin1=new Gobelin_basique(this, 500, 250);
-        
+        //passerelles au sol
+        this.passerelle = this.physics.add.group();
+        this.passerelle.create(400, 352, 'passerelle');
+        this.passerelle.create(464, 352, 'passerelle');
+        this.passerelle.create(464, 288, 'passerelle');
+        this.passerelle.create(750, 352, 'passerelle');
 
+        this.passerelle.children.iterate(function (child) {
+            child.setImmovable(true);
+            child.body.allowGravity=false;
+            child.setCollideWorldBounds(true);
+            child.setFriction(1); //les éléments ne glissent pas dessus cette plateforme
+        });
+
+
+        //créateur d'ennemis
+        this.gobelin1 = new Gobelin_basique(this, 500, 310);
+        this.gobelin2 = new Gobelin_basique(this, 1000, 310);
+
+
+        //sol
         this.solherbe = this.physics.add.group();
         for(let posX=0;posX<largeurDuTableau;posX+=64){
             let plate=this.solherbe.create(posX ,416,"herbe");
@@ -70,31 +83,31 @@ class Tableau00a extends Tableau{
             plate.body.allowGravity=false;
             plate.setFriction(1);
         }
-        /*this.solherbe.children.iterate(function (child) {
-            child.setImmovable(true);
-            child.body.allowGravity=false;
-            child.setBounceX(1);
-            child.setCollideWorldBounds(true);
-            child.setFriction(1); //les éléments ne glissent pas dessus cette plateforme
-        });*/
         
+        //rammasseur d'étoiles
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
 
+        //collider sol
         this.physics.add.collider(this.solherbe, this.player);
         this.physics.add.collider(this.solherbe, this.stars);
-
         this.physics.add.collider(this.solherbe, this.gobelin1);
+        this.physics.add.collider(this.solherbe, this.gobelin2);
         
-        //le joueur rebondit sur les plateformes
-        //this.physics.add.collider(this.player, this.platforms);
-        //les étoiles rebondissent sur les plateformes
-        //this.physics.add.collider(this.platforms, this.stars);
-        
-        //test physique entre plateformes
+        //collider player
+        this.physics.add.collider(this.player, this.platforms);
+        this.physics.add.collider(this.player, this.passerelle);
 
-        //test rebond étoiles sur le joueur
-        this.physics.add.collider(this.stars, this.player);
-        //this.physics.add.collider(this.platforms);    
+        //collider étoile
+        this.physics.add.collider(this.platforms, this.stars);
+        this.physics.add.collider(this.passerelle, this.stars);
+
+        //collider ennemi/platforme
+        this.physics.add.collider(this.platforms, this.gobelin1);
+        this.physics.add.collider(this.platforms, this.gobelin2);
+        
+        //collider ennemi/platforme au sol
+        this.physics.add.collider(this.passerelle, this.gobelin1); 
+        this.physics.add.collider(this.passerelle, this.gobelin2);
         
 
         //fond
@@ -107,7 +120,7 @@ class Tableau00a extends Tableau{
         );
 
         this.fond.setOrigin(0,0);
-        this.fond.setScrollFactor(0);//fait en sorte que le ciel ne suive pas la caméra
+        this.fond.setScrollFactor(0);
         
         //1er rang d'arbre
         this.arbre=this.add.tileSprite(
@@ -152,43 +165,71 @@ class Tableau00a extends Tableau{
 
         //lucioles
         this.luciole1=new Luciole (this, 200, 200);
+        this.luciole3=new Luciole (this, 900, 350);
+
         this.luciole2=new Luciole2 (this, 400, 320);
         
-        //émetteur à chauve-souris
-     
-
-        var particles = this.add.particles('luciole');
-
+        //émetteurs à chauve-souris
+        var particles = this.add.particles('chauve-souris');
+        
         var emitter = particles.createEmitter({
             x: 400,
-            y: 300,
-            angle: { min: -92, max: -88 },
+            y: 500,
+            angle: { min: -150, max: -90 },
             speed: 100,
-            //gravityY: 35,
-            lifespan: 300,
+            gravityY: -250,
+            lifespan: 4000,
             quantity: 1,
-            scale: { start: 1, end: 0 },
-            blendMode: 'ADD',
+            delay: 2000,
+            
+            maxParticles: 10,
+            scale: { start: 0.03, end: 0.3 },
+            blendMode: 'NORMAL',
         });
 
+        var particles2 = this.add.particles('chauve-souris');
+        
+        var emitter = particles2.createEmitter({
+            x: 1200,
+            y: 500,
+            angle: { min: -150, max: -90 },
+            speed: 100,
+            gravityY: -250,
+            lifespan: 4000,
+            quantity: 1,
+            delay: 20000,
+            
+            maxParticles: 10,
+            scale: { start: 0.03, end: 0.3 },
+            blendMode: 'NORMAL',
+        });
 
+        this.maxParticles = 20;
+
+        //profondeur des particules
         particles.setDepth(12);
-
+        particles2.setDepth(12);
 
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);
+        this.gobelin2.setDepth(10);
 
-
-        //fait passer les éléments devant le ciel
+        //fait passer les éléments au 'plan de jeu'
         this.solherbe.setDepth(10);
         this.stars.setDepth(10);
         this.player.setDepth(10);
+        this.platforms.setDepth(10);
+        this.passerelle.setDepth(10);
 
-        //éléments visuels premier plan
+        //éléments visuels
+
+        //halo
         this.halo1.setDepth(9);
         this.halo2.setDepth(9);
 
+        //lucioles
         this.luciole1.setDepth(11);
+        this.luciole3.setDepth(11);
         this.luciole2.setDepth(8);
 
 
@@ -204,15 +245,17 @@ class Tableau00a extends Tableau{
 
         //les éléments ont leur vitesse propre
         
-
-
         //les arbres se déplacent moins vite pour accentuer l'effet
+        
+        //rang1
         this.arbre.tilePositionX=this.cameras.main.scrollX*0.5+100;
         this.arbre.tilePositionY=this.cameras.main.scrollY*0.1+60;
 
+        //rang2
         this.arbre2.tilePositionX=this.cameras.main.scrollX*0.2+250;
         this.arbre2.tilePositionY=this.cameras.main.scrollY*0.03+60;
-
+        
+        //rang3
         this.arbre3.tilePositionX=this.cameras.main.scrollX*0.03+250;
         this.arbre3.tilePositionY=this.cameras.main.scrollY*0+60;
     }
