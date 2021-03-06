@@ -1,4 +1,4 @@
-class Luciole2 extends ObjetEnnemi{
+class Luciole2 extends ObjetPhysique{
     
     constructor(scene, x, y) 
     {

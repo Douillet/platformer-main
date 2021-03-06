@@ -262,9 +262,10 @@ class Tableau00a extends Tableau{
         //devant le plan de jeu
         this.luciole1=new Luciole (this, 200, 200);
         this.luciole2=new Luciole (this, 900, 350);
-        this.luciole3=new Luciole2 (this, 600, 60);
+        this.luciole3=new Luciole2 (this, 600, 350);
         this.luciole4=new Luciole (this, 1500, 200);
         this.luciole5=new Luciole2 (this, 1700, 60);
+        this.luciole6=new Luciole (this, 1880, 300);
     
         //derrière le plan de jeu
         this.lucioleP1=new Luciole2 (this, 400, 320);
@@ -376,6 +377,7 @@ class Tableau00a extends Tableau{
         this.luciole3.setDepth(11);
         this.luciole4.setDepth(11);
         this.luciole5.setDepth(11);
+        this.luciole6.setDepth(11);
 
         this.lucioleP1.setDepth(8);
         this.lucioleP2.setDepth(8);

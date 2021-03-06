@@ -17,11 +17,10 @@ class Tableau extends Phaser.Scene{
     preload(){
         this.load.image('sky', 'assets/sky.png');
         this.load.image('spike', 'assets/spike.png');
-        /*this.load.spritesheet('player',
+        this.load.spritesheet('player',
             'assets/player.png',
             { frameWidth: 32, frameHeight: 48  }
-        );*/
-        this.load.image('player','assets/Heros pur.png')
+        );
     }
     create(){
         Tableau.current=this;
@@ -103,9 +102,9 @@ class Tableau extends Phaser.Scene{
                 ui.gagne();
                 monster.isDead=true; //ok le monstre est mort
                 monster.disableBody(true,true);//plus de collisions
-                this.saigne(monster,function(){
+                //this.saigne(monster,function(){
                     //à la fin de la petite anim...ben il se passe rien :)
-                })
+                //})
                 //notre joueur rebondit sur le monstre
                 player.directionY=500;
             }else{
