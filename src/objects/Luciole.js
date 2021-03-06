@@ -9,6 +9,9 @@ class Luciole extends ObjetEnnemi{
         //gestion de la taille
         this.setDisplaySize(64,64);
 
+        //blendmode
+        this.blendMode='ADD';
+
         //on réduit un peu la zone de hit
         this.setBodySize(this.body.width-60,this.body.height-60);
         this.setOffset(30, 30);

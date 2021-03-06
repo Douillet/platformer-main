@@ -259,14 +259,18 @@ class Tableau00a extends Tableau{
 
 
         //lucioles
+        //devant le plan de jeu
         this.luciole1=new Luciole (this, 200, 200);
         this.luciole2=new Luciole (this, 900, 350);
         this.luciole3=new Luciole2 (this, 600, 60);
-        this.luciole4=new Luciole (this, 900, 350);
-
-
+        this.luciole4=new Luciole (this, 1500, 200);
+        this.luciole5=new Luciole2 (this, 1700, 60);
+    
+        //derrière le plan de jeu
         this.lucioleP1=new Luciole2 (this, 400, 320);
         this.lucioleP2=new Luciole2 (this, 1000, 180);
+        this.lucioleP3=new Luciole (this, 700, 60);
+        this.lucioleP4=new Luciole (this, 1200, 250);
         
         //émetteurs à chauve-souris
         var particles = this.add.particles('chauve-souris');
@@ -370,11 +374,13 @@ class Tableau00a extends Tableau{
         this.luciole1.setDepth(11);
         this.luciole2.setDepth(11);
         this.luciole3.setDepth(11);
-        this.luciole4.setDepth(9);
+        this.luciole4.setDepth(11);
+        this.luciole5.setDepth(11);
 
         this.lucioleP1.setDepth(8);
         this.lucioleP2.setDepth(8);
-
+        this.lucioleP3.setDepth(9);
+        this.lucioleP4.setDepth(8);
 
         //depht décor
         this.arbre.setDepth(9);

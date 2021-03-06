@@ -17,10 +17,11 @@ class Tableau extends Phaser.Scene{
     preload(){
         this.load.image('sky', 'assets/sky.png');
         this.load.image('spike', 'assets/spike.png');
-        this.load.spritesheet('player',
+        /*this.load.spritesheet('player',
             'assets/player.png',
             { frameWidth: 32, frameHeight: 48  }
-        );
+        );*/
+        this.load.image('player','assets/Heros pur.png')
     }
     create(){
         Tableau.current=this;
@@ -65,6 +66,30 @@ class Tableau extends Phaser.Scene{
         
     }
 
+    /*saigne(object,onComplete){
+        let me=this;
+        me.blood.visible=true;
+        me.blood.rotation = Phaser.Math.Between(0,6);
+        me.blood.x=object.x;
+        me.blood.y=object.y;
+        me.tweens.add({
+            targets:me.blood,
+            duration:200,
+            displayHeight:{
+                from:40,
+                to:70,
+            },
+            displayWidth:{
+                from:40,
+                to:70,
+            },
+            onComplete: function () {
+                me.blood.visible=false;
+                onComplete();
+            }
+        })
+    }*/
+
     hitMonster(player, monster){
         let me=this;
         if(monster.isDead !== true){ //si notre monstre n'est pas déjà mort
@@ -78,9 +103,9 @@ class Tableau extends Phaser.Scene{
                 ui.gagne();
                 monster.isDead=true; //ok le monstre est mort
                 monster.disableBody(true,true);//plus de collisions
-                //this.saigne(monster,function(){
+                this.saigne(monster,function(){
                     //à la fin de la petite anim...ben il se passe rien :)
-                //})
+                })
                 //notre joueur rebondit sur le monstre
                 player.directionY=500;
             }else{
@@ -90,13 +115,13 @@ class Tableau extends Phaser.Scene{
                     me.player.visible=false;
                     me.scene.restart();
                     //ça saigne...
-                    /**me.saigne(me.player,function(){
+                    /*me.saigne(me.player,function(){
                         //à la fin de la petite anim, on relance le jeu
                         me.blood.visible=false;
                         me.player.anims.play('turn');
                         me.player.isDead=false;
                         me.scene.restart();
-                    })**/
+                    })*/
 
                 }
 
