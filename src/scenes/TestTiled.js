@@ -19,7 +19,7 @@ class TestTiled extends Tableau{
         this.tileset = this.map.addTilesetImage('base', 'tiles');
         
         this.plateformes = this.map.createStaticLayer('plateformes', tileset, 0, 200);
-
+        this.plateformes.setCollisionByExclusion(-1,true);
         
 
     }
