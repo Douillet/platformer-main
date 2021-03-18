@@ -2,6 +2,6 @@ Lien pour Commencer votre Aventure
 
 https://douillet.github.io/platformer-main/
 
-lien pour le "localhos":
+lien pour le "localhost":
 
-thttp://localhost/platformer-main/
+http://localhost/platformer-main/
