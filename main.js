@@ -17,7 +17,7 @@ let config = {
         new Ui(),
 
         
-        new Tableau00a("Ramasse les Roses!"),
+        new Tableau00a("Ramasse les Plumes!"),
         new TestTiled("Des étoiles"),
         new Zoo("Le Bestiaire"),
         new Tableau01("Des plateformes"),

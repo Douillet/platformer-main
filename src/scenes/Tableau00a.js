@@ -2,27 +2,30 @@ class Tableau00a extends Tableau{
 
     preload() {
         super.preload();
-        this.load.image('star', 'assets/rose.png');
-        this.load.image('ground', 'assets/platform.png');
-        this.load.image('arbretest', 'assets/Arbretest.png');
+        this.load.image('star', 'assets/Plume.png');
         this.load.image('fond', 'assets/Fond.jpg');
-        this.load.image('premierplan', 'assets/arbrepremierplan.png');
+        this.load.image('premierplan', 'assets/Arbres du premier Plan sans feuillage.png');
         this.load.image('secondplan', 'assets/Arbres du second plan.png');
         this.load.image('troisiemeplan', 'assets/3e plan darbres.png');
         this.load.image('herbe', 'assets/herbe1.png');
-        this.load.image('Gobelin_basique', 'assets/Gobelin_basique.png');
+        this.load.image('Gobelin_basique', 'assets/Gobelin basique v2.png');
         this.load.image('halo', 'assets/Halo_lumineuxv2.png');
         this.load.image('luciole', 'assets/luciolev2.png');
         this.load.image('chauve-souris', 'assets/chauve-souris.png');
         this.load.image('ponton', 'assets/Ponton.jpg');
         this.load.image('passerelle', 'assets/Passerelle terrestre.png');
-        this.load.image('Squig', 'assets/Gobelin à la lance.png');
-        this.load.image('GobelinLoup', 'assets/Gobelin à la hache.png');
+        this.load.image('passerelle2', 'assets/Passerelle terrestre 2.png');
+        this.load.image('passerelle3', 'assets/Passerelle terrestre 3.png');
+        this.load.image('passerelle4', 'assets/Passerelle terrestre 4.png');
+        this.load.image('Squig', 'assets/Gobelin à la lance v2.png');
+        this.load.image('GobelinLoup', 'assets/Gobelin à la hache v2.png');
+        this.load.image('Géant', 'assets/GrandGars.png');
+        this.load.image('yeux', 'assets/Yeux menaçants.png');
     }
     create() {
         super.create();
         
-        let largeurDuTableau=2000;
+        let largeurDuTableau=2600;
         let hauteurDuTableau=448; //la hauteur est identique au cadre du jeu
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
@@ -48,6 +51,9 @@ class Tableau00a extends Tableau{
         //fin
         this.stars.create(1768,290,"star");
         this.stars.create(1950,50,"star");
+        //supplément info 2D
+        this.stars.create(2500,50,"star");
+        this.stars.create(2550,200,"star");
 
         this.stars.children.iterate(function (child) {
             child.setCollideWorldBounds(true);
@@ -86,6 +92,16 @@ class Tableau00a extends Tableau{
         this.platforms.create(1944, 132, 'ponton');
         this.platforms.create(1976, 132, 'ponton');
         this.platforms.create(2008, 132, 'ponton');
+        this.platforms.create(2040, 132, 'ponton');
+        this.platforms.create(2072, 132, 'ponton');
+        this.platforms.create(2104, 132, 'ponton');
+        this.platforms.create(2136, 132, 'ponton');
+        this.platforms.create(2168, 132, 'ponton');
+        this.platforms.create(2200, 132, 'ponton');
+        this.platforms.create(2232, 132, 'ponton');
+        //supllément info 2d
+        this.platforms.create(2550, 250, 'ponton');
+        
 
         this.platforms.children.iterate(function (child) {
             child.setImmovable(true);
@@ -98,46 +114,46 @@ class Tableau00a extends Tableau{
         //passerelles au sol
         this.passerelle = this.physics.add.group();
         //début
-        this.passerelle.create(400, 352, 'passerelle');
-        this.passerelle.create(464, 352, 'passerelle');
+        this.passerelle.create(400, 352, 'passerelle2');
+        this.passerelle.create(464, 352, 'passerelle4');
         this.passerelle.create(464, 288, 'passerelle');
         //celle du gobosauteur
-        this.passerelle.create(750, 352, 'passerelle');
+        this.passerelle.create(750, 352, 'passerelle2');
         //passerelle de la bosse
         //1ère couche
-        this.passerelle.create(1000, 352, 'passerelle');
-        this.passerelle.create(1064, 352, 'passerelle');
+        this.passerelle.create(1000, 352, 'passerelle3');
+        this.passerelle.create(1064, 352, 'passerelle4');
         this.passerelle.create(1128, 352, 'passerelle');
-        this.passerelle.create(1192, 352, 'passerelle');
+        this.passerelle.create(1192, 352, 'passerelle2');
         this.passerelle.create(1256, 352, 'passerelle');
-        this.passerelle.create(1320, 352, 'passerelle');
-        this.passerelle.create(1384, 352, 'passerelle');
+        this.passerelle.create(1320, 352, 'passerelle4');
+        this.passerelle.create(1384, 352, 'passerelle3');
         this.passerelle.create(1448, 352, 'passerelle');
-        this.passerelle.create(1512, 352, 'passerelle');
+        this.passerelle.create(1512, 352, 'passerelle2');
         //2eme couche
         this.passerelle.create(1064, 288, 'passerelle');
-        this.passerelle.create(1128, 288, 'passerelle');
+        this.passerelle.create(1128, 288, 'passerelle3');
         this.passerelle.create(1192, 288, 'passerelle');
-        this.passerelle.create(1256, 288, 'passerelle');
-        this.passerelle.create(1320, 288, 'passerelle');
-        this.passerelle.create(1384, 288, 'passerelle');
+        this.passerelle.create(1256, 288, 'passerelle4');
+        this.passerelle.create(1320, 288, 'passerelle4');
+        this.passerelle.create(1384, 288, 'passerelle3');
         this.passerelle.create(1448, 288, 'passerelle');
-        this.passerelle.create(1512, 288, 'passerelle');
+        this.passerelle.create(1512, 288, 'passerelle2');
         //3eme couche
         this.passerelle.create(1128, 224, 'passerelle');
-        this.passerelle.create(1192, 224, 'passerelle');
-        this.passerelle.create(1448, 224, 'passerelle');
+        this.passerelle.create(1192, 224, 'passerelle3');
+        this.passerelle.create(1448, 224, 'passerelle2');
         //4ème couche
-        this.passerelle.create(1192, 160, 'passerelle');
+        this.passerelle.create(1192, 160, 'passerelle4');
         //fin de la bosse
         //passerelle fin escalier
-        this.passerelle.create(1768, 352, 'passerelle');
-        this.passerelle.create(1832, 352, 'passerelle');
+        this.passerelle.create(1768, 352, 'passerelle2');
+        this.passerelle.create(1832, 352, 'passerelle4');
         this.passerelle.create(1832, 288, 'passerelle');
-        this.passerelle.create(1832, 224, 'passerelle');
+        this.passerelle.create(1832, 224, 'passerelle3');
         this.passerelle.create(1896, 352, 'passerelle');
-        this.passerelle.create(1960, 352, 'passerelle');
-        this.passerelle.create(2018, 352, 'passerelle');
+        this.passerelle.create(1960, 352, 'passerelle2');
+        this.passerelle.create(2018, 352, 'passerelle4');
 
         this.passerelle.children.iterate(function (child) {
             child.setImmovable(true);
@@ -157,6 +173,8 @@ class Tableau00a extends Tableau{
 
         this.goborampant1 = new GobelinLoup(this, 1268, 150);
         this.goborampant2 = new GobelinLoup(this, 844, 310);
+
+        this.grandgars = new Geant(this, 2200, 150);
 
         //sol
         this.solherbe = this.physics.add.group();
@@ -178,6 +196,7 @@ class Tableau00a extends Tableau{
         this.physics.add.collider(this.solherbe, this.gobelin3);
         this.physics.add.collider(this.solherbe, this.goborampant1);
         this.physics.add.collider(this.solherbe, this.goborampant2);
+        this.physics.add.collider(this.solherbe, this.grandgars);
         
         //collider player
         this.physics.add.collider(this.player, this.platforms);
@@ -203,6 +222,7 @@ class Tableau00a extends Tableau{
         this.physics.add.collider(this.passerelle, this.gobosauteur2);
         this.physics.add.collider(this.passerelle, this.goborampant1);
         this.physics.add.collider(this.passerelle, this.goborampant2);
+        this.physics.add.collider(this.passerelle, this.grandgars);
 
         //fond
         this.fond=this.add.tileSprite(
@@ -226,6 +246,17 @@ class Tableau00a extends Tableau{
         );
         this.arbre.setScrollFactor(0);
         this.arbre.setOrigin(0,0);
+
+        //yeux menaçants
+        this.yeux=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'yeux'
+        );
+        this.yeux.setScrollFactor(0);
+        this.yeux.setOrigin(0,0);
         
         //2ème rang d'arbre
         this.arbre2=this.add.tileSprite(
@@ -256,6 +287,9 @@ class Tableau00a extends Tableau{
         this.halo2=this.add.tileSprite(1200, 0, 700, 448, 'halo');
         this.halo2.setOrigin(0,0);
         this.halo2.blendMode= 'ADD';
+        this.halo3=this.add.tileSprite(2100, 0, 700, 448, 'halo');
+        this.halo3.setOrigin(0,0);
+        this.halo3.blendMode= 'ADD';
 
 
         //lucioles
@@ -266,12 +300,14 @@ class Tableau00a extends Tableau{
         this.luciole4=new Luciole (this, 1500, 200);
         this.luciole5=new Luciole2 (this, 1700, 60);
         this.luciole6=new Luciole (this, 1880, 300);
+        this.luciole7=new Luciole2 (this, 2150, 200);
     
         //derrière le plan de jeu
         this.lucioleP1=new Luciole2 (this, 400, 320);
         this.lucioleP2=new Luciole2 (this, 1000, 180);
         this.lucioleP3=new Luciole (this, 700, 60);
         this.lucioleP4=new Luciole (this, 1200, 250);
+        this.lucioleP5=new Luciole (this, 2300, 80);
         
         //émetteurs à chauve-souris
         var particles = this.add.particles('chauve-souris');
@@ -294,7 +330,7 @@ class Tableau00a extends Tableau{
         var particles2 = this.add.particles('chauve-souris');
         
         var emitter = particles2.createEmitter({
-            x: 2200,
+            x: 2670,
             y: 250,
             angle: { min: 170, max: 200 },
             speed: 600,
@@ -328,7 +364,7 @@ class Tableau00a extends Tableau{
         var particles4 = this.add.particles('chauve-souris');
         
         var emitter = particles4.createEmitter({
-            x: 2200,
+            x: 2670,
             y: 250,
             angle: { min: 170, max: 200 },
             speed: 600,
@@ -357,6 +393,7 @@ class Tableau00a extends Tableau{
         this.gobosauteur2.setDepth(10);
         this.goborampant1.setDepth(10);
         this.goborampant2.setDepth(10);
+        this.grandgars.setDepth(10);
 
         //fait passer les éléments au 'plan de jeu'
         this.solherbe.setDepth(10);
@@ -370,6 +407,7 @@ class Tableau00a extends Tableau{
         //halo
         this.halo1.setDepth(11);
         this.halo2.setDepth(11);
+        this.halo3.setDepth(11);
 
         //lucioles
         this.luciole1.setDepth(11);
@@ -378,16 +416,19 @@ class Tableau00a extends Tableau{
         this.luciole4.setDepth(11);
         this.luciole5.setDepth(11);
         this.luciole6.setDepth(11);
+        this.luciole7.setDepth(11);
 
         this.lucioleP1.setDepth(8);
         this.lucioleP2.setDepth(8);
         this.lucioleP3.setDepth(9);
         this.lucioleP4.setDepth(8);
+        this.lucioleP5.setDepth(8);
 
         //depht décor
         this.arbre.setDepth(9);
-        this.arbre2.setDepth(8);
-        this.arbre3.setDepth(7);
+        this.yeux.setDepth(8);
+        this.arbre2.setDepth(7);
+        this.arbre3.setDepth(6);
         this.fond.setDepth(1)
     
     }
@@ -401,6 +442,10 @@ class Tableau00a extends Tableau{
         //rang1
         this.arbre.tilePositionX=this.cameras.main.scrollX*0.5+100;
         this.arbre.tilePositionY=this.cameras.main.scrollY*0.1+60;
+
+        //yeux
+        this.yeux.tilePositionX=this.cameras.main.scrollX*0.4+50;
+        this.yeux.tilePositionY=this.cameras.main.scrollY*0.08+60;
 
         //rang2
         this.arbre2.tilePositionX=this.cameras.main.scrollX*0.2+250;
