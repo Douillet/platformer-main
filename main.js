@@ -16,9 +16,10 @@ let config = {
     scene: [
         new Ui(),
 
-        
-        new Tableau00a("Ramasse les Plumes!"),
         new TestTiled("Des étoiles"),
+
+        new Tableau00a("Ramasse les Plumes!"),
+        
         new Zoo("Le Bestiaire"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),

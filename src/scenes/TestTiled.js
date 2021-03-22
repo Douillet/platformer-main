@@ -27,7 +27,7 @@ class TestTiled extends Tableau{
         this.tileset = this.map.addTilesetImage('base2', 'tiles');
         
         this.plateformes = this.map.createLayer('blocs', this.tileset, 0, 0);
-        this.plateformes.setCollisionByExclusion(-1,true);
+        this.plateformes.setCollisionByProperty({collide: true});
 
         console.log(this.plateformes)
 
