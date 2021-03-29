@@ -403,7 +403,7 @@ class Tableau00a extends Tableau{
         particles2.setDepth(12);
         particles3.setDepth(12);
         particles4.setDepth(12);
-        particles5.setDepth(12),
+        particles5.setDepth(12);
 
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);

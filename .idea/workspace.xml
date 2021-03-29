@@ -31,11 +31,23 @@
       <option name="presentableId" value="Default" />
       <updated>1617019939510</updated>
       <workItem from="1617019941628" duration="33000" />
-      <workItem from="1617020008197" duration="3326000" />
+      <workItem from="1617020008197" duration="3623000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/scenes/Tableau00a.js</url>
+          <line>333</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
