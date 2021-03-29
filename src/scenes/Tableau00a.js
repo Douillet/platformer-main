@@ -60,6 +60,7 @@ class Tableau00a extends Tableau{
             child.setBounce(0);
             child.setDisplaySize(20,40);
         });
+
         
         
         //platformes volantes
@@ -308,7 +309,25 @@ class Tableau00a extends Tableau{
         this.lucioleP3=new Luciole (this, 700, 60);
         this.lucioleP4=new Luciole (this, 1200, 250);
         this.lucioleP5=new Luciole (this, 2300, 80);
-        
+
+        //
+        var particles5 = this.add.particles('luciole');
+
+        var emitterluciole = particles5.createEmitter({
+
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterluciole.startFollow(this.luciole1);
+        //emitterluciole.startFollow(this.luciole2);
+
+
         //émetteurs à chauve-souris
         var particles = this.add.particles('chauve-souris');
         
@@ -384,6 +403,7 @@ class Tableau00a extends Tableau{
         particles2.setDepth(12);
         particles3.setDepth(12);
         particles4.setDepth(12);
+        particles5.setDepth(12),
 
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);

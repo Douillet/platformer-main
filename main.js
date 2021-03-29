@@ -16,7 +16,7 @@ let config = {
     scene: [
         new Ui(),
 
-        new TestTiled("Des étoiles"),
+        //new TestTiled("Des étoiles"),
 
         new Tableau00a("Ramasse les Plumes!"),
         
