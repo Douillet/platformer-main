@@ -21,6 +21,7 @@ class Tableau00a extends Tableau{
         this.load.image('GobelinLoup', 'assets/Gobelin à la hache v2.png');
         this.load.image('Géant', 'assets/GrandGars.png');
         this.load.image('yeux', 'assets/Yeux menaçants.png');
+        this.load.image('feuille', 'assets/feuille.png');
     }
     create() {
         super.create();
@@ -282,23 +283,50 @@ class Tableau00a extends Tableau{
         this.arbre3.setOrigin(0,0);
         
         //petit vent de feuilles
-        var particles6 = this.add.particles('chauve-souris');
+        var particles6 = this.add.particles('feuille');
+        var emitter = particles6.createEmitter({
+            x: -500, y: 200,
+            speed: 10,
+            moveToX: {min:2600,max:3500},
+            moveToY: {min:0,max:700},
+            rotate: {min:-10,max:360},
+            lifespan: 12500,
+            quantity: 1,
+            frequency: 2000,
+            delay: 100,
+            scale: { start: 0.6, end: 0.6 },
+            blendMode: 'NORMAL',
+            
+        });
+
+        var emitter = particles6.createEmitter({
+            x: -500, y: 50,
+            speed: 10,
+            moveToX: {min:2600,max:3500},
+            moveToY: {min:-100,max:500},
+            rotate: {min:-10,max:360},
+            lifespan: 12500,
+            quantity: 1,
+            frequency: 1500,
+            delay: 300,
+            scale: { start: 0.7, end: 0.7 },
+            blendMode: 'NORMAL',
+            
+            
+            });
+        var emitter = particles6.createEmitter({
+            x: -500, y: 350,
+            speed: 10,
+            moveToX: {min:2600,max:3500},
+            moveToY: {min:100,max:700},
+            rotate: {min:-10,max:360},
+            lifespan: 12500,
+            quantity: 1,
+            frequency: 2500,
+            delay: 0,
+            scale: { start: 0.65, end: 0.65 },
+            blendMode: 'NORMAL',
         
-        var rect = new Phaser.Geom.Rectangle(0, 0, 200, 100);
-        particles6.createEmitter({
-        tint:[  0xC11A05,0x883333,0xBB5500,0xFF7F27 ],
-        x: -100, y: 300,
-        speed: 10,
-        moveToX: {min:2600,max:3500},
-        moveToY: {min:300,max:500},
-        rotate: {min:-10,max:360},
-        lifespan: 25000,
-        quantity: 4,
-        frequency: 700,
-        delay: 100,
-        scale: { start: 0.2, end: 0.2 },
-        blendMode: 'ADD',
-        emitZone: { source: rect } 
         
         });
 
@@ -555,12 +583,15 @@ class Tableau00a extends Tableau{
 
 
         //profondeur des particules
+        //chauves-souris
         particles.setDepth(12);
         particles2.setDepth(12);
         particles3.setDepth(12);
         particles4.setDepth(12);
+        //lucioles
         particles5.setDepth(12);
         particlesP5.setDepth(8);
+        //vent de feuilles
         particles6.setDepth(12);
 
         //profondeur à 10 pour tous les ennemis
