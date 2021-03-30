@@ -4,7 +4,7 @@ class Tableau00a extends Tableau{
         super.preload();
         this.load.image('star', 'assets/Plume.png');
         this.load.image('fond', 'assets/Fond.jpg');
-        this.load.image('premierplan', 'assets/Arbres du premier Plan sans feuillage.png');
+        this.load.image('premierplan', 'assets/Arbres du premier Plan.png');
         this.load.image('secondplan', 'assets/Arbres du second plan.png');
         this.load.image('troisiemeplan', 'assets/3e plan darbres.png');
         this.load.image('herbe', 'assets/herbe1.png');
@@ -310,11 +310,10 @@ class Tableau00a extends Tableau{
         this.lucioleP4=new Luciole (this, 1200, 250);
         this.lucioleP5=new Luciole (this, 2300, 80);
 
-        //
+        //particules luciole
         var particles5 = this.add.particles('luciole');
 
         var emitterluciole = particles5.createEmitter({
-
             angle: { min: -20, max: 10 },
             speed: 2,
             quantity: 1,
@@ -325,8 +324,143 @@ class Tableau00a extends Tableau{
             blendMode: 'ADD',
         });
         emitterluciole.startFollow(this.luciole1);
-        //emitterluciole.startFollow(this.luciole2);
 
+        var emitterluciole2 = particles5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterluciole2.startFollow(this.luciole2);
+        
+
+        var emitterluciole3 = particles5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterluciole3.startFollow(this.luciole3);
+
+        var emitterluciole4 = particles5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterluciole4.startFollow(this.luciole4);
+
+        var emitterluciole5 = particles5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterluciole5.startFollow(this.luciole5);
+
+        var emitterluciole6 = particles5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterluciole6.startFollow(this.luciole6);
+
+        var emitterluciole7 = particles5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterluciole7.startFollow(this.luciole7);
+
+
+        //particules lucioles derrière les arbres
+        var particlesP5 = this.add.particles('luciole');
+
+        var emitterlucioleP1 = particlesP5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterlucioleP1.startFollow(this.lucioleP1);
+
+        var emitterlucioleP2 = particlesP5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterlucioleP2.startFollow(this.lucioleP2);
+
+        var emitterlucioleP3 = particlesP5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterlucioleP3.startFollow(this.lucioleP3);
+
+        var emitterlucioleP4 = particlesP5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterlucioleP4.startFollow(this.lucioleP4);
+
+        var emitterlucioleP5 = particlesP5.createEmitter({
+            angle: { min: -20, max: 10 },
+            speed: 2,
+            quantity: 1,
+            lifespan: 1000,
+            frequence: 1000,
+            scale: { start: 0.8, end: 0.7 },
+            alpha: { start: 0.05, end: 0.00001},
+            blendMode: 'ADD',
+        });
+        emitterlucioleP5.startFollow(this.lucioleP5);
 
         //émetteurs à chauve-souris
         var particles = this.add.particles('chauve-souris');
@@ -404,6 +538,7 @@ class Tableau00a extends Tableau{
         particles3.setDepth(12);
         particles4.setDepth(12);
         particles5.setDepth(12);
+        particlesP5.setDepth(8);
 
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);
@@ -440,7 +575,7 @@ class Tableau00a extends Tableau{
 
         this.lucioleP1.setDepth(8);
         this.lucioleP2.setDepth(8);
-        this.lucioleP3.setDepth(9);
+        this.lucioleP3.setDepth(8);
         this.lucioleP4.setDepth(8);
         this.lucioleP5.setDepth(8);
 
@@ -461,7 +596,7 @@ class Tableau00a extends Tableau{
         
         //rang1
         this.arbre.tilePositionX=this.cameras.main.scrollX*0.5+100;
-        this.arbre.tilePositionY=this.cameras.main.scrollY*0.1+60;
+        this.arbre.tilePositionY=this.cameras.main.scrollY*0;
 
         //yeux
         this.yeux.tilePositionX=this.cameras.main.scrollX*0.4+50;
