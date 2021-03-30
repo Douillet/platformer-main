@@ -151,7 +151,7 @@ class Tableau00a extends Tableau{
         this.passerelle.create(1768, 352, 'passerelle2');
         this.passerelle.create(1832, 352, 'passerelle4');
         this.passerelle.create(1832, 288, 'passerelle');
-        this.passerelle.create(1832, 224, 'passerelle3');
+        //this.passerelle.create(1832, 224, 'passerelle3');
         this.passerelle.create(1896, 352, 'passerelle');
         this.passerelle.create(1960, 352, 'passerelle2');
         this.passerelle.create(2018, 352, 'passerelle4');
@@ -281,6 +281,28 @@ class Tableau00a extends Tableau{
         this.arbre3.setScrollFactor(0);
         this.arbre3.setOrigin(0,0);
         
+        //petit vent de feuilles
+        var particles6 = this.add.particles('chauve-souris');
+        
+        var rect = new Phaser.Geom.Rectangle(0, 0, 200, 100);
+        particles6.createEmitter({
+        tint:[  0xC11A05,0x883333,0xBB5500,0xFF7F27 ],
+        x: -100, y: 300,
+        speed: 10,
+        moveToX: {min:2600,max:3500},
+        moveToY: {min:300,max:500},
+        rotate: {min:-10,max:360},
+        lifespan: 25000,
+        quantity: 4,
+        frequency: 700,
+        delay: 100,
+        scale: { start: 0.2, end: 0.2 },
+        blendMode: 'ADD',
+        emitZone: { source: rect } 
+        
+        });
+
+
         //Halos lumineux
         this.halo1=this.add.tileSprite(400, 0, 700, 448, 'halo');
         this.halo1.setOrigin(0,0);
@@ -539,6 +561,7 @@ class Tableau00a extends Tableau{
         particles4.setDepth(12);
         particles5.setDepth(12);
         particlesP5.setDepth(8);
+        particles6.setDepth(12);
 
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);

@@ -17,9 +17,9 @@ class Tableau extends Phaser.Scene{
     preload(){
         this.load.image('sky', 'assets/sky.png');
         this.load.image('spike', 'assets/spike.png');
-        this.load.spritesheet('player',
-            'assets/player.png',
-            { frameWidth: 32, frameHeight: 48  }
+        this.load.spritesheet('hero',
+            'assets/hero.png',
+            { frameWidth: 90, frameHeight: 123  }
         );
     }
     create(){
@@ -37,7 +37,7 @@ class Tableau extends Phaser.Scene{
          * Le joueur
          * @type {Player}
          */
-        this.player=new Player(this,0,350);
+        this.player=new Player(this,30,250);
 
     }
     update(){

@@ -4,7 +4,7 @@ let height=7*64; //448;
 
 let config = {
     type: Phaser.AUTO,
-
+    pixelArt: true,
 
     physics: {
         default: 'arcade',
