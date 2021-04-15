@@ -30,6 +30,12 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             frames: [ { key: 'hero', frame: 24 } ],
             frameRate: 20
         });
+        //tentative coup d'épée
+        this.anims.create({
+            key: 'down',
+            frames: [ { key: 'hero', frame: 24 } ],
+            frameRate: 20
+        });
 
         this._directionX=0;
         this._directionY=0;
@@ -53,6 +59,17 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         this.directionY=0;
         this.directionX=0;
     }
+
+    
+
+    /*attack(){
+        
+        if (cursors.down.isDown) {
+
+            
+
+        } else{}
+    }*/
 
     /**
      * Déplace le joueur en fonction des directions données

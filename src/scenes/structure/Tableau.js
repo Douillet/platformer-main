@@ -37,12 +37,18 @@ class Tableau extends Phaser.Scene{
          * Le joueur
          * @type {Player}
          */
+        
+
+        //ATTENTION
+        cursors = this.input.keyboard.createCursorKeys();
+
         this.player=new Player(this,30,250);
 
     }
     update(){
         super.update();
         this.player.move();
+        //this.player.attack();
     }
 
     ramasserEtoile (player, star)
@@ -64,6 +70,17 @@ class Tableau extends Phaser.Scene{
         }
         
     }
+
+    /*
+    attack(player, monster){
+        
+        if (cursors.down.isDown) {
+            this.slash = New Attack(this.player.x, this.player.y)
+        
+            
+
+        } else{}
+    }*/
 
     /*saigne(object,onComplete){
         let me=this;
