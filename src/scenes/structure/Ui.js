@@ -89,10 +89,10 @@ class Ui extends Phaser.Scene{
 
     }
 
-    gagne(points=10)
+    gagne(points=1)
     {
         this.score+=points;
-        this._scoreText.setText('Score: ' + this.score);
+        this._scoreText.setText('PLumes ramassées: ' + this.score);
     }
     update(){
         if(Tableau.current){
