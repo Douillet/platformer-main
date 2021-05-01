@@ -75,6 +75,7 @@ class Tableau extends Phaser.Scene{
     {
         this.win();
     }
+    
 
     /*
     attack(player, monster){

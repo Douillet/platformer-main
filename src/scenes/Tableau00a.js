@@ -23,6 +23,7 @@ class Tableau00a extends Tableau{
         this.load.image('yeux', 'assets/Yeux menaçants.png');
         this.load.image('feuille', 'assets/feuille.png');
         this.load.image('objectif', 'assets/star.png');
+        this.load.image('checkPoint', 'assets/spike.png');
     }
     create() {
         super.create();
@@ -63,15 +64,23 @@ class Tableau00a extends Tableau{
             child.setDisplaySize(20,40);
         });
 
-        
+
         /////
         /////
         //test fin de tableau en atteingnant un objet
         this.objectif=this.physics.add.group();
         this.objectif.create(2550,300, "objectif");
         /////
-        /////
+        ////
+        /*
+        this.checkPoint = this.physics.add.staticGroup();
+        this.checkPoint.create(120,350,"checkPoint")
+        //quand on touche un checkpoint
         
+        this.physics.add.overlap(this.player, this.checkPoint, function(player, checkPoint)
+        {
+            saveCheckPoint(this.checkPoint);
+        }, null, this);*/
 
         //platformes volantes
         this.platforms = this.physics.add.group();
@@ -622,6 +631,7 @@ class Tableau00a extends Tableau{
         this.solherbe.setDepth(10);
         this.stars.setDepth(10);
         this.objectif.setDepth(10);
+        this.checkPoint.setDepth(10);
         this.player.setDepth(10);
         this.platforms.setDepth(10);
         this.passerelle.setDepth(10);
@@ -656,6 +666,35 @@ class Tableau00a extends Tableau{
         this.fond.setDepth(1)
     
     }
+
+    /*
+    //les Checkpoints
+    saveCheckPoint(checkPoint)
+    {
+        //this.unique = false;
+        if (localStorage.getItem("checkPoint") !== checkPointName)
+        {
+            console.log("on atteint le checkpoint", checkPointName);
+         localStorage.setItem("checkPoint", checkPointName);
+     }
+    }
+
+    restoreCheckPoint()
+    {
+      let storedCheckPoint=localStorage.getItem("checkPoint")
+            if(storedCheckPoint)
+                {
+                this.checkPointsObjects.forEach(checkPointObject => 
+                    {
+                    if(checkPointObject.name === storedCheckPoint)
+                        {
+                            this.player.setPosition(checkPointObject.x, checkPointObject.y-64);
+                
+                        }
+                    });
+                }
+    }*/
+
     update() {
         super.update();
 
