@@ -631,7 +631,7 @@ class Tableau00a extends Tableau{
         this.solherbe.setDepth(10);
         this.stars.setDepth(10);
         this.objectif.setDepth(10);
-        this.checkPoint.setDepth(10);
+        //this.checkPoint.setDepth(10);
         this.player.setDepth(10);
         this.platforms.setDepth(10);
         this.passerelle.setDepth(10);
