@@ -31,12 +31,20 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             frameRate: 20
         });
         //tentative coup d'épée
-        this.anims.create({
-            key: 'down',
-            frames: [ { key: 'hero', frame: 24 } ],
+        /*this.anims.create({
+            key: 'SHIFT',
+            frames: [ { key: 'hero', frame: 30 } ],
             frameRate: 20
+        });*/
+        this.anims.create({
+            key: 'SHIFT',
+            frames: this.anims.generateFrameNumbers('hero', { start: 21, end: 22 }),
+            frameRate: 30,
+            repeat: -1
         });
-
+        
+        this.SlashKey = scene.input.keyboard.addKey('SHIFT');
+        
         this._directionX=0;
         this._directionY=0;
 

@@ -19,13 +19,13 @@ class Luciole extends ObjetPhysique{
 
         // X
         this.originalX=x;
-        this.minX=x-20;
-        this.maxX=x+20;
+        this.minX= x - Math.random() * 40 - 10;
+        this.maxX= x + Math.random() * 40 + 10;
 
         // Y
         this.originalY=y;
-        this.minY=y-20;
-        this.maxY=y+20;
+        this.minY= y - Math.random() * 40 - 10;
+        this.maxY= y + Math.random() * 40 + 10;
 
         // on applique les propriétés du début de l'animation
         this.x=this.minX;

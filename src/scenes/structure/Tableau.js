@@ -71,6 +71,11 @@ class Tableau extends Phaser.Scene{
         
     }
 
+    finNiveau (player, objectif)
+    {
+        this.win();
+    }
+
     /*
     attack(player, monster){
         
@@ -119,7 +124,7 @@ class Tableau extends Phaser.Scene{
                 ui.gagne();
                 monster.isDead=true; //ok le monstre est mort
                 monster.disableBody(true,true);//plus de collisions
-                //this.saigne(monster,function(){
+               // this.saigne(monster,function(){
                     //à la fin de la petite anim...ben il se passe rien :)
                 //})
                 //notre joueur rebondit sur le monstre
@@ -131,7 +136,7 @@ class Tableau extends Phaser.Scene{
                     me.player.visible=false;
                     me.scene.restart();
                     //ça saigne...
-                    /*me.saigne(me.player,function(){
+                   /* me.saigne(me.player,function(){
                         //à la fin de la petite anim, on relance le jeu
                         me.blood.visible=false;
                         me.player.anims.play('turn');

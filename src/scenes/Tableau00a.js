@@ -22,6 +22,7 @@ class Tableau00a extends Tableau{
         this.load.image('Géant', 'assets/GrandGars.png');
         this.load.image('yeux', 'assets/Yeux menaçants.png');
         this.load.image('feuille', 'assets/feuille.png');
+        this.load.image('objectif', 'assets/star.png');
     }
     create() {
         super.create();
@@ -63,7 +64,15 @@ class Tableau00a extends Tableau{
         });
 
         
+        /////
+        /////
+        //test fin de tableau en atteingnant un objet
+        this.objectif=this.physics.add.group();
+        this.objectif.create(2550,300, "objectif");
+        /////
+        /////
         
+
         //platformes volantes
         this.platforms = this.physics.add.group();
         //groupe1
@@ -189,6 +198,11 @@ class Tableau00a extends Tableau{
         
         //rammasseur d'étoiles
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+
+        //tentative objectif fin de niveau
+        this.physics.add.overlap(this.player, this.objectif, this.finNiveau, null, this);
+        //collider sol
+        this.physics.add.collider(this.solherbe, this.objectif);
 
         //collider sol
         this.physics.add.collider(this.solherbe, this.player);
@@ -607,6 +621,7 @@ class Tableau00a extends Tableau{
         //fait passer les éléments au 'plan de jeu'
         this.solherbe.setDepth(10);
         this.stars.setDepth(10);
+        this.objectif.setDepth(10);
         this.player.setDepth(10);
         this.platforms.setDepth(10);
         this.passerelle.setDepth(10);
