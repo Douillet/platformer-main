@@ -3,16 +3,16 @@ Pour finir le Niveau, aller simplement au bout
 Le coup d'épée arrive, la touche répond
 
 
-Lien pour Commencer votre Aventure
+--Lien pour Commencer votre Aventure--
 
 https://douillet.github.io/platformer-main/
 
-lien pour le "localhost":
+--lien pour le "localhost":--
 
 http://localhost/platformer-main/
 
 
-Liste à faire:
+--Liste à faire:--
 
 -Le coup d'épée (en cours, la touche SHIFT reçoit des infos quand pressée et relâchée)
 
@@ -27,14 +27,14 @@ Liste à faire:
 -Les méchaniques de ramassage des plumes
 
 
-Peut-être trop ambitieux:
+--Peut-être trop ambitieux:--
 
 -faire que la hitbox des géants ne soit que leur tête
 
 -faire qu'il faut deux coups pour tuer les géants
 
 
-Sûrement trop ambitieux:
+--Sûrement trop ambitieux:--
 
 -faire que le géant au premier coup tombe, et que pour le tuer il faut sauter sur sa tête. Sinon au bout de 5 seconde il se relève et regagne son points de vie
 
