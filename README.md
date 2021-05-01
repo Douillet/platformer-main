@@ -1,3 +1,8 @@
+Pour finir le Niveau, aller simplement au bout
+
+Le coup d'épée arrive, la touche répond
+
+
 Lien pour Commencer votre Aventure
 
 https://douillet.github.io/platformer-main/
