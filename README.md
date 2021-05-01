@@ -9,7 +9,7 @@ http://localhost/platformer-main/
 
 Liste à faire:
 
--Le coup d'épée (en cours, la touche bas reçoit des infos)
+-Le coup d'épée (en cours, la touche SHIFT reçoit des infos quand pressée et relâchée)
 
 -Le casque et l'épée qui s'équipent
 
@@ -32,3 +32,14 @@ Peut-être trop ambitieux:
 Sûrement trop ambitieux:
 
 -faire que le géant au premier coup tombe, et que pour le tuer il faut sauter sur sa tête. Sinon au bout de 5 seconde il se relève et regagne son points de vie
+
+
+--Fait le 01/05/2021--
+
+-Randomisation des déplacements des Lucioles
+
+-Ajout de l'objectif d'atteindre un endroit pour finir le niveau
+
+-Réponse de la touche SHIFT pour le Futur coup d'épée
+
+-Tentative de mettre des Checkpoints mais échec (une vingtaine de ligne en commentaire dans tableau00a)
