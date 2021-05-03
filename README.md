@@ -48,3 +48,8 @@ http://localhost/platformer-main/
 -Réponse de la touche SHIFT pour le Futur coup d'épée
 
 -Tentative de mettre des Checkpoints mais échec (une vingtaine de ligne en commentaire dans tableau00a)
+
+
+--Fait le 03/05/2021éé
+
+-Rebond du Perso Retiré
