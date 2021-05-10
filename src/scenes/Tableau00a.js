@@ -36,6 +36,35 @@ class Tableau00a extends Tableau{
         this.cameras.main.startFollow(this.player, false, 0.10, 0.10); //suis le joueur
 
         
+        //It's to slash some GOBBOS
+        this.SHOT_DELAY = 100; // milliseconds (10 bullets/second)
+        this.BULLET_SPEED = 500; // pixels/second
+        this.NUMBER_OF_BULLETS = 10;
+
+        // Create an object representing our gun
+        this.gun = this.player //add.sprite(50, this.height/2, 'bullet');
+
+        // Set the pivot point to the center of the gun
+        //this.gun.anchor.setTo(0.5, 0.5);
+
+        // Create an object pool of bullets
+        this.bulletPool = this.add.group();
+        for(var i = 0; i < this.NUMBER_OF_BULLETS; i++) {
+            // Create each bullet and add it to the group.
+            var bullet = this.add.sprite(0, 0, 'luciole');
+            this.bulletPool.add(bullet);
+
+            // Set its pivot point to the center of the bullet
+            //bullet.anchor.setTo(0.5, 0.5);
+
+            // Enable physics on the bullet
+            //this.physics.enable(bullet, Phaser.Physics.ARCADE);
+
+            // Set its initial state to "dead".
+            bullet.isDead=true; //ok le monstre est mort
+            //bullet.disableBody(true,true);
+        }
+
 
         //étoiles
         this.stars=this.physics.add.group();
@@ -617,6 +646,8 @@ class Tableau00a extends Tableau{
         //vent de feuilles
         particles6.setDepth(12);
 
+        bullet.setDepth(12);
+        this.bulletPool.setDepth(12);
         //profondeur à 10 pour tous les ennemis
         this.gobelin1.setDepth(10);
         this.gobelin2.setDepth(10);
@@ -696,6 +727,10 @@ class Tableau00a extends Tableau{
     }*/
 
     update() {
+        if (this.game.input.activePointer.isDown) {
+            this.attack();
+            console.log("bim bam boom")
+        }
         super.update();
 
         //les éléments ont leur vitesse propre

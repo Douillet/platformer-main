@@ -77,16 +77,40 @@ class Tableau extends Phaser.Scene{
     }
     
 
-    /*
+    
     attack(player, monster){
-        
-        if (cursors.down.isDown) {
-            this.slash = New Attack(this.player.x, this.player.y)
-        
-            
-
-        } else{}
-    }*/
+        // Enforce a short delay between shots by recording
+        // the time that each bullet is shot and testing if
+        // the amount of time since the last shot is more than
+        // the required delay.
+        if (this.lastBulletShotAt === undefined) this.lastBulletShotAt = 0;
+        if (this.time.now - this.lastBulletShotAt < this.SHOT_DELAY) return;
+        this.lastBulletShotAt = this.time.now;
+    
+        // Get a dead bullet from the pool
+        var bullet = this.bulletPool.getFirstDead();
+    
+        // If there aren't any bullets available then don't shoot
+        if (bullet === null || bullet === undefined) return;
+    
+        // Revive the bullet
+        // This makes the bullet "alive"
+        bullet.revive();
+    
+        // Bullets should kill themselves when they leave the world.
+        // Phaser takes care of this for me by setting this flag
+        // but you can do it yourself by killing the bullet if
+        // its x,y coordinates are outside of the world.
+        bullet.checkWorldBounds = true;
+        bullet.outOfBoundsKill = true;
+    
+        // Set the bullet position to the gun position.
+        bullet.reset(this.player.x, this.player.y);
+    
+        // Shoot it
+        bullet.body.velocity.x = this.BULLET_SPEED;
+        bullet.body.velocity.y = 0;
+    };
 
     /*saigne(object,onComplete){
         let me=this;
@@ -175,6 +199,7 @@ class Tableau extends Phaser.Scene{
         this.player.stop();
         this.scene.stop();
     }
+
 
     /**
      * Quand on a gagné
