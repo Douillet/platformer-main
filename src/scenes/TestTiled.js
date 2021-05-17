@@ -74,6 +74,7 @@ class TestTiled extends Tableau{
             this.physics.add.collider(this.plateformes, monster);
         });
 
+        //layer des Jumpers
         let JumpContainer=this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('sauteurs')['objects'];
         // On crée des montres pour chaque objet rencontré
@@ -83,8 +84,9 @@ class TestTiled extends Tableau{
             this.physics.add.collider(this.plateformes, monster);
         });
 
+        //layer des Berserkers sautillants
         let BerserkContainer=this.add.container();
-        this.MonstersObjects = this.map.getObjectLayer('sauteurs')['objects'];
+        this.MonstersObjects = this.map.getObjectLayer('berserks')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
             let monster=new Gobelin_basique(this,monsterObject.x,monsterObject.y-96,);
