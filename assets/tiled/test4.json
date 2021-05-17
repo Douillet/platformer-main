@@ -99,7 +99,19 @@
          "draworder":"topdown",
          "id":6,
          "name":"fin",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":38,
+                 "height":64,
+                 "id":54,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":3776,
+                 "y":384
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -499,7 +511,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":51,
+ "nextobjectid":55,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.2",

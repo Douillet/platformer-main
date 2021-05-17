@@ -42,7 +42,7 @@ class Tableau extends Phaser.Scene{
         //ATTENTION
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.player=new Player(this,30,400);
+        this.player=new Player(this,30,300);
 
     }
     update(){

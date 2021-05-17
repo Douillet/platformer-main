@@ -8,6 +8,9 @@ class TestTiled extends Tableau{
         this.load.image('GobelinLoup', 'assets/Gobelin à la hache v2.png');
         this.load.image('Géant', 'assets/GrandGars.png');
         this.load.image('Squig', 'assets/Gobelin à la lance v2.png');
+        this.load.image('Gobelin_basique', 'assets/Gobelin basique v2.png');
+        this.load.image('objectif', 'assets/star.png');
+        this.load.image('feuille', 'assets/feuille.png');
         //tiled, enfin son JSON
         this.load.tilemapTiledJSON('map', 'assets/tiled/test4.json');
 
@@ -53,6 +56,20 @@ class TestTiled extends Tableau{
         this.physics.add.collider(this.plateformes, this.stars);
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
 
+        //layer de la fin d'objectif
+        this.objectif = this.physics.add.group({
+            allowGravity: false,
+            immovable: true,
+            bounceY:0
+        });
+        this.objectifsObjects = this.map.getObjectLayer('fin')['objects'];
+        // On crée des étoiles pour chaque objet rencontré
+        this.objectifsObjects.forEach(objectifsObjects => {
+            // Pour chaque étoile on la positionne pour que ça colle bien car les étoiles ne font pas 64x64
+            let objectif = this.objectif.create(objectifsObjects.x+32, objectifsObjects.y-32 , 'objectif');
+        });
+        this.physics.add.overlap(this.player, this.objectif, this.finNiveau, null, this);
+
 
         //layer des gobos rampants
         let monstersContainer=this.add.container();
@@ -62,6 +79,19 @@ class TestTiled extends Tableau{
             let monster=new GobelinLoup(this,monsterObject.x,monsterObject.y-96,);
             monstersContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
+            //tentative particule
+            /*var particles6 = this.add.particles('feuille');
+                var emitter = particles6.createEmitter({
+                x: monster, y: monster,
+                speed: 10,
+                lifespan: 12500,
+                quantity: 1,
+                frequency: 2000,
+                delay: 100,
+                scale: { start: 0.6, end: 0.6 },
+                blendMode: 'NORMAL',
+
+            });*/
         });
 
         //layer des Grand'Gars
