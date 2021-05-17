@@ -9,8 +9,8 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 100*3 },
-            debug: false,
+            gravity: { y: 150*3 },
+            debug: true,
         }
     },
     scene: [
@@ -18,8 +18,9 @@ let config = {
 
         //new TestTiled("Des étoiles"),
 
-        new Tableau00a("Ramasse les Plumes!"),
         new TestTiled("Le Level Design qu'y disaient..."),
+        new Tableau00a("Ramasse les Plumes!"),
+
         new Zoo("Le Bestiaire"),
         new Tableau01("Des plateformes"),
         new Tableau02("Plein d'étoiles"),

@@ -5,7 +5,7 @@ class Geant extends ObjetEnnemi{
 
         
         this.setOrigin(0,0);
-        this.setDisplaySize(120,200);
+        this.setDisplaySize(120,250);
         this.setCollideWorldBounds(true);
         this.setBounceY(0.2);
         this.setBounceX(1);

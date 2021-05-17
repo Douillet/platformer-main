@@ -99,6 +99,7 @@ class Tableau00a extends Tableau{
         //test fin de tableau en atteingnant un objet
         this.objectif=this.physics.add.group();
         this.objectif.create(2550,300, "objectif");
+        this.objectif.create(300,300, "objectif");
         /////
         ////
         /*
@@ -237,7 +238,7 @@ class Tableau00a extends Tableau{
         //rammasseur d'étoiles
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
 
-        //tentative objectif fin de niveau
+        //objectif fin de niveau
         this.physics.add.overlap(this.player, this.objectif, this.finNiveau, null, this);
         //collider sol
         this.physics.add.collider(this.solherbe, this.objectif);

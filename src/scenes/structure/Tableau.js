@@ -42,7 +42,7 @@ class Tableau extends Phaser.Scene{
         //ATTENTION
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.player=new Player(this,30,250);
+        this.player=new Player(this,30,400);
 
     }
     update(){
@@ -54,6 +54,7 @@ class Tableau extends Phaser.Scene{
     ramasserEtoile (player, star)
     {
         star.disableBody(true, true);
+        //player.setVelocityY(0);
         ui.gagne();
 
         //va lister tous les objets de la scène pour trouver les étoies et vérifier si elles sont actives
@@ -146,20 +147,22 @@ class Tableau extends Phaser.Scene{
                 && player.getBounds().bottom < monster.getBounds().top+30
 
             ){
-                ui.gagne();
+                //ui.gagne();
                 monster.isDead=true; //ok le monstre est mort
                 monster.disableBody(true,true);//plus de collisions
+                this.cameras.main.shake(200,0.004,true,); //Screen Shaker
                // this.saigne(monster,function(){
                     //à la fin de la petite anim...ben il se passe rien :)
                 //})
                 //notre joueur rebondit sur le monstre
-                player.directionY=500;
+                player.setVelocityY(-300);
             }else{
                 //le joueur est mort
                 if(!me.player.isDead){
                     me.player.isDead=true;
                     me.player.visible=false;
                     me.scene.restart();
+                    ui.perd(); //reset le score de plumes
                     //ça saigne...
                    /* me.saigne(me.player,function(){
                         //à la fin de la petite anim, on relance le jeu

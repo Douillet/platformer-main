@@ -84,6 +84,9 @@ class Player extends Phaser.Physics.Arcade.Sprite{
      */
     move(){
 
+        //cap les vitesses verticales
+        this.body.velocity.y = Math.min(800, Math.max(-800,this.body.velocity.y));
+
         switch (true){
             case this._directionX<0:
                 this.setVelocityX(-125);
@@ -101,7 +104,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
         if(this._directionY<0){
             if(this.body.blocked.down || this.body.touching.down){
-                this.setVelocityY(-650);
+                this.setVelocityY(-700);
             }
         }
 
