@@ -48,7 +48,7 @@ class Tableau extends Phaser.Scene{
     update(){
         super.update();
         this.player.move();
-        //this.player.attack();
+        //this.attaque();
     }
 
     ramasserEtoile (player, star)
@@ -76,11 +76,23 @@ class Tableau extends Phaser.Scene{
     {
         this.win();
     }
-    
 
-    
-    attack(player, monster){
-        // Enforce a short delay between shots by recording
+    attaque(){
+        this.oof = new Attack(this,player.x +150, player.y +150);
+    }
+
+    etPaf (Attack, monster){ //si notre monstre n'est pas déjà mort
+        monster.isDead=true; //ok le monstre est mort
+        monster.disableBody(true,true);//plus de collisions
+        this.cameras.main.shake(200,0.004,true,); //Screen Shaker
+
+    }
+
+
+    /*attaque(player, monster){
+
+        if(attack === 0);
+        /// Enforce a short delay between shots by recording
         // the time that each bullet is shot and testing if
         // the amount of time since the last shot is more than
         // the required delay.
@@ -111,7 +123,7 @@ class Tableau extends Phaser.Scene{
         // Shoot it
         bullet.body.velocity.x = this.BULLET_SPEED;
         bullet.body.velocity.y = 0;
-    };
+    }; */
 
     /*saigne(object,onComplete){
         let me=this;

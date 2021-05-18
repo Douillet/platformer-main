@@ -11,6 +11,7 @@ class TestTiled extends Tableau{
         this.load.image('Gobelin_basique', 'assets/Gobelin basique v2.png');
         this.load.image('objectif', 'assets/star.png');
         this.load.image('feuille', 'assets/feuille.png');
+        this.load.image('attack', 'assets/attack.png');
         //tiled, enfin son JSON
         this.load.tilemapTiledJSON('map', 'assets/tiled/test4.json');
 
@@ -40,6 +41,14 @@ class TestTiled extends Tableau{
 
         this.plateformes.setDepth(10000);
 
+        this.oof= new Attack(this,250, 300);
+
+        /*this.input.keyboard.on('keydown-SHIFT', function(kevent){
+            new Attack(this, 250, 300);
+            //attaque();
+            console.log("shifton");
+        });*/
+
 
         //layer des étoiles
         this.stars = this.physics.add.group({
@@ -50,11 +59,12 @@ class TestTiled extends Tableau{
         this.starsObjects = this.map.getObjectLayer('stars')['objects'];
         // On crée des étoiles pour chaque objet rencontré
         this.starsObjects.forEach(starsObject => {
-            // Pour chaque étoile on la positionne pour que ça colle bien car les étoiles ne font pas 64x64
+            // Pour chaque plume, on la positionne pour que ça colle bien car les plumes ne font pas 64x64
             let stars = this.stars.create(starsObject.x, starsObject.y-17 , 'star');
         });
         this.physics.add.collider(this.plateformes, this.stars);
         this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+
 
         //layer de la fin d'objectif
         this.objectif = this.physics.add.group({
@@ -72,13 +82,14 @@ class TestTiled extends Tableau{
 
 
         //layer des gobos rampants
-        let monstersContainer=this.add.container();
+        this.monstersContainer=this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('monstres')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
             let monster=new GobelinLoup(this,monsterObject.x,monsterObject.y-96,);
-            monstersContainer.add(monster);
+            this.monstersContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
+
             //tentative particule
             /*var particles6 = this.add.particles('feuille');
                 var emitter = particles6.createEmitter({

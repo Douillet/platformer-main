@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="" />
+    <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Attack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Attack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Gobelin_basique.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Gobelin_basique.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Squig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Squig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ui/GamePad.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ui/GamePad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/TestTiled.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/TestTiled.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,10 +49,17 @@
       <workItem from="1617019941628" duration="33000" />
       <workItem from="1617020008197" duration="3623000" />
       <workItem from="1621235615821" duration="15344000" />
+      <workItem from="1621345736407" duration="12700000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="647" y="272" width="672" height="678" key="search.everywhere.popup" timestamp="1621354587022">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="647" y="272" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1621354587022" />
   </component>
 </project>

@@ -42,8 +42,8 @@ class GamePad extends Phaser.GameObjects.Container{
                     Tableau.current.player.directionY=1;
                     break;
                 case "Shift":
-                    Tableau.current.Slash = true;
-                    console.log("shifton");
+                    Tableau.current.attaque = true;
+                    //console.log("shifton");
                     break;
             }
         });
@@ -67,7 +67,7 @@ class GamePad extends Phaser.GameObjects.Container{
 
                 case "Shift":
                     Tableau.current.bubble = false;
-                    console.log("shiftoff");
+                    //console.log("shiftoff");
                     break;
             }
         });

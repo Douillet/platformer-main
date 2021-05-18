@@ -4,6 +4,9 @@ class Player extends Phaser.Physics.Arcade.Sprite{
         scene.add.existing(this)
         scene.physics.add.existing(this)
 
+        this.world = scene;
+        this.dirX = 1;
+
         this.setCollideWorldBounds(true)
         this.setBounce(0);
         this.setGravityY(700)
@@ -42,8 +45,8 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             frameRate: 30,
             repeat: -1
         });
-        
-        this.SlashKey = scene.input.keyboard.addKey('SHIFT');
+
+        this.shiftKey = scene.input.keyboard.addKey('Shift');
         
         this._directionX=0;
         this._directionY=0;
@@ -70,14 +73,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
     
 
-    /*attack(){
-        
-        if (cursors.down.isDown) {
-
-            
-
-        } else{}
-    }*/
+    //attack(){}
 
     /**
      * Déplace le joueur en fonction des directions données
@@ -91,11 +87,13 @@ class Player extends Phaser.Physics.Arcade.Sprite{
             case this._directionX<0:
                 this.setVelocityX(-125);
                 this.anims.play('left', true);
+                this.dirX = -1;
                 break;
             case this._directionX>0:
 
                 this.setVelocityX(125);
                 this.anims.play('right', true);
+                this.dirX = 1;
                 break;
             default:
                 this.setVelocityX(0);
@@ -107,7 +105,10 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 this.setVelocityY(-700);
             }
         }
-
+        if (this.shiftKey.isDown) {
+            var slash= new Attack(this.world, this.x+ (40 * this.dirX) -35, this.y-20, 'attack');
+            console.log("shiftboom");
+        }
 
     }
 
