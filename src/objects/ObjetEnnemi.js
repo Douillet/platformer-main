@@ -8,7 +8,7 @@ class ObjetEnnemi extends ObjetPhysique{
      */
     constructor(scene, x, y,image) {
         super(scene, x, y,image);
-        this.vie = 30;
+        this.vie = 10;
         this.isDead = false;
         scene.physics.add.overlap(
             scene.player,

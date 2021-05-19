@@ -94,11 +94,12 @@ class Tableau extends Phaser.Scene {
         if (this.player.estEnTrainDAttaquer === false) {
             this.player.estEnTrainDAttaquer = true;
             monster.vie -= 10;
+            this.cameras.main.shake(200, 0.004, true,);
             console.log("touche", monster.vie);
             if (monster.vie <= 0) {
                 monster.isDead = true; //ok le monstre est mort
                 monster.disableBody(true, true);//plus de collisions
-                this.cameras.main.shake(200, 0.004, true,); //Screen Shaker
+                this.cameras.main.shake(200, 0.006, true,); //Screen Shaker
             }
         }
     }
