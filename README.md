@@ -14,8 +14,6 @@ http://localhost/platformer-main/
 
 --Liste à faire:--
 
--Le coup d'épée (en cours, la touche SHIFT reçoit des infos quand pressée et relâchée)
-
 -Le casque et l'épée qui s'équipent
 
 -le coup d'épée qui s'exécute que quand on a l'épée
@@ -38,6 +36,15 @@ http://localhost/platformer-main/
 
 -faire que le géant au premier coup tombe, et que pour le tuer il faut sauter sur sa tête. Sinon au bout de 5 seconde il se relève et regagne son points de vie
 
+--Fait du 17/05 au 19/05/2021--
+
+-Coup d'épée ENFIN
+
+-Système de point de vie
+
+-Gravité légèrement augmenté (réglé le rebond des mobs)
+
+-Camera shaker lors d'une mort
 
 --Fait le 01/05/2021--
 
