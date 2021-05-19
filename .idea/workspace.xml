@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,7 @@
       <workItem from="1617020008197" duration="3623000" />
       <workItem from="1621235615821" duration="15344000" />
       <workItem from="1621345736407" duration="12700000" />
-      <workItem from="1621411563456" duration="9399000" />
+      <workItem from="1621411563456" duration="9707000" />
     </task>
     <servers />
   </component>
