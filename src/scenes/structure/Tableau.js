@@ -2,7 +2,7 @@
  * Toutes les fonctions propres à un tableau dans notre jeu.
  * Cette classe n'est pas à utiliser directement, elle doit être extend !
  */
-class Tableau extends Phaser.Scene{
+class Tableau extends Phaser.Scene {
     /**
      *
      * @param {String} key identifiant de la scène à jouer
@@ -14,116 +14,94 @@ class Tableau extends Phaser.Scene{
     /**
      * Par défaut on charge un fond et le player
      */
-    preload(){
+    preload() {
         this.load.image('sky', 'assets/sky.png');
         this.load.image('spike', 'assets/spike.png');
+        this.load.image('attack', 'assets/attack.png');
         this.load.spritesheet('hero',
             'assets/hero.png',
-            { frameWidth: 90, frameHeight: 123  }
+            {frameWidth: 90, frameHeight: 123}
         );
     }
-    create(){
-        Tableau.current=this;
+
+    create() {
+        Tableau.current = this;
         this.sys.scene.scale.lockOrientation("landscape")
-        console.log("On est sur "+this.constructor.name+" / "+this.scene.key);
+        console.log("On est sur " + this.constructor.name + " / " + this.scene.key);
         /**
          * Le ciel en fond
          * @type {Phaser.GameObjects.Image}
          */
-        this.sky=this.add.image(0, 0, 'sky').setOrigin(0,0);
-        this.sky.displayWidth=14*64;
-        this.sky.setScrollFactor(0,0);
+        this.sky = this.add.image(0, 0, 'sky').setOrigin(0, 0);
+        this.sky.displayWidth = 14 * 64;
+        this.sky.setScrollFactor(0, 0);
+
+        this.epee = new Attack(this, 0, 0);
         /**
          * Le joueur
          * @type {Player}
          */
-        
+
 
         //ATTENTION
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.player=new Player(this,30,300);
+        this.player = new Player(this, 30, 300);
 
     }
-    update(){
+
+    update() {
         super.update();
         this.player.move();
         //this.attaque();
     }
 
-    ramasserEtoile (player, star)
-    {
+    ramasserEtoile(player, star) {
         star.disableBody(true, true);
         //player.setVelocityY(0);
         ui.gagne();
 
         //va lister tous les objets de la scène pour trouver les étoies et vérifier si elles sont actives
-        let totalActive=0;
-        for(let child of this.children.getChildren()){
-            if(child.texture && child.texture.key==="star"){
-                if(child.active){
+        let totalActive = 0;
+        for (let child of this.children.getChildren()) {
+            if (child.texture && child.texture.key === "star") {
+                if (child.active) {
                     totalActive++;
                 }
             }
         }
-        if(totalActive===0){
+        if (totalActive === 0) {
             this.win();
         }
-        
+
     }
 
-    finNiveau (player, objectif)
-    {
+    finNiveau(player, objectif) {
         this.win();
     }
 
-    attaque(){
-        this.oof = new Attack(this,player.x +150, player.y +150);
+
+    attaque() {
+        this.oof = new Attack(this, player.x + 150, player.y + 150);
     }
 
-    etPaf (Attack, monster){ //si notre monstre n'est pas déjà mort
-        monster.isDead=true; //ok le monstre est mort
-        monster.disableBody(true,true);//plus de collisions
-        this.cameras.main.shake(200,0.004,true,); //Screen Shaker
-
+    /**
+     *
+     * @param Attack
+     * @param {ObjetEnnemi} monster
+     */
+    etPaf(Attack, monster) {
+        if (this.player.estEnTrainDAttaquer === false) {
+            this.player.estEnTrainDAttaquer = true;
+            monster.vie -= 10;
+            console.log("touche", monster.vie);
+            if (monster.vie <= 0) {
+                monster.isDead = true; //ok le monstre est mort
+                monster.disableBody(true, true);//plus de collisions
+                this.cameras.main.shake(200, 0.004, true,); //Screen Shaker
+            }
+        }
     }
-
-
-    /*attaque(player, monster){
-
-        if(attack === 0);
-        /// Enforce a short delay between shots by recording
-        // the time that each bullet is shot and testing if
-        // the amount of time since the last shot is more than
-        // the required delay.
-        if (this.lastBulletShotAt === undefined) this.lastBulletShotAt = 0;
-        if (this.time.now - this.lastBulletShotAt < this.SHOT_DELAY) return;
-        this.lastBulletShotAt = this.time.now;
-    
-        // Get a dead bullet from the pool
-        var bullet = this.bulletPool.getFirstDead();
-    
-        // If there aren't any bullets available then don't shoot
-        if (bullet === null || bullet === undefined) return;
-    
-        // Revive the bullet
-        // This makes the bullet "alive"
-        bullet.revive();
-    
-        // Bullets should kill themselves when they leave the world.
-        // Phaser takes care of this for me by setting this flag
-        // but you can do it yourself by killing the bullet if
-        // its x,y coordinates are outside of the world.
-        bullet.checkWorldBounds = true;
-        bullet.outOfBoundsKill = true;
-    
-        // Set the bullet position to the gun position.
-        bullet.reset(this.player.x, this.player.y);
-    
-        // Shoot it
-        bullet.body.velocity.x = this.BULLET_SPEED;
-        bullet.body.velocity.y = 0;
-    }; */
 
     /*saigne(object,onComplete){
         let me=this;
@@ -149,40 +127,40 @@ class Tableau extends Phaser.Scene{
         })
     }*/
 
-    hitMonster(player, monster){
-        let me=this;
-        if(monster.isDead !== true){ //si notre monstre n'est pas déjà mort
-            if(
+    hitMonster(player, monster) {
+        let me = this;
+        if (monster.isDead !== true) { //si notre monstre n'est pas déjà mort
+            if (
                 // si le player descend
-                player.body.velocity.y > 0
+                //player.body.velocity.y > 0 &&
                 // et si le bas du player est plus haut que le monstre
-                && player.getBounds().bottom < monster.getBounds().top+30
+                player.getBounds().bottom < monster.getBounds().top + 30
 
-            ){
+            ) {
                 //ui.gagne();
-                monster.isDead=true; //ok le monstre est mort
-                monster.disableBody(true,true);//plus de collisions
-                this.cameras.main.shake(200,0.004,true,); //Screen Shaker
-               // this.saigne(monster,function(){
-                    //à la fin de la petite anim...ben il se passe rien :)
+                monster.isDead = true; //ok le monstre est mort
+                monster.disableBody(true, true);//plus de collisions
+                this.cameras.main.shake(200, 0.004, true,); //Screen Shaker
+                // this.saigne(monster,function(){
+                //à la fin de la petite anim...ben il se passe rien :)
                 //})
                 //notre joueur rebondit sur le monstre
                 player.setVelocityY(-300);
-            }else{
+            } else {
                 //le joueur est mort
-                if(!me.player.isDead){
-                    me.player.isDead=true;
-                    me.player.visible=false;
+                if (!me.player.isDead) {
+                    me.player.isDead = true;
+                    me.player.visible = false;
                     me.scene.restart();
                     ui.perd(); //reset le score de plumes
                     //ça saigne...
-                   /* me.saigne(me.player,function(){
-                        //à la fin de la petite anim, on relance le jeu
-                        me.blood.visible=false;
-                        me.player.anims.play('turn');
-                        me.player.isDead=false;
-                        me.scene.restart();
-                    })*/
+                    /* me.saigne(me.player,function(){
+                         //à la fin de la petite anim, on relance le jeu
+                         me.blood.visible=false;
+                         me.player.anims.play('turn');
+                         me.player.isDead=false;
+                         me.scene.restart();
+                     })*/
 
                 }
 
@@ -197,8 +175,7 @@ class Tableau extends Phaser.Scene{
      * @param player
      * @param spike
      */
-    hitSpike (player, spike)
-    {
+    hitSpike(player, spike) {
         this.physics.pause();
         player.setTint(0xff0000);
         player.anims.play('turn');
@@ -210,7 +187,7 @@ class Tableau extends Phaser.Scene{
      * Pour reset cette scène proprement
      * @private
      */
-    _destroy(){
+    _destroy() {
         this.player.stop();
         this.scene.stop();
     }
@@ -219,38 +196,38 @@ class Tableau extends Phaser.Scene{
     /**
      * Quand on a gagné
      */
-    win(){
+    win() {
         Tableau.suivant();
     }
 
     /**
      * Va au tableau suivant
      */
-    static suivant(){
-        let ceSeraLaSuivante=false;
-        let nextScene=null;
-        if(Tableau.current){
-            for(let sc of game.scene.scenes){
-                if(sc.scene.key !== "ui"){
-                    if(!nextScene){
-                        if(ceSeraLaSuivante){
-                            nextScene=sc;
+    static suivant() {
+        let ceSeraLaSuivante = false;
+        let nextScene = null;
+        if (Tableau.current) {
+            for (let sc of game.scene.scenes) {
+                if (sc.scene.key !== "ui") {
+                    if (!nextScene) {
+                        if (ceSeraLaSuivante) {
+                            nextScene = sc;
                         }
-                        if(sc.scene.key === Tableau.current.scene.key){
-                            ceSeraLaSuivante=true;
+                        if (sc.scene.key === Tableau.current.scene.key) {
+                            ceSeraLaSuivante = true;
                         }
                     }
                 }
             }
         }
-        if(!nextScene){
+        if (!nextScene) {
             nextScene = game.scene.scenes[0];
         }
         Tableau.goTableau(nextScene);
     }
 
-    static goTableau(tableau){
-        if(Tableau.current){
+    static goTableau(tableau) {
+        if (Tableau.current) {
             Tableau.current._destroy();
         }
         game.scene.start(tableau);
@@ -263,4 +240,4 @@ class Tableau extends Phaser.Scene{
  * Le tableau en cours
  * @type {null|Tableau}
  */
-Tableau.current=null;
+Tableau.current = null;

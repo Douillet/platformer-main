@@ -7,11 +7,16 @@ class Gobelin_basique extends ObjetEnnemi{
         this.setDisplaySize(64,64);
         this.setCollideWorldBounds(true);
         this.setBounceX(1);
-        this.setBounceY(1.015);
+        this.setBounceY(1);
         this.setVelocityX(-50);
+        //this.setGravityY(100*3);
         
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
         
+    }
+
+    mort(){
+        this.disableBody(true, true);
     }
 
     update(){

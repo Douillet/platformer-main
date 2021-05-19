@@ -6,6 +6,7 @@ class Player extends Phaser.Physics.Arcade.Sprite{
 
         this.world = scene;
         this.dirX = 1;
+        this.estEnTrainDAttaquer = false;
 
         this.setCollideWorldBounds(true)
         this.setBounce(0);
@@ -105,10 +106,18 @@ class Player extends Phaser.Physics.Arcade.Sprite{
                 this.setVelocityY(-700);
             }
         }
-        if (this.shiftKey.isDown) {
-            var slash= new Attack(this.world, this.x+ (40 * this.dirX) -35, this.y-20, 'attack');
-            console.log("shiftboom");
-        }
+
+
+    }
+
+    attaque(){
+        console.log("attaque");
+        Tableau.current.epee.setPosition(this.x + (50*this.dirX), this.y);
+        setTimeout(function(){
+            Tableau.current.player.estEnTrainDAttaquer = false;
+            Tableau.current.epee.setPosition(-1000, -1000);
+        },200);
+        console.log("shiftboom");
 
     }
 

@@ -11,6 +11,10 @@ class GobelinLoup extends ObjetEnnemi{
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
     }
 
+    mort(){
+        this.disableBody(true, true);
+    }
+
     update(){
         //fait changer de sens notre oiseau
         if(this.body){

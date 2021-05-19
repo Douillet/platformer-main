@@ -2,7 +2,7 @@ class Geant extends ObjetEnnemi{
 
     constructor(scene, x, y) {
         super(scene, x, y, "Géant");
-
+        this.vie = 100;
         
         this.setOrigin(0,0);
         this.setDisplaySize(120,250);

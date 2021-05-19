@@ -11,7 +11,7 @@ class TestTiled extends Tableau{
         this.load.image('Gobelin_basique', 'assets/Gobelin basique v2.png');
         this.load.image('objectif', 'assets/star.png');
         this.load.image('feuille', 'assets/feuille.png');
-        this.load.image('attack', 'assets/attack.png');
+
         //tiled, enfin son JSON
         this.load.tilemapTiledJSON('map', 'assets/tiled/test4.json');
 
@@ -41,7 +41,7 @@ class TestTiled extends Tableau{
 
         this.plateformes.setDepth(10000);
 
-        this.oof= new Attack(this,250, 300);
+        //this.oof= new Attack(this,250, 300);
 
         /*this.input.keyboard.on('keydown-SHIFT', function(kevent){
             new Attack(this, 250, 300);
@@ -90,20 +90,22 @@ class TestTiled extends Tableau{
             this.monstersContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
 
-            //tentative particule
-            /*var particles6 = this.add.particles('feuille');
-                var emitter = particles6.createEmitter({
+                let emitter = {
+                    frame: [
+                        //'star', //pour afficher aussi des étoiles
+                        'feuille'
+                    ],
                 x: monster, y: monster,
                 speed: 10,
                 lifespan: 12500,
-                quantity: 1,
+                quantity: 1000,
                 frequency: 2000,
                 delay: 100,
                 scale: { start: 0.6, end: 0.6 },
                 blendMode: 'NORMAL',
+                }
+            });
 
-            });*/
-        });
 
         //layer des Grand'Gars
         let BigaContainer=this.add.container();

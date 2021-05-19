@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Attack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Attack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Geant.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Geant.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/GobelinLoup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/GobelinLoup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Gobelin_basique.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Gobelin_basique.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ObjetEnnemi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ObjetEnnemi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/Squig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Squig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/objects/ui/GamePad.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ui/GamePad.js" afterDir="false" />
@@ -33,8 +35,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -50,6 +55,7 @@
       <workItem from="1617020008197" duration="3623000" />
       <workItem from="1621235615821" duration="15344000" />
       <workItem from="1621345736407" duration="12700000" />
+      <workItem from="1621411563456" duration="8623000" />
     </task>
     <servers />
   </component>

@@ -8,12 +8,23 @@ class ObjetEnnemi extends ObjetPhysique{
      */
     constructor(scene, x, y,image) {
         super(scene, x, y,image);
+        this.vie = 30;
+        this.isDead = false;
         scene.physics.add.overlap(
             scene.player,
             this,
             scene.hitMonster,
             null,
             scene
+
+        );
+        scene.physics.add.overlap(
+            scene.epee,
+            this,
+            scene.etPaf,
+            null,
+            scene
+
         );
     }
 }

@@ -42,7 +42,7 @@ class GamePad extends Phaser.GameObjects.Container{
                     Tableau.current.player.directionY=1;
                     break;
                 case "Shift":
-                    Tableau.current.attaque = true;
+                    Tableau.current.player.attaque();
                     //console.log("shifton");
                     break;
             }
