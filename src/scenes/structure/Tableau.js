@@ -80,11 +80,6 @@ class Tableau extends Phaser.Scene {
         this.win();
     }
 
-
-    attaque() {
-        this.oof = new Attack(this, player.x + 150, player.y + 150);
-    }
-
     /**
      *
      * @param Attack
@@ -142,7 +137,7 @@ class Tableau extends Phaser.Scene {
                 player.viensDeTuerUnMonstre = true;
                 setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
                     player.viensDeTuerUnMonstre = false;
-                }, 50);
+                }, 10);
                 monster.isDead = true; //ok le monstre est mort
                 monster.disableBody(true, true); //plus de collisions
                 this.cameras.main.shake(200, 0.004, true,); //Screen Shaker
