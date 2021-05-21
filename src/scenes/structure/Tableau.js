@@ -91,12 +91,14 @@ class Tableau extends Phaser.Scene {
      * @param {ObjetEnnemi} monster
      */
     etPaf(Attack, monster) {
-        if (this.player.estEnTrainDAttaquer === false) {
-            this.player.estEnTrainDAttaquer = true;
-            monster.vie -= 10;
+        if (this.player.estEnTrainDAttaquer === false) //on vérifie si on est en train attaquer
+            {
+            this.player.estEnTrainDAttaquer = true; //on est en train d'attaquer
+            monster.vie -= 10; //fait baisser la vie des monstres de 10
             this.cameras.main.shake(200, 0.004, true,);
             console.log("touche", monster.vie);
-            if (monster.vie <= 0) {
+            if (monster.vie <= 0) //si la vie du monstre tombe a 0 ou en dessous
+            {
                 monster.isDead = true; //ok le monstre est mort
                 monster.disableBody(true, true);//plus de collisions
                 this.cameras.main.shake(200, 0.006, true,); //Screen Shaker
@@ -132,15 +134,17 @@ class Tableau extends Phaser.Scene {
         let me = this;
         if (monster.isDead !== true) { //si notre monstre n'est pas déjà mort
             if (
-                // si le player descend
-                //player.body.velocity.y > 0 &&
-                // et si le bas du player est plus haut que le monstre
+                //si le bas du player est plus haut que le monstre
                 player.getBounds().bottom < monster.getBounds().top + 30
 
             ) {
                 //ui.gagne();
+                player.viensDeTuerUnMonstre = true;
+                setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    player.viensDeTuerUnMonstre = false;
+                }, 50);
                 monster.isDead = true; //ok le monstre est mort
-                monster.disableBody(true, true);//plus de collisions
+                monster.disableBody(true, true); //plus de collisions
                 this.cameras.main.shake(200, 0.004, true,); //Screen Shaker
                 // this.saigne(monster,function(){
                 //à la fin de la petite anim...ben il se passe rien :)

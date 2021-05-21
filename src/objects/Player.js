@@ -7,8 +7,9 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.world = scene;
         this.dirX = 1;
 
-        this.estEnTrainDAttaquer = false;
-        this.rechargeSonCoup = false;
+        this.estEnTrainDAttaquer = false; //bool pour infliger un dégât
+        this.rechargeSonCoup = false; //bool pour le rechargement
+        this.viensDeTuerUnMonstre = false; //bool pour empêcher de rebondir sur les monstres
 
         this.setCollideWorldBounds(true)
         this.setBounce(0);
@@ -102,10 +103,11 @@ class Player extends Phaser.Physics.Arcade.Sprite {
                 this.setVelocityX(0);
                 this.anims.play('turn');
         }
-
-        if (this._directionY < 0) {
-            if (this.body.blocked.down || this.body.touching.down) {
-                this.setVelocityY(-700);
+        if(this.viensDeTuerUnMonstre === false) {
+            if (this._directionY < 0) {
+                if (this.body.blocked.down || this.body.touching.down) {
+                    this.setVelocityY(-700);
+                }
             }
         }
 
@@ -114,17 +116,19 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
     attaque() {
 
-        if(this.rechargeSonCoup === false) {
-            this.rechargeSonCoup = true;
-            console.log("att 2 sec, je viens de frapper!");
-            Tableau.current.epee.setPosition(this.x + (50 * this.dirX), this.y);
-            setTimeout(function () {
+        if(this.rechargeSonCoup === false) { //on vérifie si on a recharger le coup
+            Tableau.current.player.setTint(0xb4b4b4); //grise le joueur
+            this.rechargeSonCoup = true; //lance la recharge
+            //console.log("att 2 sec, je viens de frapper!");
+            Tableau.current.epee.setPosition(this.x + (50 * this.dirX), this.y); //fait déplacer le collider d'attaque
+            setTimeout(function () { //cooldown qui tp le collider d'attaque
                 Tableau.current.player.estEnTrainDAttaquer = false;
                 Tableau.current.epee.setPosition(-1000, -1000);
             }, 200);
-            setTimeout(function () {
+            setTimeout(function () { //cooldown de rechargement qui retire le tint grisant
                 Tableau.current.player.rechargeSonCoup = false;
-                console.log("j'ai fini maman");
+                //console.log("j'ai fini maman");
+                Tableau.current.player.setTint(0xffffff);
             }, 1500);
         }
 

@@ -5,10 +5,10 @@ class Squig extends ObjetEnnemi{
         this.setOrigin(0,0);
         this.setDisplaySize(61,78);
         this.setCollideWorldBounds(true);
-        this.setBounceY(1.0143);
+        this.setBounceY(1);
         this.setBounceX(0.2);
         this.setVelocityY(200);
-        //this.setGravityY(100*3);
+
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
     }
 
