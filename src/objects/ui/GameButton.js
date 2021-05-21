@@ -10,13 +10,13 @@ class GameButton extends GamePad{
         let w=this.size/2;
         //let pad2=scene.add.container();
 
-        let btnUP=scene.add.circle(0,0,w/2,0xffffff,0.3).setInteractive();
-        let btnLEFT=scene.add.circle(0,0,w/2,0xffffff,0.3).setInteractive();
-        let btnRIGHT=scene.add.circle(0,0,w/2,0xffffff,0.3).setInteractive();
+        let btnUP=scene.add.circle(0,0,w,0xffffff,0.3).setInteractive();
+        let btnLEFT=scene.add.circle(0,0,w,0xffffff,0.3).setInteractive();
+        let btnRIGHT=scene.add.circle(0,0,w,0xffffff,0.3).setInteractive();
 
 
-        let btnA=scene.add.circle(0,0,w/2,0xe34343,0.8).setInteractive();
-        let btnB=scene.add.circle(0,0,w/2,0x434343,0.6).setInteractive();
+        let btnA=scene.add.circle(0,0,w,0xe34343,0.8).setInteractive();
+        let btnB=scene.add.circle(0,0,w,0x434343,0.6).setInteractive();
 
         this.add(btnUP);
         this.add(btnLEFT);
@@ -25,17 +25,18 @@ class GameButton extends GamePad{
         this.add(btnA);
         this.add(btnB);
 
-        btnUP.x=w;
-        btnLEFT.x=0;
-        btnRIGHT.x=w*2;
+        btnUP.x=-w;
+        btnLEFT.x=-w*3;
+        btnRIGHT.x=w;
+        btnUP.y=-w;
         btnLEFT.y=w;
         btnRIGHT.y=w;
 
         btnA.x=scene.sys.canvas.width * -1 + w * 4;
-        btnA.y=w*1.5 + 20;
+        btnA.y=-w;
 
         btnB.x=scene.sys.canvas.width * -1 + w * 4;
-        btnB.y=w*0.5;
+        btnB.y=w*1.5;
 
 
         btnLEFT.on('pointerdown',function(){
