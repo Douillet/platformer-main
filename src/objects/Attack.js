@@ -2,15 +2,11 @@ class Attack extends ObjetPhysique{
     constructor(scene, x, y) {
         super(scene, x, y, "attack");
 
-        scene.add.existing(this);
-        scene.physics.add.existing(this);
 
         //this.setOrigin(0,0);
         this.setDisplaySize(70,30);
         this.setCollideWorldBounds(false);
         this.body.allowGravity=false;
-        this.body.duration = 200;
-
         this.setDepth(1000);
         
         //this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );

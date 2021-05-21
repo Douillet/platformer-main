@@ -36,7 +36,7 @@ class Tableau extends Phaser.Scene {
         this.sky.displayWidth = 14 * 64;
         this.sky.setScrollFactor(0, 0);
 
-        this.epee = new Attack(this, 0, 0);
+        this.epee = new Attack(this, -500, -500);
         /**
          * Le joueur
          * @type {Player}

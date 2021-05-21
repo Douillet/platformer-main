@@ -9,7 +9,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 150*3 },
+            gravity: { y: 100*3 },
             debug: true,
         }
     },
@@ -20,16 +20,7 @@ let config = {
 
         new TestTiled("Le Level Design qu'y disaient..."),
         new Tableau00a("Ramasse les Plumes!"),
-
         new Zoo("Le Bestiaire"),
-        new Tableau01("Des plateformes"),
-        new Tableau02("Plein d'étoiles"),
-        new Tableau03("Des plateformes qui bougent"),
-        new Tableau04("Jouer avec les groupes"),
-        new Tableau05("Extend un tableau"),
-        new Tableau06("Un monstre!"),
-        new Tableau07("Un monstre volant!"),
-        new Tableau08("Un plateau qui sort du cadre"),
 
     ],
     width: width,

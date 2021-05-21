@@ -26,7 +26,15 @@ class TestTiled extends Tableau{
         let hauteurDuTableau=this.map.heightInPixels;
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
-        this.cameras.main.startFollow(this.player, true, 1, 1);
+        this.cameras.main.startFollow(this.player, true, 0.4, 0.6, -90, 0);
+        /*if (this.player.dirX = 1)
+        {
+            this.cameras.main.stopFollow();
+            this.cameras.main.startFollow(this.player, true, 0.4, 0.6, -150, 0);
+        }else{
+            this.cameras.main.stopFollow();
+            this.cameras.main.startFollow(this.player, true, 0.4, 0.6, +150, 0);
+        };*/
 
 
         //premier nom est le nom du kit d'image sur tiled et le deuxième nom celui dans le preload
@@ -35,19 +43,9 @@ class TestTiled extends Tableau{
         this.plateformes = this.map.createLayer('blocs', this.tileset, 0, 0);
         this.plateformes.setCollisionByProperty({collide: true});
 
-        //console.log(this.plateformes)
-
         this.physics.add.collider(this.plateformes, this.player);
 
         this.plateformes.setDepth(10000);
-
-        //this.oof= new Attack(this,250, 300);
-
-        /*this.input.keyboard.on('keydown-SHIFT', function(kevent){
-            new Attack(this, 250, 300);
-            //attaque();
-            console.log("shifton");
-        });*/
 
 
         //layer des étoiles
@@ -137,6 +135,7 @@ class TestTiled extends Tableau{
             this.physics.add.collider(this.plateformes, monster);
         });
     }
+
 
 }
 
