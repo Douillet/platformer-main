@@ -6,7 +6,7 @@ class GamePad extends Phaser.GameObjects.Container{
         super(scene, x, y)
         scene.add.existing(this);
 
-        this.size=size;
+        /*this.size=size;
         let w=this.size;
         let dragW=this.size/2;
         let pad2=scene.add.container();
@@ -20,7 +20,7 @@ class GamePad extends Phaser.GameObjects.Container{
         pad2.y=w/2;
 
         circleDrag.setInteractive();
-        scene.input.setDraggable(circleDrag, true);
+        scene.input.setDraggable(circleDrag, true);*/
 
         this.cursors = scene.input.keyboard.createCursorKeys();
 
@@ -66,13 +66,11 @@ class GamePad extends Phaser.GameObjects.Container{
                     break;
 
                 case "Shift":
-                    Tableau.current.bubble = false;
-                    //console.log("shiftoff");
                     break;
             }
         });
 
-        circleDrag.on('drag', (pointer, dragX, dragY) => {
+        /*circleDrag.on('drag', (pointer, dragX, dragY) => {
             circleDrag.x = dragX
             circleDrag.y = dragY
             circleDrag.x=Phaser.Math.Clamp(dragX,-w/2,w/2);
@@ -98,7 +96,7 @@ class GamePad extends Phaser.GameObjects.Container{
             circleDrag.y = 0;
             Tableau.current.player.directionX=0;
             Tableau.current.player.directionY=0;
-        });
+        });*/
 
     }
 

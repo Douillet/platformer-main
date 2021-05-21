@@ -65,9 +65,11 @@ class Ui extends Phaser.Scene{
 
 
 
-        let pad=new GamePad(this,0,0);
-        pad.x=this.sys.canvas.width-pad.size-32;
-        pad.y=this.sys.canvas.height-pad.size-32;
+        //let pad=new GamePad(this,0,0);
+        let buttons=new GameButton(this, 0, 0);
+        buttons.x=this.sys.canvas.width-buttons.size-32;
+        buttons.y=this.sys.canvas.height-buttons.size-32;
+
 
 
 
