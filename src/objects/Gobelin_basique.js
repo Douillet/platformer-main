@@ -9,7 +9,6 @@ class Gobelin_basique extends ObjetEnnemi{
         this.setBounceX(1);
         this.setBounceY(1);
         this.setVelocityX(-50);
-        //this.setGravityY(100*3);
         
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
         

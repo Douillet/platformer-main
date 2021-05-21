@@ -10,6 +10,7 @@ class ObjetEnnemi extends ObjetPhysique{
         super(scene, x, y,image);
         this.vie = 10;
         this.isDead = false;
+
         scene.physics.add.overlap(
             scene.player,
             this,

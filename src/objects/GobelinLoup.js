@@ -8,6 +8,7 @@ class GobelinLoup extends ObjetEnnemi{
         this.setBounceY(0.6);
         this.setBounceX(1);
         this.setVelocityX(70);
+
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
     }
 

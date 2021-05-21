@@ -47,6 +47,11 @@ class Tableau extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
 
         this.player = new Player(this, 30, 300);
+        this.blood = this.add.sprite(this.sys.canvas.width / 2, this.sys.canvas.height / 2, "attack")
+        this.blood.displayWidth = 64;
+        this.blood.displayHeight = 64;
+        this.blood.visible = false;
+        this.Boom = this.add.particles('attack');
 
     }
 
@@ -57,6 +62,10 @@ class Tableau extends Phaser.Scene {
     }
 
     ramasserEtoile(player, star) {
+        player.viensDeTuerUnMonstre = true; //Cette fonciton marche aussi sur les objets Physiques autre, le cd étant super court il ne gêne pas
+        setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+            player.viensDeTuerUnMonstre = false;
+        }, 10);
         star.disableBody(true, true);
         //player.setVelocityY(0);
         ui.gagne();
@@ -96,14 +105,28 @@ class Tableau extends Phaser.Scene {
             {
                 monster.isDead = true; //ok le monstre est mort
                 monster.disableBody(true, true);//plus de collisions
-                this.cameras.main.shake(200, 0.006, true,); //Screen Shaker
+                this.cameras.main.shake(200, 0.02, true,); //Screen Shaker
             }
         }
     }
 
-    /*saigne(object,onComplete){
+    saigne(object,onComplete){
         let me=this;
-        me.blood.visible=true;
+        me.emitter = Tableau.current.Boom.createEmitter( {
+            x: object.x+30,
+            y: object.y+40,
+            speed: 400,
+            scaleY: { start: 0.15, end: 0.3},
+            scaleX: { start: 0.05, end: 0.1},
+            angle: { min: -115, max: -65},
+            //frequence: 4000,
+            lifespan: 150,
+            blendMode: 'NORMAL',
+            quantity: 2,
+            maxParticles: 10,
+
+        })
+        /*me.blood.visible=true;
         me.blood.rotation = Phaser.Math.Between(0,6);
         me.blood.x=object.x;
         me.blood.y=object.y;
@@ -122,8 +145,8 @@ class Tableau extends Phaser.Scene {
                 me.blood.visible=false;
                 onComplete();
             }
-        })
-    }*/
+        })*/
+    }
 
     hitMonster(player, monster) {
         let me = this;
@@ -141,14 +164,15 @@ class Tableau extends Phaser.Scene {
                 monster.isDead = true; //ok le monstre est mort
                 monster.disableBody(true, true); //plus de collisions
                 this.cameras.main.shake(200, 0.004, true,); //Screen Shaker
-                // this.saigne(monster,function(){
+                this.saigne(monster,function(){
                 //à la fin de la petite anim...ben il se passe rien :)
-                //})
+                })
                 //notre joueur rebondit sur le monstre
                 player.setVelocityY(-300);
             } else {
                 //le joueur est mort
                 if (!me.player.isDead) {
+                    this.cameras.main.shake(200, 0.01, true,);
                     me.player.isDead = true;
                     me.player.visible = false;
                     me.scene.restart();

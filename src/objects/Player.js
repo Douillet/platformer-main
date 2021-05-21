@@ -15,6 +15,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.setBounce(0);
         this.setGravityY(850);
         this.setFriction(1, 1);
+        this.setDepth(1000);
 
         this.setBodySize(this.body.width + 30, this.body.height + 70);
         this.setOffset(15, 20);
@@ -118,6 +119,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         if(this.rechargeSonCoup === false) { //on vérifie si on a recharger le coup
             Tableau.current.player.setTint(0xb4b4b4); //grise le joueur
+
             this.rechargeSonCoup = true; //lance la recharge
             //console.log("att 2 sec, je viens de frapper!");
             Tableau.current.epee.setPosition(this.x + (50 * this.dirX), this.y); //fait déplacer le collider d'attaque

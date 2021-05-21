@@ -10,6 +10,7 @@ class Geant extends ObjetEnnemi{
         this.setBounceY(0.2);
         this.setBounceX(1);
         this.setVelocityX(40);
+
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
     }
 

@@ -33,10 +33,10 @@ class GameButton extends GamePad{
         btnRIGHT.y=w;
 
         btnA.x=scene.sys.canvas.width * -1 + w * 4;
-        btnA.y=-w;
+        btnA.y=w*1.5;
 
         btnB.x=scene.sys.canvas.width * -1 + w * 4;
-        btnB.y=w*1.5;
+        btnB.y=-w;
 
 
         btnLEFT.on('pointerdown',function(){

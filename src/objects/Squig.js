@@ -9,6 +9,7 @@ class Squig extends ObjetEnnemi{
         this.setBounceX(0.2);
         this.setVelocityY(200);
 
+
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
     }
 

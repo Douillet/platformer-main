@@ -12,6 +12,10 @@ class TestTiled extends Tableau{
         this.load.image('objectif', 'assets/star.png');
         this.load.image('feuille', 'assets/feuille.png');
 
+        this.load.image('Fond', 'assets/Fond-Test.jpg');
+        this.load.image('P2', 'assets/Plan_2.png');
+        this.load.image('P1', 'assets/Plan_1.png');
+
         //tiled, enfin son JSON
         this.load.tilemapTiledJSON('map', 'assets/tiled/test4.json');
 
@@ -80,28 +84,13 @@ class TestTiled extends Tableau{
 
 
         //layer des gobos rampants
-        this.monstersContainer=this.add.container();
+        let monstersContainer=this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('monstres')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
             let monster=new GobelinLoup(this,monsterObject.x,monsterObject.y-96,);
-            this.monstersContainer.add(monster);
+            monstersContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
-
-                let emitter = {
-                    frame: [
-                        //'star', //pour afficher aussi des étoiles
-                        'feuille'
-                    ],
-                x: monster, y: monster,
-                speed: 10,
-                lifespan: 12500,
-                quantity: 1000,
-                frequency: 2000,
-                delay: 100,
-                scale: { start: 0.6, end: 0.6 },
-                blendMode: 'NORMAL',
-                }
             });
 
 
@@ -134,8 +123,74 @@ class TestTiled extends Tableau{
             BerserkContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
         });
+
+        //Profondeur
+        let z=1000;
+        //debug.setDepth(z--);
+        this.Boom.setDepth(z--);
+        this.blood.setDepth(z--);
+        this.stars.setDepth(z--);
+        this.objectif.setDepth(z--);
+        monstersContainer.setDepth(z--);
+        BigaContainer.setDepth(z--);
+        JumpContainer.setDepth(z--);
+        BerserkContainer.setDepth(z--);
+
+
+
+        //DÉCOR
+        this.fond=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'Fond'
+        );
+        this.fond.setOrigin(0,0);
+        this.fond.setScrollFactor(0);
+
+        //1er rang d'arbre
+        this.arbre=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'P1'
+        );
+        this.arbre.setScrollFactor(0);
+        this.arbre.setOrigin(0,0);
+
+        //2ème rang d'arbre
+        this.arbre2=this.add.tileSprite(
+            0,
+            0,
+            this.sys.canvas.width,
+            this.sys.canvas.height,
+            'P2'
+        );
+        this.arbre2.setScrollFactor(0);
+        this.arbre2.setOrigin(0,0);
+
+        //Profondeur du décor
+        this.arbre.setDepth(9);
+        this.arbre2.setDepth(7);
+        this.fond.setDepth(1)
     }
 
+    update() {
+        super.update();
+
+        //les éléments ont leur vitesse propre
+        //les arbres se déplacent moins vite pour accentuer l'effet
+
+        //rang1
+        this.arbre.tilePositionX=this.cameras.main.scrollX*0.5;
+        this.arbre.tilePositionY=this.cameras.main.scrollY*0.5;
+
+        //rang2
+        this.arbre2.tilePositionX=this.cameras.main.scrollX*0.2;
+        this.arbre2.tilePositionY=this.cameras.main.scrollY*0.2;
+    }
 
 }
 

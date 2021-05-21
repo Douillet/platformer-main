@@ -690,7 +690,7 @@ class Tableau00a extends Tableau{
         this.lucioleP4.setDepth(8);
         this.lucioleP5.setDepth(8);
 
-        //depht décor
+        //depth décor
         this.arbre.setDepth(9);
         this.yeux.setDepth(8);
         this.arbre2.setDepth(7);
@@ -728,10 +728,6 @@ class Tableau00a extends Tableau{
     }*/
 
     update() {
-        if (this.game.input.activePointer.isDown) {
-            this.attack();
-            console.log("bim bam boom")
-        }
         super.update();
 
         //les éléments ont leur vitesse propre
