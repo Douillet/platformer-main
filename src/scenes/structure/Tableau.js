@@ -86,7 +86,7 @@ class Tableau extends Phaser.Scene {
      * @param {ObjetEnnemi} monster
      */
     etPaf(Attack, monster) {
-        if (this.player.estEnTrainDAttaquer === false) //on vérifie si on est en train attaquer
+        if (this.player.estEnTrainDAttaquer === false) //on vérifie si on n' est pas en train attaquer
             {
             this.player.estEnTrainDAttaquer = true; //on est en train d'attaquer
             monster.vie -= 10; //fait baisser la vie des monstres de 10
