@@ -63,7 +63,7 @@ class Tableau extends Phaser.Scene {
 
     ramasserEtoile(player, star) {
         player.viensDeTuerUnMonstre = true; //Cette fonciton marche aussi sur les objets Physiques autre, le cd étant super court il ne gêne pas
-        setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+        setTimeout(function () {      //On ne peut pas ressauter pendant 0.01 sec
             player.viensDeTuerUnMonstre = false;
         }, 10);
         star.disableBody(true, true);
@@ -103,6 +103,9 @@ class Tableau extends Phaser.Scene {
             console.log("touche", monster.vie);
             if (monster.vie <= 0) //si la vie du monstre tombe a 0 ou en dessous
             {
+                this.saigne(monster,function(){
+                    //à la fin de la petite anim...ben il se passe rien :)
+                });
                 monster.isDead = true; //ok le monstre est mort
                 monster.disableBody(true, true);//plus de collisions
                 this.cameras.main.shake(200, 0.02, true,); //Screen Shaker
@@ -166,7 +169,7 @@ class Tableau extends Phaser.Scene {
                 this.cameras.main.shake(200, 0.004, true,); //Screen Shaker
                 this.saigne(monster,function(){
                 //à la fin de la petite anim...ben il se passe rien :)
-                })
+                });
                 //notre joueur rebondit sur le monstre
                 player.setVelocityY(-300);
             } else {
