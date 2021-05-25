@@ -18,8 +18,7 @@ class Tableau extends Phaser.Scene {
         this.load.image('sky', 'assets/sky.png');
         this.load.image('spike', 'assets/spike.png');
         this.load.image('attack', 'assets/attack.png');
-        this.load.spritesheet('hero',
-            'assets/hero.png',
+        this.load.spritesheet('hero', 'assets/hero.png',
             {frameWidth: 90, frameHeight: 123}
         );
     }
@@ -219,12 +218,49 @@ class Tableau extends Phaser.Scene {
         this.scene.stop();
     }
 
+    saveCheckPoint(player, checkPoints)
+    {
+        //this.unique = false;
+        if (localStorage.getItem("checkPoint") !== checkPoints) // this.unique == false
+        {
+            console.log("on atteint le checkpoint", checkPoints);
+            localStorage.setItem("checkPoint", checkPoints);
+            //this.unique = true;
+        }
+    }
+
+
+    restoreCheckPoint()
+    {
+        let storedCheckPoint=localStorage.getItem("checkPoint")
+        if(storedCheckPoint)
+        {
+            Tableau.current.checkPointsObjects.forEach(checkPointObject =>
+            {
+                if(checkPointObject === storedCheckPoint)
+                {
+                    Tableau.current.player.setPosition(checkPointObject.x, checkPointObject.y-64);//+432);
+                    //console.log("on charge le checkpoint", checkPointName);
+                }
+            });
+        }
+    }
+
+    clearCheckPoints()
+    {
+        /*if (Tableau.current.ControlPressed)
+        {*/
+            localStorage.removeItem("checkPoint");
+        //}
+    }
+
 
     /**
      * Quand on a gagné
      */
     win() {
         Tableau.suivant();
+        localStorage.removeItem("checkPoint");
     }
 
     /**

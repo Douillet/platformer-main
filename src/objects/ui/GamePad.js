@@ -29,6 +29,11 @@ class GamePad extends Phaser.GameObjects.Container{
                     Tableau.current.player.attaque();
                     //console.log("shifton");
                     break;
+
+                case "p":
+                    Tableau.current.clearCheckPoints();
+                    console.log("on");
+                    break;
             }
         });
         scene.input.keyboard.on('keyup', function(kevent){
@@ -50,6 +55,9 @@ class GamePad extends Phaser.GameObjects.Container{
                     break;
 
                 case "Shift":
+                    break;
+
+                case "p":
                     break;
             }
         });

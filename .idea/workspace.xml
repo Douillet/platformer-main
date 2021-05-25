@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="" />
+    <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tiled/test3.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tiled/test3.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tiled/test4.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tiled/test4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/ui/GamePad.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/ui/GamePad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/TestTiled.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/TestTiled.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +62,7 @@
       <workItem from="1621580677225" duration="24124000" />
       <workItem from="1621870446923" duration="701000" />
       <workItem from="1621928782738" duration="5846000" />
+      <workItem from="1621954028452" duration="4416000" />
     </task>
     <servers />
   </component>

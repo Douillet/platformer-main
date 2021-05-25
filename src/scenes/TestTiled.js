@@ -11,6 +11,7 @@ class TestTiled extends Tableau{
         this.load.image('Gobelin_basique', 'assets/Gobelin basique v2.png');
         this.load.image('objectif', 'assets/star.png');
         this.load.image('feuille', 'assets/feuille.png');
+        this.load.image('totem', 'assets/Totem.png');
 
         this.load.image('Fond', 'assets/Fond-Test.jpg');
         this.load.image('P2', 'assets/Plan_2.png');
@@ -43,7 +44,7 @@ class TestTiled extends Tableau{
 
         //premier nom est le nom du kit d'image sur tiled et le deuxième nom celui dans le preload
         this.tileset = this.map.addTilesetImage('base2', 'tiles');
-        
+
         this.plateformes = this.map.createLayer('blocs', this.tileset, 0, 0);
         this.plateformes.setCollisionByProperty({collide: true});
 
@@ -81,6 +82,15 @@ class TestTiled extends Tableau{
             let objectif = this.objectif.create(objectifsObjects.x+32, objectifsObjects.y-32 , 'objectif');
         });
         this.physics.add.overlap(this.player, this.objectif, this.finNiveau, null, this);
+
+
+        this.checkPoints = this.physics.add.staticGroup();
+        this.checkPointsObjects = this.map.getObjectLayer('Checkpoints')['objects'];
+        //on crée des checkpoints pour chaque objet rencontré
+        this.checkPointsObjects.forEach(checkPointObject =>
+        {
+            let totem = this.checkPoints.create(checkPointObject.x+32, checkPointObject.y-69 , 'totem');
+        });
 
 
         //layer des gobos rampants
@@ -131,6 +141,7 @@ class TestTiled extends Tableau{
         this.blood.setDepth(z--);
         this.stars.setDepth(z--);
         this.objectif.setDepth(z--);
+        this.checkPoints.setDepth(z--);
         monstersContainer.setDepth(z--);
         BigaContainer.setDepth(z--);
         JumpContainer.setDepth(z--);
@@ -175,7 +186,24 @@ class TestTiled extends Tableau{
         this.arbre.setDepth(9);
         this.arbre2.setDepth(7);
         this.fond.setDepth(1)
+
+        //pour save les positions
+        this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
+        {
+            this.saveCheckPoint(checkPoint);
+            if(!this.player.body.blocked.down || !this.player.body.touching.down)
+            {
+                Tableau.current.jumpStop = true;
+                //console.log("jumpStop = true");
+            }
+            else
+            {
+                Tableau.current.jumpStop = false;
+                //console.log("jumpStop = false");
+            }
+        }, null, this);
     }
+
 
     update() {
         super.update();
@@ -191,6 +219,8 @@ class TestTiled extends Tableau{
         this.arbre2.tilePositionX=this.cameras.main.scrollX*0.2;
         this.arbre2.tilePositionY=this.cameras.main.scrollY*0.2;
     }
+    // Ne pas oublier de nommer chaques checkpoints sur Tiled
 
 }
+
 
