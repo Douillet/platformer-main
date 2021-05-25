@@ -30,7 +30,7 @@ class TestTiled extends Tableau{
         let hauteurDuTableau=this.map.heightInPixels;
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
-        this.cameras.main.startFollow(this.player, true, 0.4, 0.6, -90, 0);
+        this.cameras.main.startFollow(this.player, true, 0.4, 0.1, -90, 0);
         /*if (this.player.dirX = 1)
         {
             this.cameras.main.stopFollow();

@@ -26,7 +26,6 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             frameRate: 24,
             repeat: -1
         });
-
         this.anims.create({
             key: 'right',
             frames: this.anims.generateFrameNumbers('hero', {start: 25, end: 48}),
@@ -38,20 +37,22 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             frames: [{key: 'hero', frame: 24}],
             frameRate: 20
         });
-        //tentative coup d'épée
-        /*this.anims.create({
-            key: 'SHIFT',
-            frames: [ { key: 'hero', frame: 30 } ],
-            frameRate: 20
-        });*/
         this.anims.create({
-            key: 'SHIFT',
-            frames: this.anims.generateFrameNumbers('hero', {start: 21, end: 22}),
-            frameRate: 30,
-            repeat: -1
+            key: 'turn off',
+            frames: [{key: 'hero', frame: 4}],
+            frameRate: 20
         });
 
-        this.shiftKey = scene.input.keyboard.addKey('Shift');
+        this.anims.create({
+            key: 'att_l',
+            frames: this.anims.generateFrameNumbers('hero', {start: 23, end: 0}),
+            frameRate: 48
+        });
+        this.anims.create({
+            key: 'att_r',
+            frames: this.anims.generateFrameNumbers('hero', {start: 25, end: 48}),
+            frameRate: 48
+        });
 
         this._directionX = 0;
         this._directionY = 0;
@@ -102,7 +103,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
                 break;
             default:
                 this.setVelocityX(0);
-                this.anims.play('turn');
+                this.anims.play(this.dirX === 1 ? 'turn' : 'turn off', true);
+
         }
         if(this.viensDeTuerUnMonstre === false) {
             if (this._directionY < 0) {
