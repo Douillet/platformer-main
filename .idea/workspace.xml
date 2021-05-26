@@ -22,9 +22,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="" />
+=======
     <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tiled/test3.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tiled/test3.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tiled/test4.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tiled/test4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Luciole2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Luciole2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/TestTiled.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/TestTiled.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/structure/Ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/structure/Ui.js" afterDir="false" />
     </list>
+>>>>>>> parent of 4b67f70 (joueur un peu plus grisé)
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,7 +88,16 @@
       <workItem from="1621870446923" duration="701000" />
       <workItem from="1621928782738" duration="5846000" />
       <workItem from="1621954028452" duration="5015000" />
+<<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1622015229026" duration="14997000" />
+      <workItem from="1622038306226" duration="307000" />
+=======
+      <workItem from="1622015229026" duration="13486000" />
+>>>>>>> parent of 4b67f70 (joueur un peu plus grisé)
+=======
+      <workItem from="1622015229026" duration="13486000" />
+>>>>>>> parent of 4b67f70 (joueur un peu plus grisé)
     </task>
     <servers />
   </component>
@@ -93,5 +114,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

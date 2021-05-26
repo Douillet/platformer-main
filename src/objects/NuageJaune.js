@@ -8,7 +8,7 @@ class NuageJaune extends ObjetPhysique{
         //gestion de la taille
         this.setDisplaySize(200,138);
         //blendmode
-        this.blendMode='ADD';
+        this.blendMode='OVERLAY';
 
         //on réduit un peu la zone de hit
         this.setBodySize(this.body.width-60,this.body.height-60);
@@ -39,7 +39,7 @@ class NuageJaune extends ObjetPhysique{
         scene.tweens.add({
             targets: this,
             //delay:Math.random()*1000,
-            alpha: 0.2,
+            alpha: 0.4,
             //me.start();
             function () {
                 me.start();

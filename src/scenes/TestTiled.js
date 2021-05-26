@@ -88,7 +88,7 @@ class TestTiled extends Tableau{
 
 
         this.checkPoints = this.physics.add.staticGroup();
-        this.checkPointsObjects = this.map.getObjectLayer('Checkpoints')['objects'];
+        this.checkPointsObjects = this.map.getObjectLayer('checkpoints')['objects'];
         //on crée des checkpoints pour chaque objet rencontré
         this.checkPointsObjects.forEach(checkPointObject =>
         {
@@ -179,7 +179,7 @@ class TestTiled extends Tableau{
         this.blood.setDepth(z--);
         this.stars.setDepth(z--);
         this.objectif.setDepth(z--);
-        this.checkPoints.setDepth(z--);
+        //this.checkPoints.setDepth(z--);
         monstersContainer.setDepth(z--);
         BigaContainer.setDepth(z--);
         JumpContainer.setDepth(z--);

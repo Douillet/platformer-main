@@ -26,6 +26,29 @@
         }, 
         {
          "draworder":"topdown",
+         "id":6,
+         "name":"fin",
+         "objects":[
+                {
+                 "gid":38,
+                 "height":64,
+                 "id":54,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":3776,
+                 "y":384
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":10,
          "name":"BouclierCote",
          "objects":[
@@ -133,7 +156,7 @@
         {
          "draworder":"topdown",
          "id":8,
-         "name":"Checkpoints",
+         "name":"checkpoints",
          "objects":[
                 {
                  "gid":62,
@@ -168,7 +191,7 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":2240,
+                 "x":2176,
                  "y":896
                 }, 
                 {
@@ -253,29 +276,6 @@
                  "width":64,
                  "x":3646.79,
                  "y":619.879
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":6,
-         "name":"fin",
-         "objects":[
-                {
-                 "gid":38,
-                 "height":64,
-                 "id":54,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":3776,
-                 "y":384
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1314,7 +1314,7 @@
  "nextobjectid":122,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.5.0",
+ "tiledversion":"1.4.2",
  "tileheight":64,
  "tilesets":[
         {
@@ -2216,6 +2216,6 @@
         }],
  "tilewidth":64,
  "type":"map",
- "version":1.5,
+ "version":1.4,
  "width":60
 }
