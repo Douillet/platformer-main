@@ -14,6 +14,7 @@ class TestTiled extends Tableau{
         this.load.image('totem', 'assets/Totem.png');
         this.load.image('BouclierHaut', 'assets/BouclierHaut.png');
         this.load.image('BouclierCote', 'assets/BouclierCote.png');
+        this.load.image('NuageJaune', 'assets/NuageJaune.png');
 
         this.load.image('Fond', 'assets/Fond-Test.jpg');
         this.load.image('P2', 'assets/Plan_2.png');
@@ -154,6 +155,23 @@ class TestTiled extends Tableau{
             this.physics.add.collider(this.plateformes, monster);
         });
 
+        let nuageContainer=this.add.container();
+        this.nuagesObjects = this.map.getObjectLayer('NuageJaune')['objects'];
+        //on crée des checkpoints pour chaque objet rencontré
+        this.nuagesObjects.forEach(nuageObject =>
+        {
+            let Nuages = new NuageJaune(this, nuageObject.x+100, nuageObject.y-79);
+            nuageContainer.add(Nuages);
+            console.log("prout");
+        });
+
+        /*let NuageJauneContainer=this.add.container();
+        this.NuagesJaunesObjects = this.map.getObjectLayer('NuageJaune')['objects'];
+        // On crée des Nuages Jaunes
+        this.NuagesJaunesObjects.forEach(NuagesObject => {
+            let Nuages=new NuageJaune(this,NuagesObject.x+100,NuagesObject.y-79,);
+        });*/
+
         //Profondeur
         let z=1000;
         //debug.setDepth(z--);
@@ -168,6 +186,8 @@ class TestTiled extends Tableau{
         BerserkContainer.setDepth(z--);
         BouclarupContainer.setDepth(z--);
         BouclarsideContainer.setDepth(z--);
+        nuageContainer.setDepth(100000);
+        //this.nuages.setDepth(z--);
 
 
 

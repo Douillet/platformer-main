@@ -57,6 +57,7 @@ class Tableau extends Phaser.Scene {
     update() {
         super.update();
         this.player.move();
+
         //this.attaque();
     }
 
@@ -95,18 +96,18 @@ class Tableau extends Phaser.Scene {
      */
     etPaf(Attack, monster) {
         if (this.player.estEnTrainDAttaquer === false) //on vérifie si on n' est pas en train attaquer
-            {
+        {
             this.player.estEnTrainDAttaquer = true; //on est en train d'attaquer
             monster.vie -= 10; //fait baisser la vie des monstres de 10
             this.cameras.main.shake(200, 0.004, true,);
-                monster.setTint(0xcc0000);
-                setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
-                    monster.setTint(0xffffff);
-                }, 70);
+            monster.setTint(0xcc0000);
+            setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                monster.setTint(0xffffff);
+            }, 70);
             console.log("touche", monster.vie);
             if (monster.vie <= 0) //si la vie du monstre tombe a 0 ou en dessous
             {
-                this.saigne(monster,function(){
+                this.saigne(monster, function () {
                     //à la fin de la petite anim...ben il se passe rien :)
                 });
                 monster.isDead = true; //ok le monstre est mort
@@ -116,15 +117,15 @@ class Tableau extends Phaser.Scene {
         }
     }
 
-    saigne(object,onComplete){
-        let me=this;
-        me.emitter = Tableau.current.Boom.createEmitter( {
-            x: object.x+30,
-            y: object.y+40,
+    saigne(object, onComplete) {
+        let me = this;
+        me.emitter = Tableau.current.Boom.createEmitter({
+            x: object.x + 30,
+            y: object.y + 40,
             speed: 400,
-            scaleY: { start: 0.15, end: 0.3},
-            scaleX: { start: 0.05, end: 0.1},
-            angle: { min: -115, max: -65},
+            scaleY: {start: 0.15, end: 0.3},
+            scaleX: {start: 0.05, end: 0.1},
+            angle: {min: -115, max: -65},
             //frequence: 4000,
             lifespan: 150,
             blendMode: 'ADD',
@@ -154,15 +155,15 @@ class Tableau extends Phaser.Scene {
         })*/
     }
 
-    saigneGeant(object,onComplete){
-        let me=this;
-        me.emitter = Tableau.current.Boom.createEmitter( {
-            x: object.x+30,
-            y: object.y+80,
+    saigneGeant(object, onComplete) {
+        let me = this;
+        me.emitter = Tableau.current.Boom.createEmitter({
+            x: object.x + 30,
+            y: object.y + 80,
             speed: 600,
-            scaleY: { start: 0.15, end: 0.5},
-            scaleX: { start: 0.05, end: 0.3},
-            angle: { min: -115, max: -65},
+            scaleY: {start: 0.15, end: 0.5},
+            scaleX: {start: 0.05, end: 0.3},
+            angle: {min: -115, max: -65},
             //frequence: 4000,
             lifespan: 200,
             blendMode: 'ADD',
@@ -188,37 +189,79 @@ class Tableau extends Phaser.Scene {
 
                 if (monster.tete <= 0) //si la vie de la tete du monstre tombe a 0 ou en dessous
                 {
-                player.viensDeTuerUnMonstre = true;
-                setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
-                    player.viensDeTuerUnMonstre = false;
-                }, 10);
-                monster.isDead = true; //ok le monstre est mort
-                monster.disableBody(true, true); //plus de collisions
-                this.cameras.main.shake(200, 0.006, true,); //Screen Shaker
-                this.saigne(monster,function(){
-                //à la fin de la petite anim...ben il se passe rien :)
-                });}
-                else{
+                    player.viensDeTuerUnMonstre = true;
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.viensDeTuerUnMonstre = false;
+                    }, 10);
+                    monster.isDead = true; //ok le monstre est mort
+                    monster.disableBody(true, true); //plus de collisions
+                    this.cameras.main.shake(200, 0.006, true,); //Screen Shaker
+                    this.saigne(monster, function () {
+                        //à la fin de la petite anim...ben il se passe rien :)
+                    });
+                } else {
                     this.cameras.main.shake(200, 0.001, true,); //Screen Shaker
-                };
+                }
+                ;
                 //notre joueur rebondit sur le monstre
 
             } else {
-                //le joueur est mort
-                if (!me.player.isDead) {
-                    this.cameras.main.shake(200, 0.01, true,);
-                    me.player.isDead = true;
-                    me.player.visible = false;
-                    me.scene.restart();
-                    ui.perd(); //reset le score de plumes
-                    //ça saigne...
-                    /* me.saigne(me.player,function(){
-                         //à la fin de la petite anim, on relance le jeu
-                         me.blood.visible=false;
-                         me.player.anims.play('turn');
-                         me.player.isDead=false;
-                         me.scene.restart();
-                     })*/
+                if (player.seFaitTaclerParUnMonstre === false) {
+                    ui.PV();
+                    player.seFaitTaclerParUnMonstre = true;
+                    player.setVelocityY(-200);
+                    player.vieJ -= 1;
+                    ui.PV();
+                    console.log("aie");
+                    player.setTint(0xe62623);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xffffff);
+                    }, 300);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xa2a2a2);
+                    }, 500);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xffffff);
+                    }, 700);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xa2a2a2);
+                    }, 900);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xffffff);
+                    }, 1100);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xa2a2a2);
+                    }, 1300);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xffffff);
+                    }, 1500);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xa2a2a2);
+                    }, 1700);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.setTint(0xffffff);
+                    }, 1900);
+                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                        player.seFaitTaclerParUnMonstre = false;
+                    }, 2300);
+                    //le joueur est mort
+                    if (player.vieJ <= 0) {
+                        if (!me.player.isDead) {
+                            this.cameras.main.shake(200, 0.01, true,);
+                            me.player.isDead = true;
+                            me.player.visible = false;
+                            me.scene.restart();
+                            ui.perd(); //reset le score de plumes
+                            //ça saigne...
+                            /* me.saigne(me.player,function(){
+                                 //à la fin de la petite anim, on relance le jeu
+                                 me.blood.visible=false;
+                                 me.player.anims.play('turn');
+                                 me.player.isDead=false;
+                                 me.scene.restart();
+                             })*/
+                        }
+                    }
 
                 }
 
@@ -250,8 +293,7 @@ class Tableau extends Phaser.Scene {
         this.scene.stop();
     }
 
-    saveCheckPoint(player, checkPoints)
-    {
+    saveCheckPoint(player, checkPoints) {
         //this.unique = false;
         if (localStorage.getItem("checkPoint") !== checkPoints) // this.unique == false
         {
@@ -262,27 +304,22 @@ class Tableau extends Phaser.Scene {
     }
 
 
-    restoreCheckPoint()
-    {
-        let storedCheckPoint=localStorage.getItem("checkPoint")
-        if(storedCheckPoint)
-        {
-            Tableau.current.checkPointsObjects.forEach(checkPointObject =>
-            {
-                if(checkPointObject === storedCheckPoint)
-                {
-                    Tableau.current.player.setPosition(checkPointObject.x, checkPointObject.y-64);//+432);
+    restoreCheckPoint() {
+        let storedCheckPoint = localStorage.getItem("checkPoint")
+        if (storedCheckPoint) {
+            Tableau.current.checkPointsObjects.forEach(checkPointObject => {
+                if (checkPointObject === storedCheckPoint) {
+                    Tableau.current.player.setPosition(checkPointObject.x, checkPointObject.y - 64);//+432);
                     //console.log("on charge le checkpoint", checkPointName);
                 }
             });
         }
     }
 
-    clearCheckPoints()
-    {
+    clearCheckPoints() {
         /*if (Tableau.current.ControlPressed)
         {*/
-            localStorage.removeItem("checkPoint");
+        localStorage.removeItem("checkPoint");
         //}
     }
 

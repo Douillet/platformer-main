@@ -6,6 +6,7 @@ class Ui extends Phaser.Scene{
     }
     preload(){
         this.load.image('ui/full-screen-icon', 'assets/ui/full-screen.png');
+        this.load.image('vie', 'assets/monster-violet.png');
     }
     create (){
         console.log("create Ui")
@@ -16,8 +17,8 @@ class Ui extends Phaser.Scene{
          * @type {Phaser.GameObjects.Text}
          * @private
          */
-        this._scoreText = this.add.text(16, 16, '...', {
-            font:'32px "Hanalei Fill"',
+        this._scoreText = this.add.text(10, 40, '...', {
+            font:'18px "Hanalei Fill"',
             fill: '#fff'
         });
 
@@ -27,7 +28,7 @@ class Ui extends Phaser.Scene{
          * @private
          */
         this._tableauText = this.add.text(this.sys.canvas.width-16, 16, '...', {
-            font:'32px "Hanalei Fill"',
+            font:'24px "Hanalei Fill"',
             align: 'right',
             fill: '#fff'
         })
@@ -38,7 +39,7 @@ class Ui extends Phaser.Scene{
          * @private
          */
         this._tableauTextClass = this.add.text(this.sys.canvas.width-16, 16+32, '...', {
-            font:'24px "Hanalei Fill"',
+            font:'18px "Hanalei Fill"',
             align: 'right',
             fill: '#fff',
         }).setAlpha(0.5)
@@ -84,10 +85,62 @@ class Ui extends Phaser.Scene{
             }
 
         }, this);
-        btFs.setOrigin(1,1)
-        btFs.setDisplaySize(48,48)
+        btFs.setOrigin(1,1);
+        btFs.setDisplaySize(48,48);
         btFs.x=this.sys.canvas.width;
         btFs.y=this.sys.canvas.height;
+
+        this.vieP1=this.add.image(40,40,'vie');
+        this.vieP1.setDisplaySize(30, 30);
+        this.vieP1.setOrigin(1,1);
+        //this.vieP1.setAlpha(0);
+
+        this.vieP2=this.add.image(74,40,'vie');
+        this.vieP2.setDisplaySize(30, 30);
+        this.vieP2.setOrigin(1,1);
+        //this.vieP2.setAlpha(0);
+
+        this.vieP3=this.add.image(108,40,'vie');
+        this.vieP3.setDisplaySize(30, 30);
+        this.vieP3.setOrigin(1,1);
+        //this.vieP3.setAlpha(0);
+
+
+    }
+
+    PV(){
+        if(Tableau.current.player.vieJ === 3){
+            this.vieP1.setAlpha(2);
+            this.vieP2.setAlpha(2);
+            this.vieP3.setAlpha(2);
+        }
+        else if(Tableau.current.player.vieJ === 2){
+            this.vieP1.setAlpha(1);
+            this.vieP2.setAlpha(1);
+            /*this.vieP3.setTint(0xa2a2a2);
+            setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                this.vieP3.setAlpha(0);
+            }, 300);*/
+            this.vieP3.setAlpha(0);
+        }
+        else if(Tableau.current.player.vieJ === 1){
+            this.vieP1.setAlpha(1);
+            /*this.vieP2.setTint(0xa2a2a2);
+            setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                this.vieP2.setAlpha(0);
+            }, 300);*/
+            this.vieP2.setAlpha(0);
+            this.vieP3.setAlpha(0);
+        }
+        else{
+            /*this.vieP1.setTint(0xa2a2a2);
+            setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                this.vieP1.setAlpha(0);
+            }, 300);*/
+            this.vieP1.setAlpha(0);
+            this.vieP2.setAlpha(0);
+            this.vieP3.setAlpha(0);
+        }
 
     }
 
