@@ -8,7 +8,7 @@ class NuageJaune extends ObjetPhysique{
         //gestion de la taille
         this.setDisplaySize(200,138);
         //blendmode
-        this.blendMode='NORMAL';
+        this.blendMode='ADD';
 
         //on réduit un peu la zone de hit
         /*this.setBodySize(this.body.width-60,this.body.height-60);
