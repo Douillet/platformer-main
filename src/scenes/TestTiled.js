@@ -264,5 +264,3 @@ class TestTiled extends Tableau{
     // Ne pas oublier de nommer chaques checkpoints sur Tiled
 
 }
-
-
