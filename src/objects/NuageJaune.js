@@ -11,8 +11,8 @@ class NuageJaune extends ObjetPhysique{
         this.blendMode='NORMAL';
 
         //on réduit un peu la zone de hit
-        this.setBodySize(this.body.width-60,this.body.height-60);
-        this.setOffset(30, 30);
+        /*this.setBodySize(this.body.width-60,this.body.height-60);
+        this.setOffset(30, 30);*/
 
         this.plusoumoins =  2*(0.5 - Math.random());
 
@@ -31,7 +31,7 @@ class NuageJaune extends ObjetPhysique{
         // on applique les propriétés du début de l'animation
         this.x=this.minX;
         this.y=this.minY;
-        this.alpha=0;
+        this.alpha=0.4;
         let me=this;
 
         //on fait apparaitre notre objet avec un petit delay, puis on lance l'animation
@@ -39,7 +39,7 @@ class NuageJaune extends ObjetPhysique{
         scene.tweens.add({
             targets: this,
             //delay:Math.random()*1000,
-            alpha: 0.4,
+            //alpha: 0.4,
             //me.start();
             function () {
                 me.start();
