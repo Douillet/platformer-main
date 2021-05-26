@@ -24,14 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a5200011-e2bc-451b-b1a0-432121eea056" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/tiled/test3.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tiled/test3.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/tiled/test4.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tiled/test4.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Luciole2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Luciole2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/TestTiled.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/TestTiled.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/structure/Tableau.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/structure/Ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/structure/Ui.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +76,7 @@
       <workItem from="1621870446923" duration="701000" />
       <workItem from="1621928782738" duration="5846000" />
       <workItem from="1621954028452" duration="5015000" />
-      <workItem from="1622015229026" duration="13486000" />
+      <workItem from="1622015229026" duration="14390000" />
     </task>
     <servers />
   </component>

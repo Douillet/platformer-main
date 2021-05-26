@@ -122,7 +122,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     attaque() {
 
         if(this.rechargeSonCoup === false) { //on vérifie si on a recharger le coup
-            Tableau.current.player.setTint(0xb4b4b4); //grise le joueur
+            Tableau.current.player.setTint(0x737373); //grise le joueur
 
             this.rechargeSonCoup = true; //lance la recharge
             //console.log("att 2 sec, je viens de frapper!");
