@@ -17,9 +17,9 @@ class BouclierCote extends ObjetEnnemi{
         //fait changer de sens notre oiseau
         if(this.body){
             if(this.body.velocity.x<0){
-                this.flipX=true;
-            }else{
                 this.flipX=false;
+            }else{
+                this.flipX=true;
             }
         }
 

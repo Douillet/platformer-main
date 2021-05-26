@@ -5,9 +5,9 @@ class TestTiled extends Tableau{
         //image
         this.load.image('tiles', 'assets/tiled/tableauTiledTileset.png');
         this.load.image('star', 'assets/Plume.png');
-        this.load.image('GobelinLoup', 'assets/Gobelin à la hache v2.png');
-        this.load.image('Géant', 'assets/GrandGars.png');
-        this.load.image('Squig', 'assets/Gobelin à la lance v2.png');
+        this.load.image('GobelinLoup', 'assets/GnobblarBasique.png');
+        this.load.image('Géant', 'assets/GrandGarsv2.png');
+        this.load.image('Squig', 'assets/GnobblarLancier.png');
         this.load.image('Gobelin_basique', 'assets/Gobelin basique v2.png');
         this.load.image('objectif', 'assets/star.png');
         this.load.image('feuille', 'assets/feuille.png');
@@ -179,7 +179,7 @@ class TestTiled extends Tableau{
         this.blood.setDepth(z--);
         this.stars.setDepth(z--);
         this.objectif.setDepth(z--);
-        //this.checkPoints.setDepth(z--);
+        this.checkPoints.setDepth(z--);
         monstersContainer.setDepth(z--);
         BigaContainer.setDepth(z--);
         JumpContainer.setDepth(z--);
@@ -187,7 +187,6 @@ class TestTiled extends Tableau{
         BouclarupContainer.setDepth(z--);
         BouclarsideContainer.setDepth(z--);
         nuageContainer.setDepth(100000);
-        //this.nuages.setDepth(z--);
 
 
 

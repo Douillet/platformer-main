@@ -3,7 +3,7 @@ class GobelinLoup extends ObjetEnnemi{
         super(scene, x, y, "GobelinLoup");
 
         this.setOrigin(0,0);
-        this.setDisplaySize(68,63);
+        //this.setDisplaySize(68,63);
         this.setCollideWorldBounds(true);
         this.setBounceY(0.6);
         this.setBounceX(1);
@@ -20,9 +20,9 @@ class GobelinLoup extends ObjetEnnemi{
         //fait changer de sens notre oiseau
         if(this.body){
             if(this.body.velocity.x<0){
-                this.flipX=true;
-            }else{
                 this.flipX=false;
+            }else{
+                this.flipX=true;
             }
         }
     

@@ -4,7 +4,7 @@ class Gobelin_basique extends ObjetEnnemi{
 
 
         this.setOrigin(0,0);
-        this.setDisplaySize(64,64);
+        //this.setDisplaySize(64,64);
         this.setCollideWorldBounds(true);
         this.setBounceX(1);
         this.setBounceY(1);
@@ -22,9 +22,9 @@ class Gobelin_basique extends ObjetEnnemi{
         //fait changer de sens notre oiseau
         if(this.body){
             if(this.body.velocity.x<0){
-                this.flipX=true;
-            }else{
                 this.flipX=false;
+            }else{
+                this.flipX=true;
             }
         }
     

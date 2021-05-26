@@ -5,7 +5,7 @@ class BouclierHaut extends ObjetEnnemi{
         this.tete = 500;
 
         this.setOrigin(0,0);
-        this.setDisplaySize(64,64);
+        //this.setDisplaySize(64,64);
         this.setCollideWorldBounds(true);
         this.setBounceY(0.1);
         this.setBounceX(1);
@@ -17,9 +17,9 @@ class BouclierHaut extends ObjetEnnemi{
         //fait changer de sens notre oiseau
         if(this.body){
             if(this.body.velocity.x<0){
-                this.flipX=true;
-            }else{
                 this.flipX=false;
+            }else{
+                this.flipX=true;
             }
         }
 

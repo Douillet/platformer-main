@@ -8,7 +8,10 @@ class NuageJaune extends ObjetPhysique{
         //gestion de la taille
         this.setDisplaySize(200,138);
         //blendmode
-        this.blendMode='ADD';
+        this.blendMode='NORMAL';
+        //------------------------------------------------------------------------------------------------------
+        //----------------PROBLEME CONNU DE CARRE NOIR SUR TEL QUAND BLEN MODE ACTIVE---------------------------
+        //--------------------------------------------------------------------------------------------------------------
 
         //on réduit un peu la zone de hit
         /*this.setBodySize(this.body.width-60,this.body.height-60);
@@ -20,7 +23,7 @@ class NuageJaune extends ObjetPhysique{
 
         // X
         this.originalX=x;
-        this.minX= x - (Math.random() * 90 - 15) * this.plusoumoins + 200;
+        this.minX= x - (Math.random() * 90 - 15) * this.plusoumoins + 400;
         this.maxX= x + (Math.random() * 90 + 15) + this.plusoumoins;
 
         // Y
