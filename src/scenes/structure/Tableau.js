@@ -99,6 +99,10 @@ class Tableau extends Phaser.Scene {
             this.player.estEnTrainDAttaquer = true; //on est en train d'attaquer
             monster.vie -= 10; //fait baisser la vie des monstres de 10
             this.cameras.main.shake(200, 0.004, true,);
+                monster.setTint(0xcc0000);
+                setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    monster.setTint(0xffffff);
+                }, 70);
             console.log("touche", monster.vie);
             if (monster.vie <= 0) //si la vie du monstre tombe a 0 ou en dessous
             {
@@ -123,7 +127,7 @@ class Tableau extends Phaser.Scene {
             angle: { min: -115, max: -65},
             //frequence: 4000,
             lifespan: 150,
-            blendMode: 'NORMAL',
+            blendMode: 'ADD',
             quantity: 2,
             maxParticles: 10,
 
@@ -150,27 +154,55 @@ class Tableau extends Phaser.Scene {
         })*/
     }
 
+    saigneGeant(object,onComplete){
+        let me=this;
+        me.emitter = Tableau.current.Boom.createEmitter( {
+            x: object.x+30,
+            y: object.y+80,
+            speed: 600,
+            scaleY: { start: 0.15, end: 0.5},
+            scaleX: { start: 0.05, end: 0.3},
+            angle: { min: -115, max: -65},
+            //frequence: 4000,
+            lifespan: 200,
+            blendMode: 'ADD',
+            quantity: 4,
+            maxParticles: 20,
+
+        })
+    }
+
     hitMonster(player, monster) {
         let me = this;
         if (monster.isDead !== true) { //si notre monstre n'est pas déjà mort
-            if (
-                //si le bas du player est plus haut que le monstre
-                player.getBounds().bottom < monster.getBounds().top + 30
-
-            ) {
+            //si le bas du player est plus haut que le monstre
+            if (player.getBounds().bottom < monster.getBounds().top + 30) {
                 //ui.gagne();
+                player.setVelocityY(-300);
+                monster.tete -= 10;
+                monster.setTint(0xcc0000);
+                setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    monster.setTint(0xffffff);
+                }, 70);
+                //this.cameras.main.shake(200, 0.001, true,); //Screen Shaker
+
+                if (monster.tete <= 0) //si la vie de la tete du monstre tombe a 0 ou en dessous
+                {
                 player.viensDeTuerUnMonstre = true;
                 setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
                     player.viensDeTuerUnMonstre = false;
                 }, 10);
                 monster.isDead = true; //ok le monstre est mort
                 monster.disableBody(true, true); //plus de collisions
-                this.cameras.main.shake(200, 0.004, true,); //Screen Shaker
+                this.cameras.main.shake(200, 0.006, true,); //Screen Shaker
                 this.saigne(monster,function(){
                 //à la fin de la petite anim...ben il se passe rien :)
-                });
+                });}
+                else{
+                    this.cameras.main.shake(200, 0.001, true,); //Screen Shaker
+                };
                 //notre joueur rebondit sur le monstre
-                player.setVelocityY(-300);
+
             } else {
                 //le joueur est mort
                 if (!me.player.isDead) {

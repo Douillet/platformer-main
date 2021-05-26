@@ -12,6 +12,8 @@ class TestTiled extends Tableau{
         this.load.image('objectif', 'assets/star.png');
         this.load.image('feuille', 'assets/feuille.png');
         this.load.image('totem', 'assets/Totem.png');
+        this.load.image('BouclierHaut', 'assets/BouclierHaut.png');
+        this.load.image('BouclierCote', 'assets/BouclierCote.png');
 
         this.load.image('Fond', 'assets/Fond-Test.jpg');
         this.load.image('P2', 'assets/Plan_2.png');
@@ -134,6 +136,24 @@ class TestTiled extends Tableau{
             this.physics.add.collider(this.plateformes, monster);
         });
 
+        let BouclarupContainer=this.add.container();
+        this.MonstersObjects = this.map.getObjectLayer('BouclierHaut')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        this.MonstersObjects.forEach(monsterObject => {
+            let monster=new BouclierHaut(this,monsterObject.x+32,monsterObject.y-64,);
+            BouclarupContainer.add(monster);
+            this.physics.add.collider(this.plateformes, monster);
+        });
+
+        let BouclarsideContainer=this.add.container();
+        this.MonstersObjects = this.map.getObjectLayer('BouclierCote')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        this.MonstersObjects.forEach(monsterObject => {
+            let monster=new BouclierCote(this,monsterObject.x+32,monsterObject.y-64,);
+            BouclarsideContainer.add(monster);
+            this.physics.add.collider(this.plateformes, monster);
+        });
+
         //Profondeur
         let z=1000;
         //debug.setDepth(z--);
@@ -146,6 +166,8 @@ class TestTiled extends Tableau{
         BigaContainer.setDepth(z--);
         JumpContainer.setDepth(z--);
         BerserkContainer.setDepth(z--);
+        BouclarupContainer.setDepth(z--);
+        BouclarsideContainer.setDepth(z--);
 
 
 

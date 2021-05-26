@@ -1,17 +1,15 @@
-class Geant extends ObjetEnnemi{
-
+class BouclierHaut extends ObjetEnnemi{
     constructor(scene, x, y) {
-        super(scene, x, y, "Géant");
-        this.vie = 150;
-        this.tete = 30;
-        
-        this.setOrigin(0,0);
-        this.setDisplaySize(120,250);
-        this.setCollideWorldBounds(true);
-        this.setBounceY(0.2);
-        this.setBounceX(1);
-        this.setVelocityX(40);
+        super(scene, x, y, "BouclierHaut");
 
+        this.tete = 500;
+
+        this.setOrigin(0,0);
+        this.setDisplaySize(64,64);
+        this.setCollideWorldBounds(true);
+        this.setBounceY(0.1);
+        this.setBounceX(1);
+        this.setVelocityX(50);
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
     }
 
@@ -24,6 +22,6 @@ class Geant extends ObjetEnnemi{
                 this.flipX=false;
             }
         }
-    
+
     }
 }
