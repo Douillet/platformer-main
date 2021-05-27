@@ -4,13 +4,13 @@ let height=7*64; //448;
 
 let config = {
     type: Phaser.AUTO,
-    pixelArt: true,
+    pixelArt: false,
 
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 100*3 },
-            debug: false,
+            debug: true,
         }
     },
     scene: [

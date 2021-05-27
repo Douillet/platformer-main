@@ -95,6 +95,7 @@ class TestTiled extends Tableau{
             let totem = this.checkPoints.create(checkPointObject.x+32, checkPointObject.y-69 , 'totem');
         });
 
+        this.restoreCheckPoint();
 
         //layer des gobos rampants
         let monstersContainer=this.add.container();

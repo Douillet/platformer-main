@@ -24,25 +24,27 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('hero', {start: 23, end: 0}),
-            frameRate: 24,
+            frames: this.anims.generateFrameNumbers('Andras', {start: 7, end: 0}),
+            frameRate: 8,
             repeat: -1
         });
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('hero', {start: 25, end: 48}),
-            frameRate: 24,
+            frames: this.anims.generateFrameNumbers('Andras', {start: 10, end: 17}),
+            frameRate: 8,
             repeat: -1
         });
         this.anims.create({
             key: 'turn',
-            frames: [{key: 'hero', frame: 24}],
-            frameRate: 20
+            frames: this.anims.generateFrameNumbers('Andras', {start: 28, end: 18}),
+            frameRate: 8,
+            repeat: -1
         });
         this.anims.create({
             key: 'turn off',
-            frames: [{key: 'hero', frame: 4}],
-            frameRate: 20
+            frames: this.anims.generateFrameNumbers('Andras', {start: 29, end: 39}),
+            frameRate: 8,
+            repeat: -1
         });
 
         this.anims.create({

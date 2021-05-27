@@ -20,7 +20,10 @@ class Tableau extends Phaser.Scene {
         this.load.image('attack', 'assets/attack.png');
         this.load.spritesheet('hero', 'assets/hero.png',
             {frameWidth: 90, frameHeight: 123}
-        );
+            );
+        this.load.spritesheet('Andras', 'assets/Andras.png',
+            {frameWidth: 89, frameHeight: 132}
+            );
     }
 
     create() {
@@ -293,23 +296,28 @@ class Tableau extends Phaser.Scene {
         this.scene.stop();
     }
 
-    saveCheckPoint(player, checkPoints) {
+    saveCheckPoint(checkPointName)
+    {
         //this.unique = false;
-        if (localStorage.getItem("checkPoint") !== checkPoints) // this.unique == false
+        if (localStorage.getItem("checkpoints") !== checkPointName) // this.unique == false
         {
-            console.log("on atteint le checkpoint", checkPoints);
-            localStorage.setItem("checkPoint", checkPoints);
+            console.log("on atteint le checkpoint", checkPointName);
+            localStorage.setItem("checkpoints", checkPointName);
             //this.unique = true;
         }
     }
 
 
-    restoreCheckPoint() {
-        let storedCheckPoint = localStorage.getItem("checkPoint")
-        if (storedCheckPoint) {
-            Tableau.current.checkPointsObjects.forEach(checkPointObject => {
-                if (checkPointObject === storedCheckPoint) {
-                    Tableau.current.player.setPosition(checkPointObject.x, checkPointObject.y - 64);//+432);
+    restoreCheckPoint()
+    {
+        let storedCheckPoint=localStorage.getItem("checkpoints")
+        if(storedCheckPoint)
+        {
+            this.checkPointsObjects.forEach(checkPointObject =>
+            {
+                if(checkPointObject.name === storedCheckPoint)
+                {
+                    this.player.setPosition(checkPointObject.x, checkPointObject.y-64);//+432);
                     //console.log("on charge le checkpoint", checkPointName);
                 }
             });
@@ -319,7 +327,7 @@ class Tableau extends Phaser.Scene {
     clearCheckPoints() {
         /*if (Tableau.current.ControlPressed)
         {*/
-        localStorage.removeItem("checkPoint");
+        localStorage.removeItem("checkpoints");
         //}
     }
 
@@ -328,8 +336,8 @@ class Tableau extends Phaser.Scene {
      * Quand on a gagné
      */
     win() {
+        Tableau.current.clearCheckPoints();
         Tableau.suivant();
-        localStorage.removeItem("checkPoint");
     }
 
     /**
