@@ -19,8 +19,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.setFriction(1, 1);
         this.setDepth(1000);
 
-        this.setBodySize(this.body.width + 30, this.body.height + 70);
-        this.setOffset(15, 20);
+        this.setBodySize(this.body.width +17, this.body.height + 84);
+        this.setOffset(23, 18);
 
         this.anims.create({
             key: 'left',
@@ -49,13 +49,27 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.anims.create({
             key: 'att_l',
-            frames: this.anims.generateFrameNumbers('hero', {start: 23, end: 0}),
-            frameRate: 48
+            frames: this.anims.generateFrameNumbers('AndrasAttack', {start: 4, end: 0}),
+            frameRate: 4,
+            repeat: 0
         });
         this.anims.create({
             key: 'att_r',
-            frames: this.anims.generateFrameNumbers('hero', {start: 25, end: 48}),
-            frameRate: 48
+            frames: this.anims.generateFrameNumbers('AndrasAttack', {start: 5, end: 9}),
+            frameRate: 4,
+            repeat: 0
+        });
+        this.anims.create({
+            key: 'jump_l',
+            frames: this.anims.generateFrameNumbers('Andras', {start: 40, end: 40}),
+            frameRate: 4,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'jump_r',
+            frames: this.anims.generateFrameNumbers('Andras', {start: 41, end: 41}),
+            frameRate: 4,
+            repeat: -1
         });
 
         this._directionX = 0;
@@ -92,22 +106,41 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         //cap les vitesses verticales
         this.body.velocity.y = Math.min(800, Math.max(-800, this.body.velocity.y));
+        if (this.body.velocity.y ===! 0){
+            this.anims.play(this.dirX === -1 ? 'jump_l' : 'jump_r', true);
+        }else{
+            if(this.body.velocity.x < 0){
+            this.anims.play('left', true);
+        }
+            if (this.body.velocity.x > 0){
+                this.anims.play('right', true);
+            }
+            if (this.body.velocity.x === 0){
+                this.anims.play(this.dirX === -1 ? 'turn' : 'turn off', true);
+            }}
+
 
         switch (true) {
             case this._directionX < 0:
                 this.setVelocityX(-150);
-                this.anims.play('left', true);
+                //this.anims.play('left', true);
                 this.dirX = -1;
                 break;
-            case this._directionX > 0:
 
+            case this._directionX > 0:
                 this.setVelocityX(150);
-                this.anims.play('right', true);
+                //this.anims.play('right', true);
                 this.dirX = 1;
                 break;
+
             default:
                 this.setVelocityX(0);
-                this.anims.play(this.dirX === 1 ? 'turn' : 'turn off', true);
+                //this.anims.play(this.dirX === -1 ? 'turn' : 'turn off', true);
+                if(this.dirX === -1){
+                    this.setOffset(17, 18);
+                }else{
+                    this.setOffset(23,18);
+                }
 
         }
         if(this.viensDeTuerUnMonstre === false) {
@@ -129,6 +162,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
             this.rechargeSonCoup = true; //lance la recharge
             //console.log("att 2 sec, je viens de frapper!");
             Tableau.current.epee.setPosition(this.x + (50 * this.dirX), this.y); //fait déplacer le collider d'attaque
+            this.anims.play(this.dirX === -1 ? 'att_r' : 'att_l', true); //Anim d'attaque
             setTimeout(function () { //cooldown qui tp le collider d'attaque
                 Tableau.current.player.estEnTrainDAttaquer = false;
                 Tableau.current.epee.setPosition(-1000, -1000);
