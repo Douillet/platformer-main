@@ -42,6 +42,7 @@ class Tableau extends Phaser.Scene {
         this.sky.setScrollFactor(0, 0);
 
         this.epee = new Attack(this, -500, -500);
+        this.totalActive = 0;
         /**
          * Le joueur
          * @type {Player}
@@ -67,25 +68,25 @@ class Tableau extends Phaser.Scene {
         //this.attaque();
     }
 
-    ramasserEtoile(player, star) {
+    ramasserEtoile(player, Plumes) {
         player.viensDeTuerUnMonstre = true; //Cette fonciton marche aussi sur les objets Physiques autre, le cd étant super court il ne gêne pas
         setTimeout(function () {      //On ne peut pas ressauter pendant 0.01 sec
             player.viensDeTuerUnMonstre = false;
         }, 10);
-        star.disableBody(true, true);
+        Plumes.disableBody(true, true);
         //player.setVelocityY(0);
         ui.gagne();
 
         //va lister tous les objets de la scène pour trouver les étoies et vérifier si elles sont actives
-        let totalActive = 0;
-        for (let child of this.children.getChildren()) {
-            if (child.texture && child.texture.key === "star") {
+
+        /*for (let child of this.children.getChildren()) {
+            if (child.texture && child.texture.key === "Plume") {
                 if (child.active) {
-                    totalActive++;
+                    this.totalActive++;
                 }
             }
-        }
-        if (totalActive === 0) {
+        }*/
+        if (this.totalActive === 0) {
             this.win();
         }
 
@@ -304,7 +305,7 @@ class Tableau extends Phaser.Scene {
         //this.unique = false;
         if (localStorage.getItem("checkpoints") !== checkPointName) // this.unique == false
         {
-            console.log("on atteint le checkpoint", checkPointName);
+            //console.log("on atteint le checkpoint", checkPointName);
             localStorage.setItem("checkpoints", checkPointName);
             //this.unique = true;
         }

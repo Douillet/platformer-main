@@ -1,7 +1,7 @@
-class NuageJaune extends ObjetPhysique{
+class NuageVert extends ObjetPhysique{
 
     constructor(scene, x, y) {
-        super(scene, x, y, "NuageJaune");
+        super(scene, x, y, "NuageVert");
         //pas de gravité
         this.body.allowGravity=false;
 

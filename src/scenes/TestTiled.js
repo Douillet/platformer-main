@@ -5,6 +5,9 @@ class TestTiled extends Tableau{
         //image
         this.load.image('tiles', 'assets/tiled/tableauTiledTileset.png');
         this.load.image('star', 'assets/Plume.png');
+        this.load.spritesheet('plume', 'assets/PlumeSS.png',
+            {frameWidth: 32, frameHeight: 32}
+        );
         this.load.image('GobelinLoup', 'assets/GnobblarBasique.png');
         this.load.image('Géant', 'assets/GrandGarsv2.png');
         this.load.image('Squig', 'assets/GnobblarLancier.png');
@@ -15,6 +18,7 @@ class TestTiled extends Tableau{
         this.load.image('BouclierHaut', 'assets/BouclierHaut.png');
         this.load.image('BouclierCote', 'assets/BouclierCote.png');
         this.load.image('NuageJaune', 'assets/NuageJaune.png');
+        this.load.image('NuageVert', 'assets/NuageVert.png');
 
         this.load.image('Fond', 'assets/Fond-Test.jpg');
         this.load.image('P2', 'assets/Plan_2.png');
@@ -29,7 +33,7 @@ class TestTiled extends Tableau{
 
         //ajouter la fcking map
         this.map = this.make.tilemap({ key: 'map' });
-
+        
         let largeurDuTableau=this.map.widthInPixels;
         let hauteurDuTableau=this.map.heightInPixels;
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
@@ -44,6 +48,8 @@ class TestTiled extends Tableau{
             this.cameras.main.startFollow(this.player, true, 0.4, 0.6, +150, 0);
         };*/
 
+        //ANIM PLUME
+
 
         //premier nom est le nom du kit d'image sur tiled et le deuxième nom celui dans le preload
         this.tileset = this.map.addTilesetImage('base2', 'tiles');
@@ -55,8 +61,19 @@ class TestTiled extends Tableau{
 
         this.plateformes.setDepth(10000);
 
+        //layer des plumes
+        let PlumesContainer=this.add.container();
+        this.PlumesObjects = this.map.getObjectLayer('stars')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        this.PlumesObjects.forEach(PlumeObject => {
+            let Plumes=new Plume(this,PlumeObject.x + 16,PlumeObject.y - 16);
+            PlumesContainer.add(Plumes);
+            this.physics.add.collider(this.plateformes, Plumes);
+            this.totalActive++;
+            this.physics.add.overlap(this.player, Plumes, this.ramasserEtoile, null, this);
 
-        //layer des étoiles
+        });
+        /*layer des étoiles
         this.stars = this.physics.add.group({
             allowGravity: true,
             immovable: false,
@@ -69,7 +86,7 @@ class TestTiled extends Tableau{
             let stars = this.stars.create(starsObject.x, starsObject.y-17 , 'star');
         });
         this.physics.add.collider(this.plateformes, this.stars);
-        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);
+        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);*/
 
 
         //layer de la fin d'objectif
@@ -161,9 +178,9 @@ class TestTiled extends Tableau{
         //on crée des checkpoints pour chaque objet rencontré
         this.nuagesObjects.forEach(nuageObject =>
         {
-            let Nuages = new NuageJaune(this, nuageObject.x+100, nuageObject.y-79);
+            let Nuages = new NuageVert(this, nuageObject.x+100, nuageObject.y-79);
             nuageContainer.add(Nuages);
-            console.log("prout");
+            //console.log("prout");
         });
 
         /*let NuageJauneContainer=this.add.container();
@@ -178,7 +195,7 @@ class TestTiled extends Tableau{
         //debug.setDepth(z--);
         this.Boom.setDepth(z--);
         this.blood.setDepth(z--);
-        this.stars.setDepth(z--);
+        //this.stars.setDepth(z--);
         this.objectif.setDepth(z--);
         this.checkPoints.setDepth(z--);
         monstersContainer.setDepth(z--);
@@ -188,6 +205,7 @@ class TestTiled extends Tableau{
         BouclarupContainer.setDepth(z--);
         BouclarsideContainer.setDepth(z--);
         nuageContainer.setDepth(100000);
+        PlumesContainer.setDepth(z--);
 
 
 
