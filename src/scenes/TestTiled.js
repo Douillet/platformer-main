@@ -3,7 +3,7 @@ class TestTiled extends Tableau{
     preload() {
         super.preload();
         //image
-        this.load.image('tiles', 'assets/tiled/tableauTiledTileset.png');
+        this.load.image('tiles', 'assets/tiled/assetsTiledv2.png');
         this.load.image('star', 'assets/Plume.png');
         this.load.spritesheet('plume', 'assets/PlumeSS.png',
             {frameWidth: 32, frameHeight: 32}
@@ -20,12 +20,12 @@ class TestTiled extends Tableau{
         this.load.image('NuageJaune', 'assets/NuageJaune.png');
         this.load.image('NuageVert', 'assets/NuageVert.png');
 
-        this.load.image('Fond', 'assets/Fond-Test.jpg');
-        this.load.image('P2', 'assets/Plan_2.png');
-        this.load.image('P1', 'assets/Plan_1.png');
+        this.load.image('Fond', 'assets/FondFinal.jpg');
+        this.load.image('P2', 'assets/dernierRang.png');
+        this.load.image('P1', 'assets/premierRang.png');
 
         //tiled, enfin son JSON
-        this.load.tilemapTiledJSON('map', 'assets/tiled/test4.json');
+        this.load.tilemapTiledJSON('map', 'assets/tiled/NewMap.json');
 
     }
     create() {
@@ -33,7 +33,7 @@ class TestTiled extends Tableau{
 
         //ajouter la fcking map
         this.map = this.make.tilemap({ key: 'map' });
-        
+
         let largeurDuTableau=this.map.widthInPixels;
         let hauteurDuTableau=this.map.heightInPixels;
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
@@ -52,14 +52,25 @@ class TestTiled extends Tableau{
 
 
         //premier nom est le nom du kit d'image sur tiled et le deuxième nom celui dans le preload
-        this.tileset = this.map.addTilesetImage('base2', 'tiles');
+        this.tileset = this.map.addTilesetImage('assetsTiledv2', 'tiles');
 
         this.plateformes = this.map.createLayer('blocs', this.tileset, 0, 0);
-        this.plateformes.setCollisionByProperty({collide: true});
-
+        //this.plateformes.setCollisionByProperty({collide: true});
+        //this.physics.add.collider(this.plateformes, this.player);
+        this.plateformes.setCollisionByExclusion(-1, true);
         this.physics.add.collider(this.plateformes, this.player);
 
         this.plateformes.setDepth(10000);
+
+        //les non collide
+        this.nonCollide = this.map.createLayer('nonCollide', this.tileset, 0, 0);
+        this.nonCollide.setDepth(10001);
+        //les arriere Plan
+        this.arrierePlan = this.map.createLayer('arrierePlan', this.tileset, 0, 0);
+        this.arrierePlan.setDepth(9999);
+
+        this.effetsLumineux = this.map.createLayer('effetsLumineux', this.tileset, 0, 0);
+        this.effetsLumineux.setDepth(10001);
 
         //layer des plumes
         let PlumesContainer=this.add.container();

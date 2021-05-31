@@ -19,7 +19,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.setFriction(1, 1);
         this.setDepth(1000);
 
-        this.setBodySize(this.body.width +17, this.body.height + 84);
+        this.setBodySize(this.body.width +5, this.body.height + 84);
         this.setOffset(23, 18);
 
         this.anims.create({
@@ -138,7 +138,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
                 if(this.dirX === -1){
                     this.setOffset(17, 18);
                 }else{
-                    this.setOffset(23,18);
+                    this.setOffset(33,18);
                 }
 
         }
