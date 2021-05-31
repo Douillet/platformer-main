@@ -39,16 +39,6 @@ class TestTiled extends Tableau{
         this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
         this.cameras.main.startFollow(this.player, true, 0.4, 0.1, -90, 0);
-        /*if (this.player.dirX = 1)
-        {
-            this.cameras.main.stopFollow();
-            this.cameras.main.startFollow(this.player, true, 0.4, 0.6, -150, 0);
-        }else{
-            this.cameras.main.stopFollow();
-            this.cameras.main.startFollow(this.player, true, 0.4, 0.6, +150, 0);
-        };*/
-
-        //ANIM PLUME
 
 
         //premier nom est le nom du kit d'image sur tiled et le deuxième nom celui dans le preload
@@ -84,21 +74,6 @@ class TestTiled extends Tableau{
             this.physics.add.overlap(this.player, Plumes, this.ramasserEtoile, null, this);
 
         });
-        /*layer des étoiles
-        this.stars = this.physics.add.group({
-            allowGravity: true,
-            immovable: false,
-            bounceY:0
-        });
-        this.starsObjects = this.map.getObjectLayer('stars')['objects'];
-        // On crée des étoiles pour chaque objet rencontré
-        this.starsObjects.forEach(starsObject => {
-            // Pour chaque plume, on la positionne pour que ça colle bien car les plumes ne font pas 64x64
-            let stars = this.stars.create(starsObject.x, starsObject.y-17 , 'star');
-        });
-        this.physics.add.collider(this.plateformes, this.stars);
-        this.physics.add.overlap(this.player, this.stars, this.ramasserEtoile, null, this);*/
-
 
         //layer de la fin d'objectif
         this.objectif = this.physics.add.group({
@@ -194,13 +169,6 @@ class TestTiled extends Tableau{
             //console.log("prout");
         });
 
-        /*let NuageJauneContainer=this.add.container();
-        this.NuagesJaunesObjects = this.map.getObjectLayer('NuageJaune')['objects'];
-        // On crée des Nuages Jaunes
-        this.NuagesJaunesObjects.forEach(NuagesObject => {
-            let Nuages=new NuageJaune(this,NuagesObject.x+100,NuagesObject.y-79,);
-        });*/
-
         //Profondeur
         let z=1000;
         //debug.setDepth(z--);
@@ -217,7 +185,6 @@ class TestTiled extends Tableau{
         BouclarsideContainer.setDepth(z--);
         nuageContainer.setDepth(100000);
         PlumesContainer.setDepth(z--);
-
 
 
         //DÉCOR

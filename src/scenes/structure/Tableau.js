@@ -24,8 +24,8 @@ class Tableau extends Phaser.Scene {
         this.load.spritesheet('Andras', 'assets/Andras.png',
             {frameWidth: 89, frameHeight: 132}
             );
-        this.load.spritesheet('AndrasAttack', 'assets/AndrasAttack.png',
-            {frameWidth: 153, frameHeight: 129}
+        this.load.spritesheet('AndrasAttack', 'assets/AndrasAttackv3.png',
+            {frameWidth: 220, frameHeight: 129}
         );
     }
 
@@ -64,6 +64,8 @@ class Tableau extends Phaser.Scene {
     update() {
         super.update();
         this.player.move();
+        ui.PV();
+        ui.vieSupp();
 
         //this.attaque();
     }
@@ -73,9 +75,12 @@ class Tableau extends Phaser.Scene {
         setTimeout(function () {      //On ne peut pas ressauter pendant 0.01 sec
             player.viensDeTuerUnMonstre = false;
         }, 10);
-        Plumes.disableBody(true, true);
+        if (ui.score < 10){
+            Plumes.disableBody(true, true);
+            ui.gagne();
+        }
+        //ui.vieSupp();
         //player.setVelocityY(0);
-        ui.gagne();
 
         //va lister tous les objets de la scène pour trouver les étoies et vérifier si elles sont actives
 
@@ -214,11 +219,11 @@ class Tableau extends Phaser.Scene {
 
             } else {
                 if (player.seFaitTaclerParUnMonstre === false) {
-                    ui.PV();
+                    //ui.PV();
                     player.seFaitTaclerParUnMonstre = true;
                     player.setVelocityY(-200);
                     player.vieJ -= 1;
-                    ui.PV();
+                    //ui.PV();
                     console.log("aie");
                     player.setTint(0xe62623);
                     setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
