@@ -1,16 +1,17 @@
 /**
- * Un objet qui écoute les touches du clavier et mouvements sur le pad et qui influent le déplacement du joueur
+ * Un objet qui écoute les boutons sur téléphone
  */
 class GameButton extends GamePad{
     constructor(scene, x, y,size=100) {
         super(scene, x, y)
         scene.add.existing(this);
 
+        //s'applique uniquement sur téléphone
         if(this.scene.sys.game.device.os.desktop !== true && this.scene.sys.game.device.os.linux !== true && this.scene.sys.game.device.os.macOS !== true) {
             this.size = size;
             let w = this.size / 2;
-            //let pad2=scene.add.container();
 
+            //création des boutons
             let btnUP = scene.add.circle(0, 0, w, 0xffffff, 0.3).setInteractive();
             let btnLEFT = scene.add.circle(0, 0, w, 0xffffff, 0.3).setInteractive();
             let btnRIGHT = scene.add.circle(0, 0, w, 0xffffff, 0.3).setInteractive();
@@ -26,6 +27,7 @@ class GameButton extends GamePad{
             this.add(btnA);
             this.add(btnB);
 
+            //positions
             btnUP.x = -w;
             btnLEFT.x = -w * 3;
             btnRIGHT.x = w;
@@ -40,6 +42,7 @@ class GameButton extends GamePad{
             btnB.y = -w;
 
 
+            //fonctions
             btnLEFT.on('pointerdown', function () {
                 Tableau.current.player.directionX = -1;
             });
@@ -64,7 +67,7 @@ class GameButton extends GamePad{
 
             btnA.on('pointerdown', function () {
                 Tableau.current.player.attaque();
-                console.log("GROS BOUTTON");
+                //console.log("GROS BOUTTON");
             });
 
 

@@ -6,6 +6,7 @@ class GamePad extends Phaser.GameObjects.Container{
         super(scene, x, y)
         scene.add.existing(this);
 
+        //permet d'appuyer sur trois touches en même temps sur téléphone
         game.input.addPointer(3);
 
         this.cursors = scene.input.keyboard.createCursorKeys();

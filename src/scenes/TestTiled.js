@@ -30,6 +30,7 @@ class TestTiled extends Tableau{
     }
     create() {
         super.create();
+        console.log("create")
 
         //ajouter la fcking map
         this.map = this.make.tilemap({ key: 'map' });
@@ -61,6 +62,19 @@ class TestTiled extends Tableau{
 
         this.effetsLumineux = this.map.createLayer('effetsLumineux', this.tileset, 0, 0);
         this.effetsLumineux.setDepth(10001);
+
+        this.pikes = this.map.createLayer('Pikes', this.tileset, 0, 0);
+        this.pikes.setCollisionByProperty({ toto: true });
+        /*this.physics.add.collider(this.pikes, this.player,function(){
+            console.log("hoop")
+        });*/
+        this.physics.add.overlap( this.pikes, this.player,function(){
+            console.log("hop")
+        }, null, this);
+        this.pikes.setDepth(10000);
+
+
+        this.plateformes.setDepth(10000);
 
         this.collideMonster = this.map.createLayer('collideMonster', this.tileset, 0, 0);
         this.collideMonster.setCollisionByExclusion(-1, true);

@@ -20,10 +20,10 @@ class Tableau extends Phaser.Scene {
         this.load.image('attack', 'assets/attack.png');
         this.load.spritesheet('hero', 'assets/hero.png',
             {frameWidth: 90, frameHeight: 123}
-            );
+        );
         this.load.spritesheet('Andras', 'assets/Andras.png',
             {frameWidth: 89, frameHeight: 132}
-            );
+        );
         this.load.spritesheet('AndrasAttack', 'assets/AndrasAttackv3.png',
             {frameWidth: 220, frameHeight: 129}
         );
@@ -52,7 +52,7 @@ class Tableau extends Phaser.Scene {
         //ATTENTION
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.player = new Player(this, 30, 300);
+        this.player = new Player(this, 30, 700);
         this.blood = this.add.sprite(this.sys.canvas.width / 2, this.sys.canvas.height / 2, "attack")
         this.blood.displayWidth = 64;
         this.blood.displayHeight = 64;
@@ -75,7 +75,7 @@ class Tableau extends Phaser.Scene {
         setTimeout(function () {      //On ne peut pas ressauter pendant 0.01 sec
             player.viensDeTuerUnMonstre = false;
         }, 10);
-        if (ui.score < 10){
+        if (ui.score < 10) {
             Plumes.disableBody(true, true);
             ui.gagne();
         }
@@ -138,7 +138,6 @@ class Tableau extends Phaser.Scene {
             scaleY: {start: 0.15, end: 0.3},
             scaleX: {start: 0.05, end: 0.1},
             angle: {min: -115, max: -65},
-            //frequence: 4000,
             lifespan: 150,
             blendMode: 'ADD',
             quantity: 2,
@@ -167,6 +166,7 @@ class Tableau extends Phaser.Scene {
         })*/
     }
 
+    //saignement des géants
     saigneGeant(object, onComplete) {
         let me = this;
         me.emitter = Tableau.current.Boom.createEmitter({
@@ -226,37 +226,37 @@ class Tableau extends Phaser.Scene {
                     //ui.PV();
                     console.log("aie");
                     player.setTint(0xe62623);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {      //clignotement de prise de dégâts
                         player.setTint(0xffffff);
                     }, 300);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {
                         player.setTint(0xa2a2a2);
                     }, 500);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {
                         player.setTint(0xffffff);
                     }, 700);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {
                         player.setTint(0xa2a2a2);
                     }, 900);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {
                         player.setTint(0xffffff);
                     }, 1100);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {
                         player.setTint(0xa2a2a2);
                     }, 1300);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {
                         player.setTint(0xffffff);
                     }, 1500);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {
                         player.setTint(0xa2a2a2);
                     }, 1700);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {
                         player.setTint(0xffffff);
                     }, 1900);
-                    setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
+                    setTimeout(function () {      //on peut se faire retaper au bout de 2.3 sec
                         player.seFaitTaclerParUnMonstre = false;
                     }, 2300);
-                    //le joueur est mort
+                    //le joueur est mort car vie = 0
                     if (player.vieJ <= 0) {
                         if (!me.player.isDead) {
                             this.cameras.main.shake(200, 0.01, true,);
@@ -284,15 +284,69 @@ class Tableau extends Phaser.Scene {
     }
 
     /**
-     * Aïeee ça fait mal
+     * aie
      * @param player
      * @param spike
      */
+
     hitSpike(player, spike) {
-        this.physics.pause();
-        player.setTint(0xff0000);
-        player.anims.play('turn');
-        this.scene.restart();
+        let me = this;
+        if (player.seFaitTaclerParUnMonstre === false) {
+            player.seFaitTaclerParUnMonstre = true;
+            player.setVelocityY(-200);
+            player.vieJ -= 1;
+            console.log("aie");
+            player.setTint(0xe62623);
+            setTimeout(function () {      //clignotement de prise de dégâts
+                player.setTint(0xffffff);
+            }, 300);
+            setTimeout(function () {
+                player.setTint(0xa2a2a2);
+            }, 500);
+            setTimeout(function () {
+                player.setTint(0xffffff);
+            }, 700);
+            setTimeout(function () {
+                player.setTint(0xa2a2a2);
+            }, 900);
+            setTimeout(function () {
+                player.setTint(0xffffff);
+            }, 1100);
+            setTimeout(function () {
+                player.setTint(0xa2a2a2);
+            }, 1300);
+            setTimeout(function () {
+                player.setTint(0xffffff);
+            }, 1500);
+            setTimeout(function () {
+                player.setTint(0xa2a2a2);
+            }, 1700);
+            setTimeout(function () {
+                player.setTint(0xffffff);
+            }, 1900);
+            setTimeout(function () {        //on peut se faire retaper au bout de 2.3 sec
+                player.seFaitTaclerParUnMonstre = false;
+            }, 2300);
+            //le joueur est mort car vie = 0
+            if (player.vieJ <= 0) {
+                if (!me.player.isDead) {
+                    this.cameras.main.shake(200, 0.01, true,);
+                    me.player.isDead = true;
+                    me.player.visible = false;
+                    me.scene.restart();
+                    ui.perd(); //reset le score de plumes
+                    //ça saigne...
+                    /* me.saigne(me.player,function(){
+                         //à la fin de la petite anim, on relance le jeu
+                         me.blood.visible=false;
+                         me.player.anims.play('turn');
+                         me.player.isDead=false;
+                         me.scene.restart();
+                     })*/
+                }
+            }
+
+        }
 
     }
 
@@ -305,8 +359,7 @@ class Tableau extends Phaser.Scene {
         this.scene.stop();
     }
 
-    saveCheckPoint(checkPointName)
-    {
+    saveCheckPoint(checkPointName) {
         //this.unique = false;
         if (localStorage.getItem("checkpoints") !== checkPointName) // this.unique == false
         {
@@ -317,16 +370,12 @@ class Tableau extends Phaser.Scene {
     }
 
 
-    restoreCheckPoint()
-    {
-        let storedCheckPoint=localStorage.getItem("checkpoints")
-        if(storedCheckPoint)
-        {
-            this.checkPointsObjects.forEach(checkPointObject =>
-            {
-                if(checkPointObject.name === storedCheckPoint)
-                {
-                    this.player.setPosition(checkPointObject.x, checkPointObject.y-64);//+432);
+    restoreCheckPoint() {
+        let storedCheckPoint = localStorage.getItem("checkpoints")
+        if (storedCheckPoint) {
+            this.checkPointsObjects.forEach(checkPointObject => {
+                if (checkPointObject.name === storedCheckPoint) {
+                    this.player.setPosition(checkPointObject.x, checkPointObject.y - 64);//+432);
                     //console.log("on charge le checkpoint", checkPointName);
                 }
             });
