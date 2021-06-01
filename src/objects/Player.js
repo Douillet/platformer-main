@@ -14,7 +14,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.rechargeSonCoup = false; //bool pour le rechargement
         this.viensDeTuerUnMonstre = false; //bool pour empêcher de rebondir sur les monstres
 
-        this.setCollideWorldBounds(true)
+        this.setCollideWorldBounds(true);
         this.setBounce(0, 0);
         this.setGravityY(850);
         this.setFriction(1, 1);
