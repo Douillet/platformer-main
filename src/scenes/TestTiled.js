@@ -11,7 +11,7 @@ class TestTiled extends Tableau{
         this.load.image('GobelinLoup', 'assets/GnobblarBasique.png');
         this.load.image('Géant', 'assets/GrandGarsv2.png');
         this.load.image('Squig', 'assets/GnobblarLancier.png');
-        this.load.image('Gobelin_basique', 'assets/Gobelin basique v2.png');
+        this.load.image('Gobelin_basique', 'assets/GnobblarBasique.png');
         this.load.image('objectif', 'assets/star.png');
         this.load.image('feuille', 'assets/feuille.png');
         this.load.image('totem', 'assets/Totem.png');
@@ -57,10 +57,14 @@ class TestTiled extends Tableau{
         this.nonCollide.setDepth(10001);
         //les arriere Plan
         this.arrierePlan = this.map.createLayer('arrierePlan', this.tileset, 0, 0);
-        this.arrierePlan.setDepth(9999);
+        this.arrierePlan.setDepth(50);
 
         this.effetsLumineux = this.map.createLayer('effetsLumineux', this.tileset, 0, 0);
         this.effetsLumineux.setDepth(10001);
+
+        this.collideMonster = this.map.createLayer('collideMonster', this.tileset, 0, 0);
+        this.collideMonster.setCollisionByExclusion(-1, true);
+        this.collideMonster.setDepth(1);
 
         //layer des plumes
         let PlumesContainer=this.add.container();
@@ -108,6 +112,7 @@ class TestTiled extends Tableau{
             let monster=new GobelinLoup(this,monsterObject.x,monsterObject.y-96,);
             monstersContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
+            this.physics.add.collider(this.collideMonster, monster);
             });
 
 
@@ -119,6 +124,7 @@ class TestTiled extends Tableau{
             let monster=new Geant(this,monsterObject.x,monsterObject.y-300,);
             BigaContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
+            this.physics.add.collider(this.collideMonster, monster);
         });
 
         //layer des Jumpers
@@ -129,6 +135,7 @@ class TestTiled extends Tableau{
             let monster=new Squig(this,monsterObject.x,monsterObject.y-96,);
             JumpContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
+            this.physics.add.collider(this.collideMonster, monster);
         });
 
         //layer des Berserkers sautillants
@@ -139,6 +146,7 @@ class TestTiled extends Tableau{
             let monster=new Gobelin_basique(this,monsterObject.x,monsterObject.y-96,);
             BerserkContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
+            this.physics.add.collider(this.collideMonster, monster);
         });
 
         let BouclarupContainer=this.add.container();
@@ -148,6 +156,7 @@ class TestTiled extends Tableau{
             let monster=new BouclierHaut(this,monsterObject.x+32,monsterObject.y-64,);
             BouclarupContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
+            this.physics.add.collider(this.collideMonster, monster);
         });
 
         let BouclarsideContainer=this.add.container();
@@ -157,6 +166,7 @@ class TestTiled extends Tableau{
             let monster=new BouclierCote(this,monsterObject.x+32,monsterObject.y-64,);
             BouclarsideContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
+            this.physics.add.collider(this.collideMonster, monster);
         });
 
         let nuageContainer=this.add.container();
@@ -175,7 +185,7 @@ class TestTiled extends Tableau{
         this.Boom.setDepth(z--);
         this.blood.setDepth(z--);
         //this.stars.setDepth(z--);
-        this.objectif.setDepth(z--);
+        this.objectif.setDepth(999);
         this.checkPoints.setDepth(z--);
         monstersContainer.setDepth(z--);
         BigaContainer.setDepth(z--);
@@ -191,8 +201,8 @@ class TestTiled extends Tableau{
         this.fond=this.add.tileSprite(
             0,
             0,
-            this.sys.canvas.width,
-            this.sys.canvas.height,
+            this.sys.canvas.width*2,
+            this.sys.canvas.height*2,
             'Fond'
         );
         this.fond.setOrigin(0,0);
@@ -202,8 +212,8 @@ class TestTiled extends Tableau{
         this.arbre=this.add.tileSprite(
             0,
             0,
-            this.sys.canvas.width,
-            this.sys.canvas.height,
+            this.sys.canvas.width*2,
+            this.sys.canvas.height*2,
             'P1'
         );
         this.arbre.setScrollFactor(0);
@@ -213,8 +223,8 @@ class TestTiled extends Tableau{
         this.arbre2=this.add.tileSprite(
             0,
             0,
-            this.sys.canvas.width,
-            this.sys.canvas.height,
+            this.sys.canvas.width*2,
+            this.sys.canvas.height*2,
             'P2'
         );
         this.arbre2.setScrollFactor(0);
@@ -223,7 +233,7 @@ class TestTiled extends Tableau{
         //Profondeur du décor
         this.arbre.setDepth(9);
         this.arbre2.setDepth(7);
-        this.fond.setDepth(1)
+        this.fond.setDepth(2)
 
         //pour save les positions
         this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
@@ -251,11 +261,11 @@ class TestTiled extends Tableau{
 
         //rang1
         this.arbre.tilePositionX=this.cameras.main.scrollX*0.5;
-        this.arbre.tilePositionY=this.cameras.main.scrollY*0.5;
+        this.arbre.tilePositionY=this.cameras.main.scrollY*0.3;
 
         //rang2
         this.arbre2.tilePositionX=this.cameras.main.scrollX*0.2;
-        this.arbre2.tilePositionY=this.cameras.main.scrollY*0.2;
+        this.arbre2.tilePositionY=this.cameras.main.scrollY*0.1;
     }
     // Ne pas oublier de nommer chaques checkpoints sur Tiled
 

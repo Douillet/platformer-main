@@ -6,6 +6,8 @@ class GamePad extends Phaser.GameObjects.Container{
         super(scene, x, y)
         scene.add.existing(this);
 
+        game.input.addPointer(3);
+
         this.cursors = scene.input.keyboard.createCursorKeys();
 
         scene.input.keyboard.on('keydown', function(kevent){
