@@ -17,7 +17,8 @@ class Tableau extends Phaser.Scene {
     preload() {
         this.load.image('sky', 'assets/sky.png');
         this.load.image('spike', 'assets/spike.png');
-        this.load.image('attack', 'assets/attack.png');
+        this.load.image('attack', 'assets/attackNull.png');
+        this.load.image('attackRed', 'assets/attack.png');
         this.load.spritesheet('hero', 'assets/hero.png',
             {frameWidth: 90, frameHeight: 123}
         );
@@ -57,7 +58,7 @@ class Tableau extends Phaser.Scene {
         this.blood.displayWidth = 64;
         this.blood.displayHeight = 64;
         this.blood.visible = false;
-        this.Boom = this.add.particles('attack');
+        this.Boom = this.add.particles('attackRed');
 
     }
 
@@ -110,6 +111,10 @@ class Tableau extends Phaser.Scene {
         if (this.player.estEnTrainDAttaquer === false) //on vérifie si on n' est pas en train attaquer
         {
             this.player.estEnTrainDAttaquer = true; //on est en train d'attaquer
+            Tableau.current.player.seFaitTaclerParUnMonstre = true;
+            setTimeout(function () {      //on peut se faire retaper au bout de 2.3 sec
+                Tableau.current.player.seFaitTaclerParUnMonstre = false;
+            }, 500);
             monster.vie -= 10; //fait baisser la vie des monstres de 10
             this.cameras.main.shake(200, 0.004, true,);
             monster.setTint(0xcc0000);

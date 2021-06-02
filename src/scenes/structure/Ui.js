@@ -6,7 +6,10 @@ class Ui extends Phaser.Scene {
 
     preload() {
         this.load.image('ui/full-screen-icon', 'assets/ui/full-screen.png');
-        this.load.image('vie', 'assets/monster-violet.png');
+        this.load.image('vie', 'assets/vieJ.png');
+        this.load.spritesheet('scorePlume', 'assets/PlumeSS.png',
+            {frameWidth: 32, frameHeight: 32}
+        );
     }
 
     create() {
@@ -18,7 +21,7 @@ class Ui extends Phaser.Scene {
          * @type {Phaser.GameObjects.Text}
          * @private
          */
-        this._scoreText = this.add.text(10, 40, '...', {
+        this._scoreText = this.add.text(55, 52, '...', {
             font: '18px "Hanalei Fill"',
             fill: '#fff'
         });
@@ -88,20 +91,30 @@ class Ui extends Phaser.Scene {
         btFs.x = this.sys.canvas.width;
         btFs.y = this.sys.canvas.height;
 
-        this.vieP1 = this.add.image(40, 40, 'vie');
-        this.vieP1.setDisplaySize(30, 30);
+        this.vieP1 = this.add.image(50, 40, 'vie');
+        this.vieP1.setDisplaySize(40, 30);
         this.vieP1.setOrigin(1, 1);
         //this.vieP1.setAlpha(0);
 
-        this.vieP2 = this.add.image(74, 40, 'vie');
-        this.vieP2.setDisplaySize(30, 30);
+        this.vieP2 = this.add.image(94, 40, 'vie');
+        this.vieP2.setDisplaySize(40, 30);
         this.vieP2.setOrigin(1, 1);
         //this.vieP2.setAlpha(0);
 
-        this.vieP3 = this.add.image(108, 40, 'vie');
-        this.vieP3.setDisplaySize(30, 30);
+        this.vieP3 = this.add.image(138, 40, 'vie');
+        this.vieP3.setDisplaySize(40, 30);
         this.vieP3.setOrigin(1, 1);
         //this.vieP3.setAlpha(0);
+
+        this.anims.create({
+            key: 'animPlume',
+            frames: this.anims.generateFrameNumbers('scorePlume', {start: 0, end: 11}),
+            frameRate: 4,
+            repeat: -1
+        });
+
+        this.plumeScore = this.add.sprite(42, 62, 'scorePlume')
+
 
 
     }
@@ -140,10 +153,12 @@ class Ui extends Phaser.Scene {
     }
 
     vieSupp() {
+        this._scoreText.setText('x  ' + this.score);
         if (Tableau.current.player.vieJ < 3) {
             if (this.score === 10) {
                 Tableau.current.player.vieJ += 1;
                 this.score = 0;
+
             }
         }
         if (Tableau.current.player.vieJ === 3) {
@@ -152,23 +167,27 @@ class Ui extends Phaser.Scene {
                 this.vieP1.setTint(0xece77b);
                 this.vieP2.setTint(0xece77b);
                 this.vieP3.setTint(0xece77b);
+                this._scoreText.setTint(0xece77b);
+                this.plumeScore.setTint(0xece77b);
             } else {
                 //pas besoin de régler le tint du player car hitMonsters le fait déjà
                 this.vieP1.setTint(0xffffff);
                 this.vieP2.setTint(0xffffff);
                 this.vieP3.setTint(0xffffff);
+                this._scoreText.setTint(0xffffff);
+                this.plumeScore.setTint(0xffffff);
             }
         }
     }
 
     gagne(points = 1) {
         this.score += points;
-        this._scoreText.setText('Plumes ramassées: ' + this.score);
+        this._scoreText.setText('x  ' + this.score);
     }
 
     perd(points = 0) {
         this.score = 0;
-        this._scoreText.setText('Plumes ramassées: ' + this.score);
+        this._scoreText.setText('x  ' + this.score);
         ;
     }
 
