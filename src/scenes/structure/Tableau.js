@@ -72,14 +72,36 @@ class Tableau extends Phaser.Scene {
     }
 
     ramasserEtoile(player, Plumes) {
-        player.viensDeTuerUnMonstre = true; //Cette fonciton marche aussi sur les objets Physiques autre, le cd étant super court il ne gêne pas
-        setTimeout(function () {      //On ne peut pas ressauter pendant 0.01 sec
-            player.viensDeTuerUnMonstre = false;
-        }, 10);
+        /*if (player._directionY !==0) {
+            player.viensDeTuerUnMonstre = true; //Cette fonction marche aussi sur les objets Physiques autre, le cd étant super court il ne gêne pas
+            setTimeout(function () {     //On ne peut pas ressauter pendant 0.01 sec
+                player.viensDeTuerUnMonstre = false;
+            }, 10);
+        }*/
         if (ui.score < 10) {
             Plumes.disableBody(true, true);
             ui.gagne();
+            player.viensDeTuerUnMonstre = true; //Cette fonction marche aussi sur les objets Physiques autre, le cd étant super court il ne gêne pas
+            setTimeout(function () {     //On ne peut pas ressauter pendant 0.01 sec
+                player.viensDeTuerUnMonstre = false;
+            }, 10);
         }
+        ;
+
+        if (ui.score === 10) {
+            Plumes.setTint(0x888888);
+            setTimeout(function () {     //On ne peut pas ressauter pendant 0.01 sec
+                Plumes.setTint(0xffffff);
+            }, 1);
+            if (player.body.velocity.y !== 0){
+                player.viensDeTuerUnMonstre = true; //Cette fonction marche aussi sur les objets Physiques autre, le cd étant super court il ne gêne pas
+                setTimeout(function () {     //On ne peut pas ressauter pendant 0.01 sec
+                    player.viensDeTuerUnMonstre = false;
+                }, 10);
+            }
+        }
+
+        //il faut que ne l'on puisse pas sauter sur les plumes qu'on n'a pas encore rammassé et qu'on puisse ne pas sauter sur les plumes
         //ui.vieSupp();
         //player.setVelocityY(0);
 
@@ -294,7 +316,7 @@ class Tableau extends Phaser.Scene {
      * @param spike
      */
 
-    hitSpike(player, spike) {
+    hitSpike(player, Pike) {
         let me = this;
         if (player.seFaitTaclerParUnMonstre === false) {
             player.seFaitTaclerParUnMonstre = true;
@@ -340,14 +362,6 @@ class Tableau extends Phaser.Scene {
                     me.player.visible = false;
                     me.scene.restart();
                     ui.perd(); //reset le score de plumes
-                    //ça saigne...
-                    /* me.saigne(me.player,function(){
-                         //à la fin de la petite anim, on relance le jeu
-                         me.blood.visible=false;
-                         me.player.anims.play('turn');
-                         me.player.isDead=false;
-                         me.scene.restart();
-                     })*/
                 }
             }
 

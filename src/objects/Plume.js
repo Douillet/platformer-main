@@ -15,5 +15,6 @@ class Plume extends ObjetPhysique {
             repeat: -1
         });
         this.anims.play('animPlume', true);
+
     }
 }

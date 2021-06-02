@@ -19,6 +19,7 @@ class TestTiled extends Tableau{
         this.load.image('BouclierCote', 'assets/BouclierCote.png');
         this.load.image('NuageJaune', 'assets/NuageJaune.png');
         this.load.image('NuageVert', 'assets/NuageVert.png');
+        this.load.image('Pike', 'assets/attackNull.png');
 
         this.load.image('Fond', 'assets/FondFinal.jpg');
         this.load.image('P2', 'assets/dernierRang.png');
@@ -64,13 +65,8 @@ class TestTiled extends Tableau{
         this.effetsLumineux.setDepth(10001);
 
         this.pikes = this.map.createLayer('Pikes', this.tileset, 0, 0);
-        this.pikes.setCollisionByProperty({ toto: true });
-        /*this.physics.add.collider(this.pikes, this.player,function(){
-            console.log("hoop")
-        });*/
-        this.physics.add.overlap( this.pikes, this.player,function(){
-            console.log("hop")
-        }, null, this);
+        this.pikes.setCollisionByExclusion(-1, true);
+        this.physics.add.collider(this.pikes, this.player);
         this.pikes.setDepth(10000);
 
 
@@ -85,11 +81,20 @@ class TestTiled extends Tableau{
         this.PlumesObjects = this.map.getObjectLayer('stars')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.PlumesObjects.forEach(PlumeObject => {
-            let Plumes=new Plume(this,PlumeObject.x + 16,PlumeObject.y - 16);
+            let Plumes=new Plume(this,PlumeObject.x + 16,PlumeObject.y -16);
             PlumesContainer.add(Plumes);
-            this.physics.add.collider(this.plateformes, Plumes);
             this.totalActive++;
             this.physics.add.overlap(this.player, Plumes, this.ramasserEtoile, null, this);
+
+        });
+        let PikeContainer=this.add.container();
+        this.PikesObjects = this.map.getObjectLayer('Pike')['objects'];
+        // On crée des montres pour chaque objet rencontré
+        this.PikesObjects.forEach(PikeObject => {
+            let Pikes=new Pike(this,PikeObject.x + 16,PikeObject.y - 28);
+            PikeContainer.add(Pikes);
+            this.totalActive++;
+            this.physics.add.overlap(this.player, Pikes, this.hitSpike, null, this);
 
         });
 
@@ -209,6 +214,7 @@ class TestTiled extends Tableau{
         BouclarsideContainer.setDepth(z--);
         nuageContainer.setDepth(100000);
         PlumesContainer.setDepth(z--);
+        PikeContainer.setDepth(z--);
 
 
         //DÉCOR

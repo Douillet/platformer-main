@@ -25,7 +25,7 @@ class Luciole2 extends ObjetPhysique{
         // Y
         this.originalY=y;
         this.minY= y - Math.random() * 45 - 15;
-        this.maxY= y + Math.random() * 45 - 15;
+        this.maxY= y + Math.random() * 45 + 15;
 
         // on applique les propriétés du début de l'animation
         this.x=this.minX;
