@@ -25,6 +25,8 @@ class TestTiled extends Tableau{
         this.load.image('P2', 'assets/dernierRang.png');
         this.load.image('P1', 'assets/premierRang.png');
 
+        this.load.image('tutoMove', 'assets/tutoMove.png');
+
         //tiled, enfin son JSON
         this.load.tilemapTiledJSON('map', 'assets/tiled/NewMap.json');
 
@@ -45,6 +47,9 @@ class TestTiled extends Tableau{
 
         //premier nom est le nom du kit d'image sur tiled et le deuxième nom celui dans le preload
         this.tileset = this.map.addTilesetImage('assetsTiledv2', 'tiles');
+
+        //détecteur de passage des tutos
+        this.isTexte = 0;
 
         this.plateformes = this.map.createLayer('blocs', this.tileset, 0, 0);
         //this.plateformes.setCollisionByProperty({collide: true});
@@ -201,6 +206,10 @@ class TestTiled extends Tableau{
             //console.log("prout");
         });
 
+        //les sprites tutos
+        this.tutoMove=this.add.sprite(150, 650, 'tutoMove').setAlpha(0);
+
+
         //Profondeur
         let z=1000;
         //debug.setDepth(z--);
@@ -209,6 +218,7 @@ class TestTiled extends Tableau{
         //this.stars.setDepth(z--);
         this.objectif.setDepth(1);
         this.checkPoints.setDepth(z--);
+        this.tutoMove.setDepth(99999);
         monstersContainer.setDepth(z--);
         BigaContainer.setDepth(z--);
         JumpContainer.setDepth(z--);
@@ -275,6 +285,36 @@ class TestTiled extends Tableau{
         }, null, this);
     }
 
+    apparitionTutoMove(){
+
+        if(this.player.x > 0 && this.isTexte === 0){
+            this.isTexte++;
+            this.tweens.add({
+                targets:this.tutoMove,
+                duration:3000,
+                yoyo: false,
+                delay:200,
+                alpha:{
+                    startDelay:0,
+                    from:0,
+                    to:1
+                }
+            })
+        }else if (this.player.x > 1000 && this.isTexte === 1){
+            this.isTexte++;
+            this.tweens.add({
+                targets:this.tutoMove,
+                duration:10,
+                yoyo: false,
+                alpha:{
+                    startDelay:0,
+                    from:1,
+                    to:0
+                }
+            })
+        }
+
+    }
 
     update() {
         super.update();
@@ -289,6 +329,9 @@ class TestTiled extends Tableau{
         //rang2
         this.arbre2.tilePositionX=this.cameras.main.scrollX*0.2;
         this.arbre2.tilePositionY=this.cameras.main.scrollY*0.1;
+
+        //apparitions et disparitions des tutos
+        this.apparitionTutoMove();
     }
     // Ne pas oublier de nommer chaques checkpoints sur Tiled
 
