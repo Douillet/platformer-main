@@ -18,7 +18,7 @@ let config = {
 
         //new TestTiled("Des étoiles"),
 
-        new TestTiled("Le Level Design qu'y disaient..."),
+        new TestTiled("Retrouvez votre Bien-Aimée"),
         new Tableau00a("Ramasse les Plumes!"),
         new Zoo("Le Bestiaire"),
 

@@ -13,7 +13,7 @@ class Ui extends Phaser.Scene {
     }
 
     create() {
-        console.log("create Ui")
+        //console.log("create Ui")
 
         this.score = 0;
         /**
@@ -32,7 +32,7 @@ class Ui extends Phaser.Scene {
          * @private
          */
         this._tableauText = this.add.text(this.sys.canvas.width - 16, 16, '...', {
-            font: '24px "Hanalei Fill"',
+            font: '18px "Hanalei Fill"',
             align: 'right',
             fill: '#fff'
         })
@@ -42,14 +42,14 @@ class Ui extends Phaser.Scene {
          * @type {Phaser.GameObjects.Text}
          * @private
          */
-        this._tableauTextClass = this.add.text(this.sys.canvas.width - 16, 16 + 32, '...', {
+        /*this._tableauTextClass = this.add.text(this.sys.canvas.width - 16, 16 + 32, '...', {
             font: '18px "Hanalei Fill"',
             align: 'right',
             fill: '#fff',
-        }).setAlpha(0.5)
+        }).setAlpha(0.5)*/
 
         this._tableauText.originX = 1;
-        this._tableauTextClass.originX = 1;
+        //this._tableauTextClass.originX = 1;
 
         this._tableauText.setInteractive();
         this._tableauText.on('pointerdown', function () {
@@ -194,7 +194,7 @@ class Ui extends Phaser.Scene {
     update() {
         if (Tableau.current) {
             this._tableauText.setText(Tableau.current.scene.key);
-            this._tableauTextClass.setText(Tableau.current.constructor.name);
+            //this._tableauTextClass.setText(Tableau.current.constructor.name);
         }
     }
 }
