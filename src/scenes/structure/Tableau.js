@@ -220,7 +220,7 @@ class Tableau extends Phaser.Scene {
                 //ui.gagne();
                 player.setVelocityY(-300);
                 monster.tete -= 10;
-                monster.setTint(0xcc0000);
+                monster.setTint(0xa8a8a8);
                 setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
                     monster.setTint(0xffffff);
                 }, 70);

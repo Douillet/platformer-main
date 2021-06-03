@@ -61,6 +61,9 @@ class TestTiled extends Tableau{
         this.arrierePlan = this.map.createLayer('arrierePlan', this.tileset, 0, 0);
         this.arrierePlan.setDepth(50);
 
+        this.ombre = this.map.createLayer('ombre', this.tileset, 0, 0);
+        this.ombre.setDepth(51);
+
         this.effetsLumineux = this.map.createLayer('effetsLumineux', this.tileset, 0, 0);
         this.effetsLumineux.setDepth(10001);
 
@@ -204,7 +207,7 @@ class TestTiled extends Tableau{
         this.Boom.setDepth(z--);
         this.blood.setDepth(z--);
         //this.stars.setDepth(z--);
-        this.objectif.setDepth(999);
+        this.objectif.setDepth(1);
         this.checkPoints.setDepth(z--);
         monstersContainer.setDepth(z--);
         BigaContainer.setDepth(z--);
@@ -214,7 +217,7 @@ class TestTiled extends Tableau{
         BouclarsideContainer.setDepth(z--);
         nuageContainer.setDepth(100000);
         PlumesContainer.setDepth(z--);
-        PikeContainer.setDepth(z--);
+        PikeContainer.setDepth(1);
 
 
         //DÉCOR
