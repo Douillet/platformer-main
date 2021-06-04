@@ -20,7 +20,6 @@ let config = {
 
         new TestTiled("Retrouvez votre Bien-Aimée"),
         new Tableau00a("Ramasse les Plumes!"),
-        new Zoo("Le Bestiaire"),
 
     ],
     width: width,
