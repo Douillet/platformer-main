@@ -19,7 +19,7 @@ let config = {
         //new TestTiled("Des étoiles"),
 
         new TestTiled("Retrouvez votre Bien-Aimée"),
-        new Tableau00a("Ramasse les Plumes!"),
+
 
     ],
     width: width,
