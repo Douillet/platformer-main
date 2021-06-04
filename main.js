@@ -15,10 +15,11 @@ let config = {
     },
     scene: [
 
-
-        new Start("Démarrer"),
         new Ui(),
+        new Start("Démarrer"),
+        new Resume("Resume"),
         new Niveau1("Retrouvez votre Bien-Aimée"),
+        new Credit("Credit"),
 
 
 

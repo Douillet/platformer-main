@@ -38,6 +38,9 @@ class Tableau extends Phaser.Scene {
         this.sky.displayWidth = 14 * 64;
         this.sky.setScrollFactor(0, 0);
 
+        ui.uiActif=true;
+        ui.cacherUI();
+
         this.epee = new Attack(this, -500, -500);
         this.totalActive = 0;
         /**
@@ -86,14 +89,18 @@ class Tableau extends Phaser.Scene {
                 }, 10);
             }
         }
-        if (this.totalActive === 0) {
-            this.win();
-        }
-
     }
 
-    finNiveau(player, objectif) {
-        this.win();
+    finNiveau() {
+        this.cameras.main.fadeOut(1000, 0, 0, 0)
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) =>
+        {
+            //this._destroy();
+            this.win();
+            ui.score = 0;
+            Tableau.current.player.vieJ = 3;
+        });
+
     }
 
     /**

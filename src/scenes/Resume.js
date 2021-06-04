@@ -1,4 +1,4 @@
-class Start extends Phaser.Scene {
+class Resume extends Phaser.Scene {
 
     constructor(key) {
         super(key);
@@ -6,24 +6,24 @@ class Start extends Phaser.Scene {
 
     preload ()
     {
-        this.load.image('ecran', 'assets/artwork.jpg');
-        this.load.image('bouton', 'assets/Continue.png');
+        this.load.image('ecran1', 'assets/artwork1.jpg');
+        this.load.image('bouton1', 'assets/Continue.png');
     }
 
     create()
     {
         var cam = this.cameras.main;
-        cam.zoomTo(0.55, 10000);
+        cam.zoomTo(0.55, 1);
 
-        ui.uiActif = false;
-        ui.cacherUI();
+        /*ui.uiActif = false;
+        ui.cacherUI();*/
 
         this.EnterPressed = false;
 
-        this.artwork = this.add.sprite(game.config.width/2, game.config.height/2, 'ecran');
+        this.artwork1 = this.add.sprite(game.config.width/2, game.config.height/2, 'ecran1');
 
-        let startB1 = this.add.sprite(game.config.width/2-8, game.config.height -150, 'bouton');
-        startB1.setAlpha(0);
+        let startB2 = this.add.sprite(game.config.width/2-8, game.config.height-25, 'bouton1');
+        startB2.setAlpha(0);
 
         //---------- on affiche les textes que l'on veut faire apparaître (boutons, titre...) ----------
 
@@ -32,14 +32,14 @@ class Start extends Phaser.Scene {
         //tweens permet de donner un petit effet à la cible voulue (target)
         this.tweens.add(
             {
-                targets:[startB1],
+                targets:[startB2],
                 duration:4000,
                 yoyo: true,
                 repeat:-1,
-                delay:10000,
+                delay:1500,
                 alpha:
                     {
-                        startDelay:Math.random()*5000,
+                        startDelay:0,
                         from:0,
                         to:1,
                     }
@@ -57,15 +57,13 @@ class Start extends Phaser.Scene {
         {
             if (!this.EnterPressed & !this.SpacePressed)
             {
-
+                this.artwork1.destroy();
                 this.EnterPressed = true;
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) =>
                 {
-                    this.artwork.destroy();
-                    this.game.scene.stop()
-                    this.game.scene.start(Resume);
-                    this.scene.start("Resume");
+                    this.game.scene.start(Niveau1);
+                    this.scene.start("Retrouvez votre Bien-Aimée");
                 })
             }
 
@@ -81,11 +79,10 @@ class Start extends Phaser.Scene {
                 this.cameras.main.fadeOut(1000, 0, 0, 0)
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) =>
                 {
-                    this.artwork.destroy();
+                    this.artwork1.destroy();
                     this.EnterPressed = true;
-                    this.game.scene.stop()
-                    this.game.scene.start(Resume);
-                    this.scene.start("Resume");
+                    this.game.scene.start(Niveau1);
+                    this.scene.start("Retrouvez votre Bien-Aimée");
                 })
             }
 
@@ -95,11 +92,10 @@ class Start extends Phaser.Scene {
             this.cameras.main.fadeOut(1000, 0, 0, 0)
             this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) =>
             {
-                this.artwork.destroy();
+                this.artwork1.destroy();
                 this.EnterPressed = true;
-                this.game.scene.stop()
-                this.game.scene.start(Resume);
-                this.scene.start("Resume");
+                this.game.scene.start(Niveau1);
+                this.scene.start("Retrouvez votre Bien-Aimée");
             })
 
         },this);

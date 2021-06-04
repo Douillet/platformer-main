@@ -184,6 +184,24 @@ class Ui extends Phaser.Scene {
         ;
     }
 
+    cacherUI(){
+
+        if (this.uiActif === false) {
+            this.vieP1.setAlpha(0);
+            this.vieP2.setAlpha(0);
+            this.vieP3.setAlpha(0);
+            this._scoreText.setAlpha(0);
+            this.plumeScore.setAlpha(0);
+            this._tableauText.setAlpha(0);
+        }else{
+            this.vieP1.setAlpha(1);
+            this.vieP2.setAlpha(1);
+            this.vieP3.setAlpha(1);
+            this._scoreText.setAlpha(1);
+            this.plumeScore.setAlpha(1);
+            this._tableauText.setAlpha(1);
+        }
+    }
     update() {
         if (Tableau.current) {
             this._tableauText.setText(Tableau.current.scene.key);
