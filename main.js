@@ -16,9 +16,10 @@ let config = {
     scene: [
         new Ui(),
 
-        //new TestTiled("Des étoiles"),
+        //new Niveau1("Des étoiles"),
+        //new Start("Démarrer"),
+        new Niveau1("Retrouvez votre Bien-Aimée"),
 
-        new TestTiled("Retrouvez votre Bien-Aimée"),
 
 
     ],

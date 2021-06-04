@@ -1,4 +1,4 @@
-class TestTiled extends Tableau{
+class Niveau1 extends Tableau{
 
     preload() {
         super.preload();
@@ -131,8 +131,6 @@ class TestTiled extends Tableau{
         this.checkPointsObjects.forEach(checkPointObject => {
             let totem = this.checkPoints.create(checkPointObject.x + 32, checkPointObject.y - 69, 'totem');
         });
-
-        this.restoreCheckPoint();
 
         //layer des gobos rampants
         let monstersContainer = this.add.container();
