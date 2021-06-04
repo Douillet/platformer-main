@@ -1,39 +1,25 @@
 class Start extends Phaser.Scene {
-    constructor(){
-        super("bootGame");
+
+    constructor(key) {
+        super(key);
     }
 
     preload ()
     {
-
-        this.load.image('ecran', 'assets/illustration.png');
-        this.load.image('bouton', 'assets/bouton.png');
-
-
+        this.load.image('ecran', 'assets/artwork.jpg');
+        this.load.image('bouton', 'assets/Continue.png');
     }
 
     create()
     {
-
         var cam = this.cameras.main;
         cam.zoomTo(0.5);
 
-
-
         this.EnterPressed = false;
-
-
-
 
         this.add.sprite(game.config.width/2, game.config.height/2, 'ecran');
 
-
-
-
         let startB1 = this.add.sprite(game.config.width/2-8, game.config.height -150, 'bouton');
-
-        //startB.scale = 0.5;
-
 
         //---------- on affiche les textes que l'on veut faire apparaître (boutons, titre...) ----------
 
@@ -55,11 +41,6 @@ class Start extends Phaser.Scene {
                     }
             })
 
-
-
-
-
-
         //---------- on initialise les touches du clavier pour lancer le jeu, activer/desactiver des options, etc ----------
 
         /*if(Tableau.current){
@@ -78,7 +59,7 @@ class Start extends Phaser.Scene {
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) =>
                 {
                     this.game.scene.start(Niveau1);
-                    this.scene.start("Niveau01");
+                    this.scene.start("Retrouvez votre Bien-Aimée");
                 })
             }
 
@@ -95,8 +76,8 @@ class Start extends Phaser.Scene {
                 this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, (cam, effect) =>
                 {
                     this.EnterPressed = true;
-                    this.game.scene.start(TableauTiled);
-                    this.scene.start("Niveau01");
+                    this.game.scene.start(Niveau1);
+                    this.scene.start("Retrouvez votre Bien-Aimée");
                 })
             }
 
@@ -112,10 +93,11 @@ class Start extends Phaser.Scene {
                 this.game.scene.start(tableau);
                 this.scene.start("aventureBegining");*/
                 this.EnterPressed = true;
-                this.game.scene.start(TableauTiled);
-                this.scene.start("Niveau01");
+                this.game.scene.start(Niveau1);
+                this.scene.start("Retrouvez votre Bien-Aimée");
             })
 
         },this);
     }
+
 }

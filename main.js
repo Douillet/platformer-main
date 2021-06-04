@@ -14,10 +14,10 @@ let config = {
         }
     },
     scene: [
-        new Ui(),
 
-        //new Niveau1("Des étoiles"),
-        //new Start("Démarrer"),
+
+        new Start("Démarrer"),
+        new Ui(),
         new Niveau1("Retrouvez votre Bien-Aimée"),
 
 
