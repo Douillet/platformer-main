@@ -26,6 +26,12 @@ class TestTiled extends Tableau{
         this.load.image('P1', 'assets/premierRang.png');
 
         this.load.image('tutoMove', 'assets/tutoMove.png');
+        this.load.image('tutoSaut', 'assets/tutoSaut.png');
+        this.load.image('tutoEpee', 'assets/tutoEpee.png');
+        this.load.image('tutoBouclierCote', 'assets/tutoBouclierCote.png');
+        this.load.image('tutoGrandGars', 'assets/tutoGrandGars.png');
+        this.load.image('tutoPlume', 'assets/tutoPlume.png');
+        this.load.image('tutoGrotte', 'assets/tutoGrotte.png');
 
         //tiled, enfin son JSON
         this.load.tilemapTiledJSON('map', 'assets/tiled/NewMap.json');
@@ -34,6 +40,7 @@ class TestTiled extends Tableau{
     create() {
         super.create();
         console.log("create")
+        this.player = new Player(this, 30, 700);
 
         //ajouter la fcking map
         this.map = this.make.tilemap({ key: 'map' });
@@ -47,9 +54,6 @@ class TestTiled extends Tableau{
 
         //premier nom est le nom du kit d'image sur tiled et le deuxième nom celui dans le preload
         this.tileset = this.map.addTilesetImage('assetsTiledv2', 'tiles');
-
-        //détecteur de passage des tutos
-        this.isTexte = 0;
 
         this.plateformes = this.map.createLayer('blocs', this.tileset, 0, 0);
         //this.plateformes.setCollisionByProperty({collide: true});
@@ -70,7 +74,7 @@ class TestTiled extends Tableau{
         this.ombre.setDepth(51);
 
         this.effetsLumineux = this.map.createLayer('effetsLumineux', this.tileset, 0, 0);
-        this.effetsLumineux.setDepth(10001);
+        this.effetsLumineux.setDepth(10002);
 
         this.pikes = this.map.createLayer('Pikes', this.tileset, 0, 0);
         this.pikes.setCollisionByExclusion(-1, true);
@@ -83,6 +87,7 @@ class TestTiled extends Tableau{
         this.collideMonster = this.map.createLayer('collideMonster', this.tileset, 0, 0);
         this.collideMonster.setCollisionByExclusion(-1, true);
         this.collideMonster.setDepth(1);
+
 
         //layer des plumes
         let PlumesContainer=this.add.container();
@@ -207,18 +212,20 @@ class TestTiled extends Tableau{
         });
 
         //les sprites tutos
-        this.tutoMove=this.add.sprite(150, 650, 'tutoMove').setAlpha(0);
-
+        this.tutoMove=this.add.sprite(350, 650, 'tutoMove').setAlpha(1);
+        this.tutoSaut=this.add.sprite(992, 500, 'tutoSaut').setAlpha(0);
+        this.tutoEpee=this.add.sprite(2050, 700, 'tutoEpee').setAlpha(0);
+        this.tutoBouclierCote=this.add.sprite(2700, 700, 'tutoBouclierCote').setAlpha(0);
+        this.tutoGrandGars=this.add.sprite(3500, 800, 'tutoGrandGars').setAlpha(0);
+        this.tutoPlume=this.add.sprite(4320, 750, 'tutoPlume').setAlpha(0);
+        this.tutoGrotte=this.add.sprite(6220, 650, 'tutoGrotte').setAlpha(0);
 
         //Profondeur
         let z=1000;
-        //debug.setDepth(z--);
         this.Boom.setDepth(z--);
         this.blood.setDepth(z--);
-        //this.stars.setDepth(z--);
         this.objectif.setDepth(1);
         this.checkPoints.setDepth(z--);
-        this.tutoMove.setDepth(99999);
         monstersContainer.setDepth(z--);
         BigaContainer.setDepth(z--);
         JumpContainer.setDepth(z--);
@@ -228,6 +235,15 @@ class TestTiled extends Tableau{
         nuageContainer.setDepth(100000);
         PlumesContainer.setDepth(z--);
         PikeContainer.setDepth(1);
+
+        //tutos
+        this.tutoMove.setDepth(51);
+        this.tutoSaut.setDepth(15);
+        this.tutoEpee.setDepth(10003);
+        this.tutoBouclierCote.setDepth(15);
+        this.tutoGrandGars.setDepth(15);
+        this.tutoPlume.setDepth(15);
+        this.tutoGrotte.setDepth(51);
 
 
         //DÉCOR
@@ -285,25 +301,13 @@ class TestTiled extends Tableau{
         }, null, this);
     }
 
-    apparitionTutoMove(){
+    disparitionTuto(tuto, x){
 
-        if(this.player.x > 0 && this.isTexte === 0){
-            this.isTexte++;
+        if (this.player.x > x -2 && this.player.x <= x+2){
+
+            //console.log("adieu");
             this.tweens.add({
-                targets:this.tutoMove,
-                duration:3000,
-                yoyo: false,
-                delay:200,
-                alpha:{
-                    startDelay:0,
-                    from:0,
-                    to:1
-                }
-            })
-        }else if (this.player.x > 1000 && this.isTexte === 1){
-            this.isTexte++;
-            this.tweens.add({
-                targets:this.tutoMove,
+                targets: tuto,
                 duration:10,
                 yoyo: false,
                 alpha:{
@@ -312,9 +316,52 @@ class TestTiled extends Tableau{
                     to:0
                 }
             })
+            //DESTRUCTION MOUHOUHOUHOUAHAHAHAH
+            tuto.destroy();
         }
 
     }
+
+
+    apparitionTuto(tuto, x, x2){
+
+        //apparition
+        if(this.player.x > x-2 && this.player.x <= x+2){
+
+            //console.log("ohOHHOH");
+
+            this.tweens.add({
+                targets: tuto,
+                duration:1500,
+                yoyo: false,
+                delay:200,
+                alpha:{
+                    startDelay:0,
+                    from:0,
+                    to:1
+                }
+            })
+        }
+        //dispartition
+        if (this.player.x > x2 -2 && this.player.x <= x2+2){
+
+            //console.log("ohqzd qOHHOH");
+            this.tweens.add({
+                targets: tuto,
+                duration:10,
+                yoyo: false,
+                alpha:{
+                    startDelay:0,
+                    from:1,
+                    to:0
+                }
+            })
+            //DESTRUCTION MOUHOUHOUHOUAHAHAHAH
+            tuto.destroy();
+        }
+
+    }
+
 
     update() {
         super.update();
@@ -331,8 +378,14 @@ class TestTiled extends Tableau{
         this.arbre2.tilePositionY=this.cameras.main.scrollY*0.1;
 
         //apparitions et disparitions des tutos
-        this.apparitionTutoMove();
+        this.disparitionTuto(this.tutoMove, 1000);
+        this.apparitionTuto(this.tutoSaut, 650, 1600);
+        this.apparitionTuto(this.tutoEpee, 1800, 2650);
+        this.apparitionTuto(this.tutoBouclierCote, 2400, 3250);
+        this.apparitionTuto(this.tutoGrandGars, 2900, 4250);
+        this.apparitionTuto(this.tutoPlume, 3800, 5000);
+        this.apparitionTuto(this.tutoGrotte, 5670, 6600);
     }
-    // Ne pas oublier de nommer chaques checkpoints sur Tiled
+    // Ne pas oublier de nommer chaque checkpoint sur Tiled
 
 }

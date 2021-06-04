@@ -53,7 +53,7 @@ class Tableau extends Phaser.Scene {
         //ATTENTION
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.player = new Player(this, 30, 700);
+        //this.player = new Player(this, 30, 700);
         this.blood = this.add.sprite(this.sys.canvas.width / 2, this.sys.canvas.height / 2, "attack")
         this.blood.displayWidth = 64;
         this.blood.displayHeight = 64;
@@ -139,7 +139,7 @@ class Tableau extends Phaser.Scene {
             }, 500);
             monster.vie -= 10; //fait baisser la vie des monstres de 10
             this.cameras.main.shake(200, 0.004, true,);
-            monster.setTint(0xcc0000);
+            monster.setTint(0xa8a8a8);
             setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
                 monster.setTint(0xffffff);
             }, 70);

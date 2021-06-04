@@ -18,6 +18,7 @@ class Zoo extends Tableau{
         super.create();
         //quelques étoiles
         let largeur=64*2;
+        this.player = new Player(this, 30, 700);
         this.stars=this.physics.add.group();
         for(let posX=largeur/2;posX<largeur*1;posX+=largeur){
             this.stars.create(posX ,0,"star");

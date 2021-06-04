@@ -35,11 +35,8 @@ class Tableau00a extends Tableau{
 
         this.cameras.main.startFollow(this.player, false, 0.10, 0.10); //suis le joueur
 
-        
-        //It's to slash some GOBBOS
-        this.SHOT_DELAY = 100; // milliseconds (10 bullets/second)
-        this.BULLET_SPEED = 500; // pixels/second
-        this.NUMBER_OF_BULLETS = 10;
+
+        this.player = new Player(this, 30, 700);
 
         // Create an object representing our gun
         this.gun = this.player //add.sprite(50, this.height/2, 'bullet');
