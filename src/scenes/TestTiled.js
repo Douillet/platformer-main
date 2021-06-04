@@ -4,7 +4,6 @@ class TestTiled extends Tableau{
         super.preload();
         //image
         this.load.image('tiles', 'assets/tiled/assetsTiledv2.png');
-        this.load.image('star', 'assets/Plume.png');
         this.load.spritesheet('plume', 'assets/PlumeSS.png',
             {frameWidth: 32, frameHeight: 32}
         );
@@ -12,7 +11,7 @@ class TestTiled extends Tableau{
         this.load.image('Géant', 'assets/GrandGarsv2.png');
         this.load.image('Squig', 'assets/GnobblarLancier.png');
         this.load.image('Gobelin_basique', 'assets/GnobblarBasique.png');
-        this.load.image('objectif', 'assets/star.png');
+        this.load.image('objectif', 'assets/VieJ.png');
         this.load.image('feuille', 'assets/feuille.png');
         this.load.image('totem', 'assets/Totem.png');
         this.load.image('BouclierHaut', 'assets/BouclierHaut.png');
