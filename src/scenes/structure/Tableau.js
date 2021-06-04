@@ -12,7 +12,7 @@ class Tableau extends Phaser.Scene {
     }
 
     /**
-     * Par défaut on charge un fond et le player
+     * Par défaut on charge un fond
      */
     preload() {
         this.load.image('sky', 'assets/FondFinal.jpg');
@@ -49,8 +49,6 @@ class Tableau extends Phaser.Scene {
          * @type {Player}
          */
 
-
-        //ATTENTION
         cursors = this.input.keyboard.createCursorKeys();
 
         //this.player = new Player(this, 30, 700);
@@ -67,17 +65,9 @@ class Tableau extends Phaser.Scene {
         this.player.move();
         ui.PV();
         ui.vieSupp();
-
-        //this.attaque();
     }
 
     ramasserEtoile(player, Plumes) {
-        /*if (player._directionY !==0) {
-            player.viensDeTuerUnMonstre = true; //Cette fonction marche aussi sur les objets Physiques autre, le cd étant super court il ne gêne pas
-            setTimeout(function () {     //On ne peut pas ressauter pendant 0.01 sec
-                player.viensDeTuerUnMonstre = false;
-            }, 10);
-        }*/
         if (ui.score < 10) {
             Plumes.disableBody(true, true);
             ui.gagne();
@@ -100,20 +90,6 @@ class Tableau extends Phaser.Scene {
                 }, 10);
             }
         }
-
-        //il faut que ne l'on puisse pas sauter sur les plumes qu'on n'a pas encore rammassé et qu'on puisse ne pas sauter sur les plumes
-        //ui.vieSupp();
-        //player.setVelocityY(0);
-
-        //va lister tous les objets de la scène pour trouver les étoies et vérifier si elles sont actives
-
-        /*for (let child of this.children.getChildren()) {
-            if (child.texture && child.texture.key === "Plume") {
-                if (child.active) {
-                    this.totalActive++;
-                }
-            }
-        }*/
         if (this.totalActive === 0) {
             this.win();
         }
@@ -377,37 +353,6 @@ class Tableau extends Phaser.Scene {
         this.player.stop();
         this.scene.stop();
     }
-
-    saveCheckPoint(checkPointName) {
-        //this.unique = false;
-        if (localStorage.getItem("checkpoints") !== checkPointName) // this.unique == false
-        {
-            //console.log("on atteint le checkpoint", checkPointName);
-            localStorage.setItem("checkpoints", checkPointName);
-            //this.unique = true;
-        }
-    }
-
-
-    restoreCheckPoint() {
-        let storedCheckPoint = localStorage.getItem("checkpoints")
-        if (storedCheckPoint) {
-            this.checkPointsObjects.forEach(checkPointObject => {
-                if (checkPointObject.name === storedCheckPoint) {
-                    this.player.setPosition(checkPointObject.x, checkPointObject.y - 64);//+432);
-                    //console.log("on charge le checkpoint", checkPointName);
-                }
-            });
-        }
-    }
-
-    clearCheckPoints() {
-        /*if (Tableau.current.ControlPressed)
-        {*/
-        localStorage.removeItem("checkpoints");
-        //}
-    }
-
 
     /**
      * Quand on a gagné

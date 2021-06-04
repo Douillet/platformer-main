@@ -49,12 +49,12 @@ class Ui extends Phaser.Scene {
         }).setAlpha(0.5)*/
 
         this._tableauText.originX = 1;
-        //this._tableauTextClass.originX = 1;
 
-        this._tableauText.setInteractive();
+
+        /*this._tableauText.setInteractive();
         this._tableauText.on('pointerdown', function () {
             Tableau.suivant();
-        })
+        })*/
 
         //met l'ui au dessus du tableau
         this.scene.bringToTop();
@@ -119,6 +119,7 @@ class Ui extends Phaser.Scene {
 
     }
 
+    //affiche les vies selon la vieJ du player
     PV() {
         if (Tableau.current.player.vieJ === 3) {
             this.vieP1.setAlpha(2);
@@ -127,24 +128,14 @@ class Ui extends Phaser.Scene {
         } else if (Tableau.current.player.vieJ === 2) {
             this.vieP1.setAlpha(1);
             this.vieP2.setAlpha(1);
-            /*this.vieP3.setTint(0xa2a2a2);
-            setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
-                this.vieP3.setAlpha(0);
-            }, 300);*/
+
             this.vieP3.setAlpha(0);
         } else if (Tableau.current.player.vieJ === 1) {
             this.vieP1.setAlpha(1);
-            /*this.vieP2.setTint(0xa2a2a2);
-            setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
-                this.vieP2.setAlpha(0);
-            }, 300);*/
+
             this.vieP2.setAlpha(0);
             this.vieP3.setAlpha(0);
-        } else {
-            /*this.vieP1.setTint(0xa2a2a2);
-            setTimeout(function () {      //On ne peut pas ressauter pendant 0.05 sec
-                this.vieP1.setAlpha(0);
-            }, 300);*/
+        } else { //à 0
             this.vieP1.setAlpha(0);
             this.vieP2.setAlpha(0);
             this.vieP3.setAlpha(0);
@@ -152,6 +143,7 @@ class Ui extends Phaser.Scene {
 
     }
 
+    //rajoute une vie avec 10 plumes
     vieSupp() {
         this._scoreText.setText('x  ' + this.score);
         if (Tableau.current.player.vieJ < 3) {
@@ -161,6 +153,7 @@ class Ui extends Phaser.Scene {
 
             }
         }
+        //3 vieJ et 10 plumes donne un bouclier représenté par un tint doré
         if (Tableau.current.player.vieJ === 3) {
             if (this.score === 10) {
                 Tableau.current.player.setTint(0xfef995);

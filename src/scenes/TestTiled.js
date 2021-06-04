@@ -42,11 +42,11 @@ class TestTiled extends Tableau{
         this.player = new Player(this, 30, 700);
 
         //ajouter la fcking map
-        this.map = this.make.tilemap({ key: 'map' });
+        this.map = this.make.tilemap({key: 'map'});
 
-        let largeurDuTableau=this.map.widthInPixels;
-        let hauteurDuTableau=this.map.heightInPixels;
-        this.physics.world.setBounds(0, 0, largeurDuTableau,  hauteurDuTableau);
+        let largeurDuTableau = this.map.widthInPixels;
+        let hauteurDuTableau = this.map.heightInPixels;
+        this.physics.world.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
         this.cameras.main.setBounds(0, 0, largeurDuTableau, hauteurDuTableau);
         this.cameras.main.startFollow(this.player, true, 0.4, 0.1, -90, 0);
 
@@ -89,21 +89,21 @@ class TestTiled extends Tableau{
 
 
         //layer des plumes
-        let PlumesContainer=this.add.container();
+        let PlumesContainer = this.add.container();
         this.PlumesObjects = this.map.getObjectLayer('stars')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.PlumesObjects.forEach(PlumeObject => {
-            let Plumes=new Plume(this,PlumeObject.x + 16,PlumeObject.y -16);
+            let Plumes = new Plume(this, PlumeObject.x + 16, PlumeObject.y - 16);
             PlumesContainer.add(Plumes);
             this.totalActive++;
             this.physics.add.overlap(this.player, Plumes, this.ramasserEtoile, null, this);
 
         });
-        let PikeContainer=this.add.container();
+        let PikeContainer = this.add.container();
         this.PikesObjects = this.map.getObjectLayer('Pike')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.PikesObjects.forEach(PikeObject => {
-            let Pikes=new Pike(this,PikeObject.x + 16,PikeObject.y - 28);
+            let Pikes = new Pike(this, PikeObject.x + 16, PikeObject.y - 28);
             PikeContainer.add(Pikes);
             this.totalActive++;
             this.physics.add.overlap(this.player, Pikes, this.hitSpike, null, this);
@@ -114,13 +114,13 @@ class TestTiled extends Tableau{
         this.objectif = this.physics.add.group({
             allowGravity: false,
             immovable: true,
-            bounceY:0
+            bounceY: 0
         });
         this.objectifsObjects = this.map.getObjectLayer('fin')['objects'];
         // On crée des étoiles pour chaque objet rencontré
         this.objectifsObjects.forEach(objectifsObjects => {
             // Pour chaque étoile on la positionne pour que ça colle bien car les étoiles ne font pas 64x64
-            let objectif = this.objectif.create(objectifsObjects.x+32, objectifsObjects.y-32 , 'objectif');
+            let objectif = this.objectif.create(objectifsObjects.x + 32, objectifsObjects.y - 32, 'objectif');
         });
         this.physics.add.overlap(this.player, this.objectif, this.finNiveau, null, this);
 
@@ -128,99 +128,97 @@ class TestTiled extends Tableau{
         this.checkPoints = this.physics.add.staticGroup();
         this.checkPointsObjects = this.map.getObjectLayer('checkpoints')['objects'];
         //on crée des checkpoints pour chaque objet rencontré
-        this.checkPointsObjects.forEach(checkPointObject =>
-        {
-            let totem = this.checkPoints.create(checkPointObject.x+32, checkPointObject.y-69 , 'totem');
+        this.checkPointsObjects.forEach(checkPointObject => {
+            let totem = this.checkPoints.create(checkPointObject.x + 32, checkPointObject.y - 69, 'totem');
         });
 
         this.restoreCheckPoint();
 
         //layer des gobos rampants
-        let monstersContainer=this.add.container();
+        let monstersContainer = this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('monstres')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
-            let monster=new GobelinLoup(this,monsterObject.x,monsterObject.y-96,);
+            let monster = new GobelinLoup(this, monsterObject.x, monsterObject.y - 96,);
             monstersContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
             this.physics.add.collider(this.collideMonster, monster);
-            });
+        });
 
 
         //layer des Grand'Gars
-        let BigaContainer=this.add.container();
+        let BigaContainer = this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('bigga')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
-            let monster=new Geant(this,monsterObject.x,monsterObject.y-300,);
+            let monster = new Geant(this, monsterObject.x, monsterObject.y - 300,);
             BigaContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
             this.physics.add.collider(this.collideMonster, monster);
         });
 
         //layer des Jumpers
-        let JumpContainer=this.add.container();
+        let JumpContainer = this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('sauteurs')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
-            let monster=new Squig(this,monsterObject.x,monsterObject.y-96,);
+            let monster = new Squig(this, monsterObject.x, monsterObject.y - 96,);
             JumpContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
             this.physics.add.collider(this.collideMonster, monster);
         });
 
         //layer des Berserkers sautillants
-        let BerserkContainer=this.add.container();
+        let BerserkContainer = this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('berserks')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
-            let monster=new Gobelin_basique(this,monsterObject.x,monsterObject.y-96,);
+            let monster = new Gobelin_basique(this, monsterObject.x, monsterObject.y - 96,);
             BerserkContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
             this.physics.add.collider(this.collideMonster, monster);
         });
 
-        let BouclarupContainer=this.add.container();
+        let BouclarupContainer = this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('BouclierHaut')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
-            let monster=new BouclierHaut(this,monsterObject.x+32,monsterObject.y-64,);
+            let monster = new BouclierHaut(this, monsterObject.x + 32, monsterObject.y - 64,);
             BouclarupContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
             this.physics.add.collider(this.collideMonster, monster);
         });
 
-        let BouclarsideContainer=this.add.container();
+        let BouclarsideContainer = this.add.container();
         this.MonstersObjects = this.map.getObjectLayer('BouclierCote')['objects'];
         // On crée des montres pour chaque objet rencontré
         this.MonstersObjects.forEach(monsterObject => {
-            let monster=new BouclierCote(this,monsterObject.x+32,monsterObject.y-64,);
+            let monster = new BouclierCote(this, monsterObject.x + 32, monsterObject.y - 64,);
             BouclarsideContainer.add(monster);
             this.physics.add.collider(this.plateformes, monster);
             this.physics.add.collider(this.collideMonster, monster);
         });
 
-        let nuageContainer=this.add.container();
+        let nuageContainer = this.add.container();
         this.nuagesObjects = this.map.getObjectLayer('NuageJaune')['objects'];
         //on crée des checkpoints pour chaque objet rencontré
-        this.nuagesObjects.forEach(nuageObject =>
-        {
-            let Nuages = new NuageVert(this, nuageObject.x+100, nuageObject.y-79);
+        this.nuagesObjects.forEach(nuageObject => {
+            let Nuages = new NuageVert(this, nuageObject.x + 100, nuageObject.y - 79);
             nuageContainer.add(Nuages);
             //console.log("prout");
         });
 
         //les sprites tutos
-        this.tutoMove=this.add.sprite(350, 650, 'tutoMove').setAlpha(1);
-        this.tutoSaut=this.add.sprite(992, 500, 'tutoSaut').setAlpha(0);
-        this.tutoEpee=this.add.sprite(2050, 700, 'tutoEpee').setAlpha(0);
-        this.tutoBouclierCote=this.add.sprite(2700, 700, 'tutoBouclierCote').setAlpha(0);
-        this.tutoGrandGars=this.add.sprite(3500, 800, 'tutoGrandGars').setAlpha(0);
-        this.tutoPlume=this.add.sprite(4320, 750, 'tutoPlume').setAlpha(0);
-        this.tutoGrotte=this.add.sprite(6220, 650, 'tutoGrotte').setAlpha(0);
+        this.tutoMove = this.add.sprite(350, 650, 'tutoMove').setAlpha(1);
+        this.tutoSaut = this.add.sprite(992, 500, 'tutoSaut').setAlpha(0);
+        this.tutoEpee = this.add.sprite(2050, 700, 'tutoEpee').setAlpha(0);
+        this.tutoBouclierCote = this.add.sprite(2700, 700, 'tutoBouclierCote').setAlpha(0);
+        this.tutoGrandGars = this.add.sprite(3500, 800, 'tutoGrandGars').setAlpha(0);
+        this.tutoPlume = this.add.sprite(4320, 750, 'tutoPlume').setAlpha(0);
+        this.tutoGrotte = this.add.sprite(6220, 650, 'tutoGrotte').setAlpha(0);
 
         //Profondeur
-        let z=1000;
+        let z = 1000;
         this.Boom.setDepth(z--);
         this.blood.setDepth(z--);
         this.objectif.setDepth(1);
@@ -235,7 +233,7 @@ class TestTiled extends Tableau{
         PlumesContainer.setDepth(z--);
         PikeContainer.setDepth(1);
 
-        //tutos
+        //Profondeur tutos
         this.tutoMove.setDepth(51);
         this.tutoSaut.setDepth(15);
         this.tutoEpee.setDepth(10003);
@@ -246,58 +244,43 @@ class TestTiled extends Tableau{
 
 
         //DÉCOR
-        this.fond=this.add.tileSprite(
+        this.fond = this.add.tileSprite(
             0,
             0,
-            this.sys.canvas.width*2,
-            this.sys.canvas.height*2,
+            this.sys.canvas.width * 2,
+            this.sys.canvas.height * 2,
             'Fond'
         );
-        this.fond.setOrigin(0,0);
+        this.fond.setOrigin(0, 0);
         this.fond.setScrollFactor(0);
 
         //1er rang d'arbre
-        this.arbre=this.add.tileSprite(
+        this.arbre = this.add.tileSprite(
             0,
             0,
-            this.sys.canvas.width*2,
-            this.sys.canvas.height*2,
+            this.sys.canvas.width * 2,
+            this.sys.canvas.height * 2,
             'P1'
         );
         this.arbre.setScrollFactor(0);
-        this.arbre.setOrigin(0,0);
+        this.arbre.setOrigin(0, 0);
 
         //2ème rang d'arbre
-        this.arbre2=this.add.tileSprite(
+        this.arbre2 = this.add.tileSprite(
             0,
             0,
-            this.sys.canvas.width*2,
-            this.sys.canvas.height*2,
+            this.sys.canvas.width * 2,
+            this.sys.canvas.height * 2,
             'P2'
         );
         this.arbre2.setScrollFactor(0);
-        this.arbre2.setOrigin(0,0);
+        this.arbre2.setOrigin(0, 0);
 
         //Profondeur du décor
         this.arbre.setDepth(9);
         this.arbre2.setDepth(7);
         this.fond.setDepth(2)
 
-        //pour save les positions
-        this.physics.add.overlap(this.player, this.checkPoints, function(player, checkPoint)
-        {
-            this.saveCheckPoint(checkPoint);
-            if(!this.player.body.blocked.down || !this.player.body.touching.down)
-            {
-                Tableau.current.jumpStop = true;
-                //console.log("jumpStop = true");
-            }
-            else
-            {
-                Tableau.current.jumpStop = false;
-                //console.log("jumpStop = false");
-            }
-        }, null, this);
     }
 
     disparitionTuto(tuto, x){
