@@ -16,12 +16,8 @@ class Tableau extends Phaser.Scene {
      */
     preload() {
         this.load.image('sky', 'assets/FondFinal.jpg');
-        this.load.image('spike', 'assets/spike.png');
         this.load.image('attack', 'assets/attackNull.png');
         this.load.image('attackRed', 'assets/attack.png');
-        this.load.spritesheet('hero', 'assets/hero.png',
-            {frameWidth: 90, frameHeight: 123}
-        );
         this.load.spritesheet('Andras', 'assets/Andras.png',
             {frameWidth: 89, frameHeight: 132}
         );
@@ -218,16 +214,15 @@ class Tableau extends Phaser.Scene {
                     this.cameras.main.shake(200, 0.001, true,); //Screen Shaker
                 }
                 ;
-                //notre joueur rebondit sur le monstre
+
 
             } else {
                 if (player.seFaitTaclerParUnMonstre === false) {
-                    //ui.PV();
                     player.seFaitTaclerParUnMonstre = true;
+                    //notre joueur rebondit sur le monstre
                     player.setVelocityY(-200);
                     player.vieJ -= 1;
-                    //ui.PV();
-                    console.log("aie");
+                    //console.log("aie");
                     player.setTint(0xe62623);
                     setTimeout(function () {      //clignotement de prise de dégâts
                         player.setTint(0xffffff);
@@ -298,7 +293,7 @@ class Tableau extends Phaser.Scene {
             player.seFaitTaclerParUnMonstre = true;
             player.setVelocityY(-200);
             player.vieJ -= 1;
-            console.log("aie");
+            //console.log("aie");
             player.setTint(0xe62623);
             setTimeout(function () {      //clignotement de prise de dégâts
                 player.setTint(0xffffff);

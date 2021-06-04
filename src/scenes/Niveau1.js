@@ -12,11 +12,9 @@ class Niveau1 extends Tableau{
         this.load.image('Squig', 'assets/GnobblarLancier.png');
         this.load.image('Gobelin_basique', 'assets/GnobblarBasique.png');
         this.load.image('objectif', 'assets/VieJ.png');
-        this.load.image('feuille', 'assets/feuille.png');
         this.load.image('totem', 'assets/Totem.png');
         this.load.image('BouclierHaut', 'assets/BouclierHaut.png');
         this.load.image('BouclierCote', 'assets/BouclierCote.png');
-        this.load.image('NuageJaune', 'assets/NuageJaune.png');
         this.load.image('NuageVert', 'assets/NuageVert.png');
         this.load.image('Pike', 'assets/attackNull.png');
 
