@@ -2,10 +2,10 @@ class BouclierHaut extends ObjetEnnemi{
     constructor(scene, x, y) {
         super(scene, x, y, "BouclierHaut");
 
+        //vie différente pour la tête
         this.tete = 500;
 
         this.setOrigin(0,0);
-        //this.setDisplaySize(64,64);
         this.setCollideWorldBounds(true);
         this.setBounceY(0.1);
         this.setBounceX(1);
@@ -14,7 +14,7 @@ class BouclierHaut extends ObjetEnnemi{
     }
 
     update(){
-        //fait changer de sens notre oiseau
+        //fait changer de sens
         if(this.body){
             if(this.body.velocity.x<0){
                 this.flipX=false;

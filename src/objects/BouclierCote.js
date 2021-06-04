@@ -2,6 +2,7 @@ class BouclierCote extends ObjetEnnemi{
     constructor(scene, x, y) {
         super(scene, x, y, "BouclierCote");
 
+        //point de vie de coup d'épée différent
         this.vie = 100;
 
         this.setOrigin(0,0);
@@ -14,7 +15,7 @@ class BouclierCote extends ObjetEnnemi{
     }
 
     update(){
-        //fait changer de sens notre oiseau
+        //fait changer de sens
         if(this.body){
             if(this.body.velocity.x<0){
                 this.flipX=false;

@@ -16,7 +16,7 @@ class Geant extends ObjetEnnemi{
     }
 
     update(){
-        //fait changer de sens notre oiseau
+        //fait changer de sens
         if(this.body){
             if(this.body.velocity.x<0){
                 this.flipX=false;

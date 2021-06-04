@@ -3,7 +3,6 @@ class Squig extends ObjetEnnemi{
         super(scene, x, y, "Squig");
         
         this.setOrigin(0,0);
-        //this.setDisplaySize(61,78);
         this.setCollideWorldBounds(true);
         this.setBounceY(1);
         this.setBounceX(0.2);
@@ -13,12 +12,8 @@ class Squig extends ObjetEnnemi{
         this.scene.events.on('update', (time, delta) => { this.update(time, delta)} );
     }
 
-    mort(){
-        this.disableBody(true, true);
-    }
-
     update(){
-        //fait changer de sens notre oiseau
+        //fait changer de sens
         if(this.body){
             if(this.body.velocity.x<0){
                 this.flipX=true;

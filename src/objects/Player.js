@@ -5,11 +5,11 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this)
 
         this.world = scene;
-        this.dirX = 1;
-        this.vieJ = 3;
+        this.dirX = 1; //détecte la direction du joueur
+        this.vieJ = 3; //pv de base du joueur
 
-        this.agiteSonStickEnAcier = false;
-        this.seFaitTaclerParUnMonstre = false;
+        this.agiteSonStickEnAcier = false; //bool qui détecte quand on attaque
+        this.seFaitTaclerParUnMonstre = false; //bool qui détecte quand on prend un coup
         this.estEnTrainDAttaquer = false; //bool pour infliger un dégât
         this.rechargeSonCoup = false; //bool pour le rechargement
         this.viensDeTuerUnMonstre = false; //bool pour empêcher de rebondir sur les monstres
@@ -121,7 +121,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
                 this.setOffset(110,18);
             }
 
-            console.log("JHABITE");
+            //console.log("JHABITE");
         }
         if (this.agiteSonStickEnAcier === false) {
 
@@ -148,25 +148,24 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         }
 
 
+        //pour donner les vitesses de déplacements
         switch (true) {
             case this._directionX < 0:
                 this.setVelocityX(-180);
-                //this.anims.play('left', true);
                 this.dirX = -1;
                 break;
 
             case this._directionX > 0:
                 this.setVelocityX(180);
-                //this.anims.play('right', true);
                 this.dirX = 1;
                 break;
 
             default:
                 this.setVelocityX(0);
-                //this.anims.play(this.dirX === -1 ? 'turn' : 'turn off', true);
 
 
         }
+        //fonction saut qui peut-être bloquer par le booléen
         if (this.viensDeTuerUnMonstre === false) {
             if (this._directionY < 0) {
                 if (this.body.blocked.down || this.body.touching.down) {
@@ -182,13 +181,11 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         if (this.rechargeSonCoup === false) { //on vérifie si on a rechargé le coup
             this.agiteSonStickEnAcier = true;
-            //document.title = "a";
 
             Tableau.current.player.setTint(0xb4b4b4); //grise le joueur
             this.rechargeSonCoup = true; //lance la recharge
             //console.warn("att 2 sec, je viens de frapper!");
             Tableau.current.epee.setPosition(this.x + (80 * this.dirX), this.y); //fait déplacer le collider d'attaque
-            //this.anims.play(this.dirX === -1 ? 'att_r' : 'att_l', true); //Anim d'attaque
             setTimeout(function () { //cooldown qui tp le collider d'attaque
                 this.agiteSonStickEnAcier = false;
             }, 500);
